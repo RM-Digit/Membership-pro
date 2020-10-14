@@ -1,0 +1,1063 @@
+===========================================================
+Date: 2017-10-23 20:40:17
+Event: updatedOrder
+Request payload:
+{"user":{"id":69,"email":"dev7@dvlpmt.com","password":"$2y$10$xgonTFKCcVvgYboxdDwSNewoiQdmg6kYvwbuSC2dOWyZ7j5e0EjUu","billing":{"first_name":"Dev","last_name":"Test","phone":"111111","zip":"12121","state":"AZ","country":"US","city":"City Test"},"membership":{"id":"1","name":"Basic Plan","slug":"basic-plan","starts_at":1508766017,"ends_at":1540302017}}}
+Response:
+<br />
+<font size='1'><table class='xdebug-error xe-notice' dir='ltr' border='1' cellspacing='0' cellpadding='1'>
+<tr><th align='left' bgcolor='#f57900' colspan="5"><span style='background-color: #cc0000; color: #fce94f; font-size: x-large;'>( ! )</span> Notice: Trying to get property of non-object in /home/vagrant/code/l6elite/api/v1/api/webhooks/SubscriptionWebhookListener.php on line <i>214</i></th></tr>
+<tr><th align='left' bgcolor='#e9b96e' colspan='5'>Call Stack</th></tr>
+<tr><th align='center' bgcolor='#eeeeec'>#</th><th align='left' bgcolor='#eeeeec'>Time</th><th align='left' bgcolor='#eeeeec'>Memory</th><th align='left' bgcolor='#eeeeec'>Function</th><th align='left' bgcolor='#eeeeec'>Location</th></tr>
+<tr><td bgcolor='#eeeeec' align='center'>1</td><td bgcolor='#eeeeec' align='center'>0.0004</td><td bgcolor='#eeeeec' align='right'>358032</td><td bgcolor='#eeeeec'>{main}(  )</td><td title='/home/vagrant/code/l6elite/api/v1/api/index.php' bgcolor='#eeeeec'>.../index.php<b>:</b>0</td></tr>
+<tr><td bgcolor='#eeeeec' align='center'>2</td><td bgcolor='#eeeeec' align='center'>0.0156</td><td bgcolor='#eeeeec' align='right'>381872</td><td bgcolor='#eeeeec'>SubscriptionWebhookListener->__construct(  )</td><td title='/home/vagrant/code/l6elite/api/v1/api/index.php' bgcolor='#eeeeec'>.../index.php<b>:</b>22</td></tr>
+<tr><td bgcolor='#eeeeec' align='center'>3</td><td bgcolor='#eeeeec' align='center'>0.0156</td><td bgcolor='#eeeeec' align='right'>381872</td><td bgcolor='#eeeeec'>SubscriptionWebhookListener->handleEvent(  )</td><td title='/home/vagrant/code/l6elite/api/v1/api/webhooks/SubscriptionWebhookListener.php' bgcolor='#eeeeec'>.../SubscriptionWebhookListener.php<b>:</b>23</td></tr>
+<tr><td bgcolor='#eeeeec' align='center'>4</td><td bgcolor='#eeeeec' align='center'>0.0156</td><td bgcolor='#eeeeec' align='right'>381928</td><td bgcolor='#eeeeec'>SubscriptionWebhookListener->handleEvent_updatedOrder(  )</td><td title='/home/vagrant/code/l6elite/api/v1/api/webhooks/SubscriptionWebhookListener.php' bgcolor='#eeeeec'>.../SubscriptionWebhookListener.php<b>:</b>59</td></tr>
+</table></font>
+{"success":true,"errors":[]}
+===========================================================
+
+===========================================================
+Date: 2017-10-23 20:48:14
+Event: updatedOrder
+Request payload:
+{"user":{"id":70,"email":"dev8@dvlpmt.com","password":"$2y$10$05nu.kTO9IHUf1L2gAvrauaUIDV1Lenu0fKrTdGTRhHtX\/MmK1hcW","billing":{"first_name":"Dev","last_name":"Test","phone":"111111","zip":"12121","state":"AZ","country":"US","city":"City Test"},"membership":{"id":"1","name":"Basic Plan","slug":"basic-plan","starts_at":1508766494,"ends_at":1540302494}}}
+Response:
+<br />
+<font size='1'><table class='xdebug-error xe-uncaught-exception' dir='ltr' border='1' cellspacing='0' cellpadding='1'>
+<tr><th align='left' bgcolor='#f57900' colspan="5"><span style='background-color: #cc0000; color: #fce94f; font-size: x-large;'>( ! )</span> Fatal error: Uncaught Error: Call to undefined function dd() in /home/vagrant/code/l6elite/api/v1/api/index.php on line <i>22</i></th></tr>
+<tr><th align='left' bgcolor='#f57900' colspan="5"><span style='background-color: #cc0000; color: #fce94f; font-size: x-large;'>( ! )</span> Error: Call to undefined function dd() in /home/vagrant/code/l6elite/api/v1/api/index.php on line <i>22</i></th></tr>
+<tr><th align='left' bgcolor='#e9b96e' colspan='5'>Call Stack</th></tr>
+<tr><th align='center' bgcolor='#eeeeec'>#</th><th align='left' bgcolor='#eeeeec'>Time</th><th align='left' bgcolor='#eeeeec'>Memory</th><th align='left' bgcolor='#eeeeec'>Function</th><th align='left' bgcolor='#eeeeec'>Location</th></tr>
+<tr><td bgcolor='#eeeeec' align='center'>1</td><td bgcolor='#eeeeec' align='center'>0.0024</td><td bgcolor='#eeeeec' align='right'>358960</td><td bgcolor='#eeeeec'>{main}(  )</td><td title='/home/vagrant/code/l6elite/api/v1/api/index.php' bgcolor='#eeeeec'>.../index.php<b>:</b>0</td></tr>
+</table></font>
+
+===========================================================
+
+===========================================================
+Date: 2017-10-24 21:12:17
+Event: updatedOrder
+Request payload:
+{"user":{"id":7,"email":"dev4@dvlpmt.com","password":"$2y$10$K51uj9lqGb8rjlqUUNxs7eOuxvBN7QFA\/GiuhsJ.M21A4hjchhID6","billing":{"first_name":"Dev","last_name":"Dev","phone":"1231231231","zip":"123123","state":"State","country":"US","city":"City"},"membership":{"id":"3","name":"Silver Plan","slug":"silver-plan","starts_at":1508879537,"ends_at":1540415537}}}
+Response:
+{"success":true,"errors":[]}
+===========================================================
+
+===========================================================
+Date: 2017-10-24 21:52:17
+Event: updatedOrder
+Request payload:
+{"user":{"id":8,"email":"dev5@dvlpmt.com","password":"$2y$10$c4RS2AWxHTr1iMtp2XPxk.kbZV3sooMkjGshvMdVTuEEJ1ZMc2VpS","billing":{"first_name":"Dev","last_name":"Dev","phone":"123123","zip":"12312","state":"asd","country":"US","city":"asd"},"membership":{"id":"4","name":"Platinum Plan","slug":"platinum-plan","starts_at":1508881937,"ends_at":1540417937}}}
+Response:
+{"success":true,"errors":[]}
+===========================================================
+
+===========================================================
+Date: 2017-10-24 22:05:23
+Event: updatedOrder
+Request payload:
+{"user":{"id":9,"email":"dev6@dvlpmt.com","password":"$2y$10$rSPTbvRdYQpP\/317JJ5.VuQhYQNBSp8JqE.lstPj8b63shbkaHwhK","billing":{"first_name":"Dev","last_name":"Dev","phone":"123123","address":"asdf","zip":"12312","state":"asd","country":"US","city":"asd"},"membership":{"id":"1","name":"Basic Plan","slug":"basic-plan","starts_at":1508882723,"ends_at":1540418723}}}
+Response:
+{"success":true,"errors":[]}
+===========================================================
+
+===========================================================
+Date: 2017-10-24 22:07:23
+Event: updatedOrder
+Request payload:
+{"user":{"id":10,"email":"dev7@dvlpmt.com","password":"$2y$10$J7g9ghzxZsJh8U81gyadduV8FJj2.Lg6KWkAXNOA\/67AUhkaUDQPC","billing":{"first_name":"Dev","last_name":"Dev","phone":"123123","address":"asd","zip":"123","state":"asd","country":"US","city":"asd"},"membership":{"id":"1","name":"Basic Plan","slug":"basic-plan","starts_at":1508882843,"ends_at":1540418843}}}
+Response:
+{"success":true,"errors":[]}
+===========================================================
+
+===========================================================
+Date: 2017-10-24 22:10:23
+Event: updatedOrder
+Request payload:
+{"user":{"id":11,"email":"dev8@dvlpmt.com","password":"$2y$10$fFbSZ5TPY9piGiVBy9gnYOn21IZJBKeiIAB3CQudX7gGWcFE2Ko62","billing":{"first_name":"Dev","last_name":"Dev","phone":"12312312","address":"asd","zip":"asd","state":"asd","country":"US","city":"asd"},"membership":{"id":"2","name":"Bronze Plan","slug":"bronze-plan","starts_at":1508883022,"ends_at":1540419022}}}
+Response:
+{"success":true,"errors":[]}
+===========================================================
+
+===========================================================
+Date: 2017-10-24 22:50:36
+Event: updatedOrder
+Request payload:
+{"user":{"id":18,"email":"dev15@dvlpmt.com","password":"$2y$10$xwWiVKnEC\/8D3Y1i4w\/biOFruP.NmH\/GzM0QOqGhKNK5Dw0RUcYxq","billing":{"first_name":"Dev","last_name":"Dev","phone":"1321231","address":"asdf","zip":"123123","state":"asd","country":"US","city":"asd"},"membership":{"id":"1","name":"Basic Plan","slug":"basic-plan","starts_at":1508885436,"ends_at":1540421436}}}
+Response:
+{"success":false,"errors":{"exception":"Unable to execute SELECT statement [SELECT users_subscriptions.id, users_subscriptions.user_id, users_subscriptions.date_time_created, users_subscriptions.date_time_expires, users_subscriptions.package, users_subscriptions.is_trial, users_subscriptions.status, users_subscriptions.wordpress_id FROM users_subscriptions WHERE users_subscriptions.user_id=:p1 AND users_subscriptions.status=:p2]"}}
+===========================================================
+
+===========================================================
+Date: 2017-10-24 22:53:49
+Event: updatedOrder
+Request payload:
+{"user":{"id":19,"email":"dev16@dvlpmt.com","password":"$2y$10$fMN0toR0kB3kFjQuf.9mp.jeAs5fnB4wLzixM0XDl2RlOIPwxRwJ.","billing":{"first_name":"Dev","last_name":"Dev","phone":"123123","address":"asdf","zip":"123123","state":"asd","country":"US","city":"asd"},"membership":{"id":"1","name":"Basic Plan","slug":"basic-plan","starts_at":1508885629,"ends_at":1540421629}}}
+Response:
+{"success":false,"errors":{"exception":"Unable to execute SELECT statement [SELECT users_subscriptions.id, users_subscriptions.user_id, users_subscriptions.date_time_created, users_subscriptions.date_time_expires, users_subscriptions.package, users_subscriptions.is_trial, users_subscriptions.status, users_subscriptions.wordpress_id FROM users_subscriptions WHERE users_subscriptions.user_id=:p1 AND users_subscriptions.status=:p2]"}}
+===========================================================
+
+===========================================================
+Date: 2017-10-24 22:55:29
+Event: updatedOrder
+Request payload:
+{"user":{"id":20,"email":"dev17@dvlpmt.com","password":"$2y$10$lGgI.DD7\/iGHPPentRJ0H.mfRBYue1Txf0MBYmhK625d8pmi8.9sS","billing":{"first_name":"Dev","last_name":"Dev","phone":"123123","address":"asdsad","zip":"32132","state":"asdasd","country":"US","city":"asdasd"},"membership":{"id":"1","name":"Basic Plan","slug":"basic-plan","starts_at":1508885729,"ends_at":1540421729}}}
+Response:
+{"success":false,"errors":{"exception":"Unable to execute SELECT statement [SELECT users_subscriptions.id, users_subscriptions.user_id, users_subscriptions.date_time_created, users_subscriptions.date_time_expires, users_subscriptions.package, users_subscriptions.is_trial, users_subscriptions.status, users_subscriptions.wordpress_id FROM users_subscriptions WHERE users_subscriptions.user_id=:p1 AND users_subscriptions.status=:p2]"}}
+===========================================================
+
+===========================================================
+Date: 2017-10-24 23:02:20
+Event: updatedOrder
+Request payload:
+{"user":{"id":21,"email":"dev18@dvlpmt.com","password":"$2y$10$f7NGXTdZdLL1zzrID7LrAODfBtBg4DSKNMo7Br8E9Jrpy5Xsxkeyu","billing":{"first_name":"Dev","last_name":"Dev","phone":"1312212312","address":"asdf","zip":"123131","state":"asdf","country":"US","city":"asdf"},"membership":{"id":"1","name":"Basic Plan","slug":"basic-plan","starts_at":1508886140,"ends_at":1540422140}}}
+Response:
+{"success":true,"errors":[]}
+===========================================================
+
+===========================================================
+Date: 2017-10-24 23:09:25
+Event: updatedOrder
+Request payload:
+{"user":{"id":22,"email":"dev19@dvlpmt.com","password":"$2y$10$T8SxzJ0nC5aC9Dacp4u.QeU4piJITdZYEf4UC9fvATdoBIAb0lDba","billing":{"first_name":"Dev","last_name":"Dev","phone":"213213","address":"asd","zip":"12312","state":"asd","country":"US","city":"asd"},"membership":{"id":"1","name":"Basic Plan","slug":"basic-plan","starts_at":1508886447,"ends_at":1540422447}}}
+Response:
+{"success":false,"errors":{"exception":"Call to undefined method: reload"}}
+===========================================================
+
+===========================================================
+Date: 2017-10-24 23:14:45
+Event: updatedOrder
+Request payload:
+{"user":{"id":24,"email":"dev21@dvlpmt.com","password":"$2y$10$.esHQ8sVQWeurF2V\/\/7iEuW88AEL5rsdPv6ELzmtgmb3INYu\/fuR.","billing":{"first_name":"Dev","last_name":"Dev","phone":"13212312","address":"asdf","zip":"1312312","state":"asdf","country":"US","city":"asdf"},"membership":{"id":"1","name":"Basic Plan","slug":"basic-plan","starts_at":1508886885,"ends_at":1540422885}}}
+Response:
+{"success":true,"errors":[]}
+===========================================================
+
+===========================================================
+Date: 2017-10-25 01:03:46
+Event: updatedMembershipLevel
+Request payload:
+{"user":{"id":25,"email":"mario@dvlpmt.com","password":"$2y$10$Ji\/.2Mt0FGZsCK5.uO9Xm.zKwwOT2Fim0JcOmIs91gf9Ny42UqJ4C","billing":{"first_name":"Mario","last_name":"Maric","phone":"","address":"","zip":"","state":"","country":"","city":""},"membership":{"id":3,"name":"Silver Plan","slug":"silver-plan","starts_at":1508893425,"ends_at":1540429425}}}
+Response:
+{"success":true,"errors":[]}
+===========================================================
+
+===========================================================
+Date: 2017-10-25 01:05:20
+Event: updatedProfile
+Request payload:
+{"user":{"id":24,"email":"dev21@dvlpmt.com","password":"$2y$10$zuIFX2bLDvp8OXOqsTZLVOIYR9Al3QSAeI4iDt2p85iPMZIK8UZBa","billing":{"first_name":"dev","last_name":"dev","phone":"13212312","address":"asdf","zip":"1312312","state":"asdf","country":"US","city":"asdf"},"membership":{"id":1,"name":"Basic Plan","slug":"basic-plan","starts_at":1508886885,"ends_at":1540422885}}}
+Response:
+{"success":true,"errors":[]}
+===========================================================
+
+===========================================================
+Date: 2017-10-25 01:10:19
+Event: updatedProfile
+Request payload:
+{"user":{"id":24,"email":"dev21@dvlpmt.com","password":"$2y$10$95OlHjbF6T23kd1lUOz.bejDufoAurMlOcq.L4Rdjv2OzamTipmT2","billing":{"first_name":"dev","last_name":"dev","phone":"13212312","address":"asdf","zip":"1312312","state":"asdf","country":"US","city":"asdf"},"membership":{"id":1,"name":"Basic Plan","slug":"basic-plan","starts_at":1508886885,"ends_at":1540422885}}}
+Response:
+{"success":true,"errors":[]}
+===========================================================
+
+===========================================================
+Date: 2017-10-25 01:13:04
+Event: updatedProfile
+Request payload:
+{"user":{"id":24,"email":"dev21@dvlpmt.com","password":"$2y$10$95OlHjbF6T23kd1lUOz.bejDufoAurMlOcq.L4Rdjv2OzamTipmT2","billing":{"first_name":"dev","last_name":"dev","phone":"13212312","address":"asdf","zip":"1312312","state":"asdf","country":"US","city":"asdf"},"membership":{"id":1,"name":"Basic Plan","slug":"basic-plan","starts_at":1508886885,"ends_at":1540422885}}}
+Response:
+{"success":true,"errors":[]}
+===========================================================
+
+===========================================================
+Date: 2017-10-25 01:15:23
+Event: updatedProfile
+Request payload:
+{"user":{"id":24,"email":"dev21@dvlpmt.com","password":"$2y$10$95OlHjbF6T23kd1lUOz.bejDufoAurMlOcq.L4Rdjv2OzamTipmT2","billing":{"first_name":"dev","last_name":"dev","phone":"13212312","address":"asdf","zip":"1312312","state":"asdf","country":"US","city":"asdf"},"membership":{"id":1,"name":"Basic Plan","slug":"basic-plan","starts_at":1508886885,"ends_at":1540422885}}}
+Response:
+{"success":true,"errors":[]}
+===========================================================
+
+===========================================================
+Date: 2017-10-25 01:35:07
+Event: updatedProfile
+Request payload:
+{"user":{"id":24,"email":"dev21@dvlpmt.com","password":"$2y$10$95OlHjbF6T23kd1lUOz.bejDufoAurMlOcq.L4Rdjv2OzamTipmT2","billing":{"first_name":"dev","last_name":"dev","phone":"13212312","address":"asdf","zip":"1312312","state":"asdf","country":"US","city":"asdf"},"membership":{"id":1,"name":"Basic Plan","slug":"basic-plan","starts_at":1508886885,"ends_at":1540422885}}}
+Response:
+{"success":true,"errors":[]}
+===========================================================
+
+===========================================================
+Date: 2017-10-25 01:35:20
+Event: updatedProfile
+Request payload:
+{"user":{"id":24,"email":"dev21@dvlpmt.com","password":"$2y$10$nK6sqVLQitW5WZ8LIRVDhOuNDb7LzFqWpXhCi7If2LHQw4DKTVlEy","billing":{"first_name":"dev","last_name":"dev","phone":"13212312","address":"asdf","zip":"1312312","state":"asdf","country":"US","city":"asdf"},"membership":{"id":1,"name":"Basic Plan","slug":"basic-plan","starts_at":1508886885,"ends_at":1540422885}}}
+Response:
+{"success":true,"errors":[]}
+===========================================================
+
+===========================================================
+Date: 2017-10-25 01:37:42
+Event: updatedProfile
+Request payload:
+{"user":{"id":24,"email":"dev21@dvlpmt.com","password":"$2y$10$fiEuPdcyXXYBqbqVgzVad.zIgVP5ke6Nu04PeOdHMoPNccferXma.","billing":{"first_name":"dev","last_name":"dev","phone":"13212312","address":"asdf","zip":"1312312","state":"asdf","country":"US","city":"asdf"},"membership":{"id":1,"name":"Basic Plan","slug":"basic-plan","starts_at":1508886885,"ends_at":1540422885}}}
+Response:
+{"success":true,"errors":[]}
+===========================================================
+
+===========================================================
+Date: 2017-10-25 01:41:57
+Event: updatedMembershipLevel
+Request payload:
+{"user":{"id":4,"email":"dev-@dvlpmt.com","password":"$2y$10$9yLzow378nWXZJN0.cG5tOQ.JtR684BhNVbvOIP0vEE8UIZLZJqk.","billing":{"first_name":"Dev","last_name":"Dev","phone":"11111111","address":"Address Test","zip":"12312","state":"AZ","country":"US","city":"City Test"},"membership":null}}
+Response:
+{"success":true,"errors":[]}
+===========================================================
+
+===========================================================
+Date: 2017-10-25 01:42:01
+Event: updatedMembershipLevel
+Request payload:
+{"user":{"id":13,"email":"dev10@dvlpmt.com","password":"$2y$10$YhGNpmc0ca3.vkH9NVVAj.VGckLjaeHmJtFTVp2bAVlj5K8z8upVO","billing":{"first_name":"dev","last_name":"dev","phone":"","address":"","zip":"","state":"","country":"","city":""},"membership":null}}
+Response:
+{"success":true,"errors":[]}
+===========================================================
+
+===========================================================
+Date: 2017-10-25 01:42:04
+Event: updatedMembershipLevel
+Request payload:
+{"user":{"id":14,"email":"dev11@dvlpmt.com","password":"$2y$10$m6f\/qXPrK8PAEwMfqVqVfOCfkNYEeorWdds6eofdt1DgpOpn5MN8C","billing":{"first_name":"dev","last_name":"dev","phone":"","address":"","zip":"","state":"","country":"","city":""},"membership":null}}
+Response:
+{"success":true,"errors":[]}
+===========================================================
+
+===========================================================
+Date: 2017-10-25 01:42:07
+Event: updatedMembershipLevel
+Request payload:
+{"user":{"id":15,"email":"dev12@dvlpmt.com","password":"$2y$10$aP1KJSYpAR3aVvBBAsdifeWLw8SgfW62ddtLuTnaDrTfNMAvyks6u","billing":{"first_name":"dev","last_name":"dev","phone":"","address":"","zip":"","state":"","country":"","city":""},"membership":null}}
+Response:
+{"success":true,"errors":[]}
+===========================================================
+
+===========================================================
+Date: 2017-10-25 02:01:01
+Event: updatedMembershipLevel
+Request payload:
+{"user":{"id":5,"email":"dev2@dvlpmt.com","password":"$2y$10$bIYweWFPJdpv7NyllUp6A.pK6CS\/S\/wMj.FIW6xh11ACf\/TSKbDrm","billing":{"first_name":"Dev","last_name":"Dev","phone":"1111111","address":"Address","zip":"12312","state":"AZ","country":"US","city":"City"},"membership":null}}
+Response:
+{"success":true,"errors":[]}
+===========================================================
+
+===========================================================
+Date: 2017-10-25 02:01:11
+Event: updatedMembershipLevel
+Request payload:
+{"user":{"id":6,"email":"dev3@dvlpmt.com","password":"$2y$10$ij2y7OXllyYX\/Xw6BRsBEOaXsl7s1F0DwGJsd0G3OYUy3BRrYEwDu","billing":{"first_name":"Dev","last_name":"Dev","phone":"123123132","address":"asdf","zip":"1233","state":"asdf","country":"US","city":"asdf"},"membership":null}}
+Response:
+{"success":true,"errors":[]}
+===========================================================
+
+===========================================================
+Date: 2017-10-25 02:01:14
+Event: updatedMembershipLevel
+Request payload:
+{"user":{"id":7,"email":"dev4@dvlpmt.com","password":"$2y$10$K51uj9lqGb8rjlqUUNxs7eOuxvBN7QFA\/GiuhsJ.M21A4hjchhID6","billing":{"first_name":"Dev","last_name":"Dev","phone":"1231231231","address":"Address","zip":"123123","state":"State","country":"US","city":"City"},"membership":null}}
+Response:
+{"success":true,"errors":[]}
+===========================================================
+
+===========================================================
+Date: 2017-10-25 02:01:17
+Event: updatedMembershipLevel
+Request payload:
+{"user":{"id":8,"email":"dev5@dvlpmt.com","password":"$2y$10$c4RS2AWxHTr1iMtp2XPxk.kbZV3sooMkjGshvMdVTuEEJ1ZMc2VpS","billing":{"first_name":"Dev","last_name":"Dev","phone":"123123","address":"asd","zip":"12312","state":"asd","country":"US","city":"asd"},"membership":null}}
+Response:
+{"success":true,"errors":[]}
+===========================================================
+
+===========================================================
+Date: 2017-10-25 02:01:30
+Event: updatedMembershipLevel
+Request payload:
+{"user":{"id":12,"email":"dev9@dvlpmt.com","password":"$2y$10$VpSxCsSRfiKBVATrEkMRLe10nmtGBMQv7\/ffmfzQXVQlniroedpa6","billing":{"first_name":"dev","last_name":"dev","phone":"","address":"","zip":"","state":"","country":"","city":""},"membership":null}}
+Response:
+{"success":true,"errors":[]}
+===========================================================
+
+===========================================================
+Date: 2017-10-25 02:08:35
+Event: updatedMembershipLevel
+Request payload:
+{"user":{"id":26,"email":"dev1@dvlpmt.com","password":"$2y$10$rn4pXIuT\/hQPG.txfuMnJebZMfgkRANFcBpQHOgCzJp8pQIDfEtLC","billing":{"first_name":"dev","last_name":"dev","phone":"","address":"","zip":"","state":"","country":"","city":""},"membership":{"id":1,"name":"Basic Plan","slug":"basic-plan","starts_at":1508897315,"ends_at":1540433315}}}
+Response:
+{"success":true,"errors":[]}
+===========================================================
+
+===========================================================
+Date: 2017-10-25 02:08:35
+Event: updatedOrder
+Request payload:
+{"user":{"id":26,"email":"dev1@dvlpmt.com","password":"$2y$10$rn4pXIuT\/hQPG.txfuMnJebZMfgkRANFcBpQHOgCzJp8pQIDfEtLC","billing":{"first_name":"Dev","last_name":"Dev","phone":"3333333","address":"asdf","zip":"123123","state":"asdf","country":"US","city":"asdf"},"membership":{"id":"1","name":"Basic Plan","slug":"basic-plan","starts_at":1508897315,"ends_at":1540433315}}}
+Response:
+{"success":true,"errors":[]}
+===========================================================
+
+===========================================================
+Date: 2017-10-25 02:10:10
+Event: updatedMembershipLevel
+Request payload:
+{"user":{"id":26,"email":"dev1@dvlpmt.com","password":"$2y$10$rn4pXIuT\/hQPG.txfuMnJebZMfgkRANFcBpQHOgCzJp8pQIDfEtLC","billing":{"first_name":"dev","last_name":"dev","phone":"3333333","address":"asdf","zip":"123123","state":"asdf","country":"US","city":"asdf"},"membership":null}}
+Response:
+{"success":true,"errors":[]}
+===========================================================
+
+===========================================================
+Date: 2017-10-25 02:10:10
+Event: updatedProfile
+Request payload:
+{"user":{"id":26,"email":"dev1@dvlpmt.com","password":"$2y$10$rn4pXIuT\/hQPG.txfuMnJebZMfgkRANFcBpQHOgCzJp8pQIDfEtLC","billing":{"first_name":"dev","last_name":"dev","phone":"3333333","address":"asdf","zip":"123123","state":"asdf","country":"US","city":"asdf"},"membership":null}}
+Response:
+{"success":true,"errors":[]}
+===========================================================
+
+===========================================================
+Date: 2017-10-25 02:10:33
+Event: updatedMembershipLevel
+Request payload:
+{"user":{"id":26,"email":"dev1@dvlpmt.com","password":"$2y$10$rn4pXIuT\/hQPG.txfuMnJebZMfgkRANFcBpQHOgCzJp8pQIDfEtLC","billing":{"first_name":"dev","last_name":"dev","phone":"3333333","address":"asdf","zip":"123123","state":"asdf","country":"US","city":"asdf"},"membership":{"id":1,"name":"Basic Plan","slug":"basic-plan","starts_at":1508897433,"ends_at":1540433433}}}
+Response:
+{"success":true,"errors":[]}
+===========================================================
+
+===========================================================
+Date: 2017-10-25 02:10:33
+Event: updatedProfile
+Request payload:
+{"user":{"id":26,"email":"dev1@dvlpmt.com","password":"$2y$10$rn4pXIuT\/hQPG.txfuMnJebZMfgkRANFcBpQHOgCzJp8pQIDfEtLC","billing":{"first_name":"dev","last_name":"dev","phone":"3333333","address":"asdf","zip":"123123","state":"asdf","country":"US","city":"asdf"},"membership":{"id":1,"name":"Basic Plan","slug":"basic-plan","starts_at":1508897433,"ends_at":1540433433}}}
+Response:
+{"success":true,"errors":[]}
+===========================================================
+
+===========================================================
+Date: 2017-10-25 02:20:58
+Event: updatedMembershipLevel
+Request payload:
+{"user":{"id":27,"email":"devtrial@dvlpmt.com","password":"$2y$10$wrJYcDffufFYaBCUveCuPOc1XAaYsib\/NeVJsVDSoidVsp0t2tZt.","billing":{"first_name":"","last_name":"","phone":"","address":"","zip":"","state":"","country":"","city":""},"membership":{"id":8,"name":"Silver Plan Trial","slug":"silver-plan-trial","starts_at":1508898057,"ends_at":1540434057}}}
+Response:
+{"success":true,"errors":[]}
+===========================================================
+
+===========================================================
+Date: 2017-10-25 02:25:24
+Event: updatedMembershipLevel
+Request payload:
+{"user":{"id":28,"email":"dvlpmt01@gmail.com","password":"$2y$10$QeOMFo4AlZjjdfmT3OUFX.XgNjM.Y.o5LaO.syZrdx8sRNYuX3PvS","billing":{"first_name":"mario","last_name":"maric","phone":"","address":"","zip":"","state":"","country":"","city":""},"membership":{"id":3,"name":"Silver Plan","slug":"silver-plan","starts_at":1508898324,"ends_at":1540434324}}}
+Response:
+{"success":true,"errors":[]}
+===========================================================
+
+===========================================================
+Date: 2017-10-25 02:25:24
+Event: updatedOrder
+Request payload:
+{"user":{"id":28,"email":"dvlpmt01@gmail.com","password":"$2y$10$QeOMFo4AlZjjdfmT3OUFX.XgNjM.Y.o5LaO.syZrdx8sRNYuX3PvS","billing":{"first_name":"Mario","last_name":"Maric","phone":"12345","address":"test 1","zip":"12345","state":"test","country":"US","city":"test"},"membership":{"id":"3","name":"Silver Plan","slug":"silver-plan","starts_at":1508898324,"ends_at":1540434324}}}
+Response:
+{"success":true,"errors":[]}
+===========================================================
+
+===========================================================
+Date: 2017-10-25 02:26:08
+Event: updatedMembershipLevel
+Request payload:
+{"user":{"id":28,"email":"dvlpmt01@gmail.com","password":"$2y$10$QeOMFo4AlZjjdfmT3OUFX.XgNjM.Y.o5LaO.syZrdx8sRNYuX3PvS","billing":{"first_name":"mario","last_name":"maric","phone":"12345","address":"test 1","zip":"12345","state":"test","country":"US","city":"test"},"membership":null}}
+Response:
+{"success":true,"errors":[]}
+===========================================================
+
+===========================================================
+Date: 2017-10-25 02:42:36
+Event: updatedMembershipLevel
+Request payload:
+{"user":{"id":30,"email":"bre@l6elite.com","password":"$2y$10$uvIaTfQYIq.AaI1DgK8reeocymfjwxymqYK8wWb5LQK49UAdZTGmy","billing":{"first_name":"NU","last_name":"LOOK","phone":"","address":"","zip":"","state":"","country":"","city":""},"membership":{"id":3,"name":"Silver Plan","slug":"silver-plan","starts_at":1508899355,"ends_at":1540435355}}}
+Response:
+{"success":true,"errors":[]}
+===========================================================
+
+===========================================================
+Date: 2017-10-25 02:42:36
+Event: updatedOrder
+Request payload:
+{"user":{"id":30,"email":"bre@l6elite.com","password":"$2y$10$uvIaTfQYIq.AaI1DgK8reeocymfjwxymqYK8wWb5LQK49UAdZTGmy","billing":{"first_name":"Nu","last_name":"Look","phone":"3442066788","address":"1234 Main st","zip":"85016","state":"AZ","country":"US","city":"Phoenix"},"membership":{"id":"3","name":"Silver Plan","slug":"silver-plan","starts_at":1508899355,"ends_at":1540435355}}}
+Response:
+{"success":true,"errors":[]}
+===========================================================
+
+===========================================================
+Date: 2017-10-25 02:46:32
+Event: updatedMembershipLevel
+Request payload:
+{"user":{"id":31,"email":"mario@dvlpmt.com","password":"$2y$10$0L.xJ40VKxCuDa3vAbd\/ROiDMp0NSKUW6jvzhcePDWmAucfrnGwlS","billing":{"first_name":"Mario","last_name":"Maric","phone":"","address":"","zip":"","state":"","country":"","city":""},"membership":{"id":3,"name":"Silver Plan","slug":"silver-plan","starts_at":1508899592,"ends_at":1540435592}}}
+Response:
+{"success":true,"errors":[]}
+===========================================================
+
+===========================================================
+Date: 2017-10-25 02:46:32
+Event: updatedOrder
+Request payload:
+{"user":{"id":31,"email":"mario@dvlpmt.com","password":"$2y$10$0L.xJ40VKxCuDa3vAbd\/ROiDMp0NSKUW6jvzhcePDWmAucfrnGwlS","billing":{"first_name":"Mario","last_name":"Maric","phone":"1234567","address":"test","zip":"123","state":"test","country":"US","city":"test"},"membership":{"id":"3","name":"Silver Plan","slug":"silver-plan","starts_at":1508899592,"ends_at":1540435592}}}
+Response:
+{"success":true,"errors":[]}
+===========================================================
+
+===========================================================
+Date: 2017-10-25 02:51:57
+Event: updatedProfile
+Request payload:
+{"user":{"id":31,"email":"mario@dvlpmt.com","password":"$2y$10$0L.xJ40VKxCuDa3vAbd\/ROiDMp0NSKUW6jvzhcePDWmAucfrnGwlS","billing":{"first_name":"Mario","last_name":"Maric","phone":"1234567","address":"test","zip":"123","state":"test","country":"US","city":"test"},"membership":{"id":3,"name":"Silver Plan","slug":"silver-plan","starts_at":1508899592,"ends_at":1540435592}}}
+Response:
+{"success":true,"errors":[]}
+===========================================================
+
+===========================================================
+Date: 2017-10-25 11:48:29
+Event: updatedProfile
+Request payload:
+{"user":{"id":31,"email":"mario@dvlpmt.com","password":"$2y$10$0L.xJ40VKxCuDa3vAbd\/ROiDMp0NSKUW6jvzhcePDWmAucfrnGwlS","billing":{"first_name":"Mario","last_name":"Maric","phone":"1234567","address":"test","zip":"123","state":"test","country":"US","city":"test"},"membership":{"id":3,"name":"Silver Plan","slug":"silver-plan","starts_at":1508899592,"ends_at":1540435592}}}
+Response:
+{"success":true,"errors":[]}
+===========================================================
+
+===========================================================
+Date: 2017-10-25 11:48:47
+Event: updatedMembershipLevel
+Request payload:
+{"user":{"id":31,"email":"mario@dvlpmt.com","password":"$2y$10$0L.xJ40VKxCuDa3vAbd\/ROiDMp0NSKUW6jvzhcePDWmAucfrnGwlS","billing":{"first_name":"Mario","last_name":"Maric","phone":"1234567","address":"test","zip":"123","state":"test","country":"US","city":"test"},"membership":{"id":9,"name":"Platinum Plan Trial","slug":"platinum-plan-trial","starts_at":1508932127,"ends_at":1540468127}}}
+Response:
+{"success":true,"errors":[]}
+===========================================================
+
+===========================================================
+Date: 2017-10-25 11:48:47
+Event: updatedProfile
+Request payload:
+{"user":{"id":31,"email":"mario@dvlpmt.com","password":"$2y$10$0L.xJ40VKxCuDa3vAbd\/ROiDMp0NSKUW6jvzhcePDWmAucfrnGwlS","billing":{"first_name":"Mario","last_name":"Maric","phone":"1234567","address":"test","zip":"123","state":"test","country":"US","city":"test"},"membership":{"id":9,"name":"Platinum Plan Trial","slug":"platinum-plan-trial","starts_at":1508932127,"ends_at":1540468127}}}
+Response:
+{"success":true,"errors":[]}
+===========================================================
+
+===========================================================
+Date: 2017-10-25 11:49:08
+Event: updatedMembershipLevel
+Request payload:
+{"user":{"id":31,"email":"mario@dvlpmt.com","password":"$2y$10$0L.xJ40VKxCuDa3vAbd\/ROiDMp0NSKUW6jvzhcePDWmAucfrnGwlS","billing":{"first_name":"Mario","last_name":"Maric","phone":"1234567","address":"test","zip":"123","state":"test","country":"US","city":"test"},"membership":null}}
+Response:
+{"success":true,"errors":[]}
+===========================================================
+
+===========================================================
+Date: 2017-10-25 11:49:08
+Event: updatedProfile
+Request payload:
+{"user":{"id":31,"email":"mario@dvlpmt.com","password":"$2y$10$0L.xJ40VKxCuDa3vAbd\/ROiDMp0NSKUW6jvzhcePDWmAucfrnGwlS","billing":{"first_name":"Mario","last_name":"Maric","phone":"1234567","address":"test","zip":"123","state":"test","country":"US","city":"test"},"membership":null}}
+Response:
+{"success":true,"errors":[]}
+===========================================================
+
+===========================================================
+Date: 2017-10-25 11:50:00
+Event: updatedMembershipLevel
+Request payload:
+{"user":{"id":31,"email":"mario@dvlpmt.com","password":"$2y$10$0L.xJ40VKxCuDa3vAbd\/ROiDMp0NSKUW6jvzhcePDWmAucfrnGwlS","billing":{"first_name":"Mario","last_name":"Maric","phone":"1234567","address":"test","zip":"123","state":"test","country":"US","city":"test"},"membership":{"id":5,"name":"Gold Plan","slug":"gold-plan","starts_at":1508932200,"ends_at":1540468200}}}
+Response:
+{"success":true,"errors":[]}
+===========================================================
+
+===========================================================
+Date: 2017-10-25 11:50:00
+Event: updatedProfile
+Request payload:
+{"user":{"id":31,"email":"mario@dvlpmt.com","password":"$2y$10$0L.xJ40VKxCuDa3vAbd\/ROiDMp0NSKUW6jvzhcePDWmAucfrnGwlS","billing":{"first_name":"Mario","last_name":"Maric","phone":"1234567","address":"test","zip":"123","state":"test","country":"US","city":"test"},"membership":{"id":5,"name":"Gold Plan","slug":"gold-plan","starts_at":1508932200,"ends_at":1540468200}}}
+Response:
+{"success":true,"errors":[]}
+===========================================================
+
+===========================================================
+Date: 2017-10-25 11:50:25
+Event: updatedProfile
+Request payload:
+{"user":{"id":31,"email":"mario@dvlpmt.com","password":"$2y$10$0L.xJ40VKxCuDa3vAbd\/ROiDMp0NSKUW6jvzhcePDWmAucfrnGwlS","billing":{"first_name":"Mario","last_name":"Maric","phone":"1234567","address":"test","zip":"123","state":"test","country":"US","city":"test"},"membership":{"id":5,"name":"Gold Plan","slug":"gold-plan","starts_at":1508932200,"ends_at":1540468200}}}
+Response:
+{"success":true,"errors":[]}
+===========================================================
+
+===========================================================
+Date: 2017-10-25 13:33:16
+Event: updatedMembershipLevel
+Request payload:
+{"user":{"id":27,"email":"devtrial@dvlpmt.com","password":"$2y$10$wrJYcDffufFYaBCUveCuPOc1XAaYsib\/NeVJsVDSoidVsp0t2tZt.","billing":{"first_name":"","last_name":"","phone":"","address":"","zip":"","state":"","country":"US","city":""},"membership":{"id":8,"name":"Silver Plan Trial","slug":"silver-plan-trial","starts_at":1508898057,"ends_at":1540434057}}}
+Response:
+{"success":true,"errors":[]}
+===========================================================
+
+===========================================================
+Date: 2017-10-25 13:52:39
+Event: updatedMembershipLevel
+Request payload:
+{"user":{"id":32,"email":"trialtest2@dvlpmt.com","password":"$2y$10$tClx843IeJNGJSRlfyUuZu1NeNYac6rE7bu4O9pmhofnNRCrza68y","billing":{"first_name":"","last_name":"","phone":"","address":"","zip":"","state":"","country":"","city":""},"membership":{"id":8,"name":"Silver Plan Trial","slug":"silver-plan-trial","starts_at":1508939559,"ends_at":1540475559}}}
+Response:
+{"success":true,"errors":[]}
+===========================================================
+
+===========================================================
+Date: 2017-10-25 15:07:57
+Event: updatedMembershipLevel
+Request payload:
+{"user":{"id":33,"email":"support@l6elite.com","password":"$2y$10$a09W0nsz8rSGINtaRFxqXeM6VTFJNU5Kt8XDkP3SbNBV6ThWSu3zy","billing":{"first_name":"Bre","last_name":"Wallace","phone":"","address":"","zip":"","state":"","country":"","city":""},"membership":{"id":4,"name":"Platinum Plan","slug":"platinum-plan","starts_at":1508944077,"ends_at":1540480077}}}
+Response:
+{"success":true,"errors":[]}
+===========================================================
+
+===========================================================
+Date: 2017-10-25 15:07:57
+Event: updatedOrder
+Request payload:
+{"user":{"id":33,"email":"support@l6elite.com","password":"$2y$10$a09W0nsz8rSGINtaRFxqXeM6VTFJNU5Kt8XDkP3SbNBV6ThWSu3zy","billing":{"first_name":"Bre","last_name":"Wallace","phone":"5012823690","address":"1234 main road","zip":"85283","state":"AZ","country":"US","city":"Avondale"},"membership":{"id":"4","name":"Platinum Plan","slug":"platinum-plan","starts_at":1508944077,"ends_at":1540480077}}}
+Response:
+{"success":true,"errors":[]}
+===========================================================
+
+===========================================================
+Date: 2017-10-25 17:00:28
+Event: updatedProfile
+Request payload:
+{"user":{"id":33,"email":"support@l6elite.com","password":"$2y$10$a09W0nsz8rSGINtaRFxqXeM6VTFJNU5Kt8XDkP3SbNBV6ThWSu3zy","billing":{"first_name":"Bre","last_name":"Wallace","phone":"501-282-3690","address":"1234 main road","zip":"85283","state":"AZ","country":"US","city":"Avondale"},"membership":{"id":4,"name":"Platinum Plan","slug":"platinum-plan","starts_at":1508944077,"ends_at":1540480077}}}
+Response:
+{"success":true,"errors":[]}
+===========================================================
+
+===========================================================
+Date: 2017-10-25 19:03:48
+Event: updatedMembershipLevel
+Request payload:
+{"user":{"id":34,"email":"info@l6elite.com","password":"$2y$10$7Yt5e8BpPmlT\/SrhWnbPIOM.xXADyw9KDa.gTiwsS4OCEK0qOaTnG","billing":{"first_name":"Real","last_name":"Tester","phone":"","address":"","zip":"","state":"","country":"","city":""},"membership":{"id":5,"name":"Gold Plan","slug":"gold-plan","starts_at":1508958227,"ends_at":1540494227}}}
+Response:
+{"success":true,"errors":[]}
+===========================================================
+
+===========================================================
+Date: 2017-10-25 19:03:48
+Event: updatedOrder
+Request payload:
+{"user":{"id":34,"email":"info@l6elite.com","password":"$2y$10$7Yt5e8BpPmlT\/SrhWnbPIOM.xXADyw9KDa.gTiwsS4OCEK0qOaTnG","billing":{"first_name":"Real","last_name":"Tester","phone":"6624688099","address":"12345","zip":"85062","state":"AZ","country":"US","city":"new hampshire"},"membership":{"id":"5","name":"Gold Plan","slug":"gold-plan","starts_at":1508958227,"ends_at":1540494227}}}
+Response:
+{"success":true,"errors":[]}
+===========================================================
+
+===========================================================
+Date: 2017-10-26 13:13:37
+Event: updatedOrder
+Request payload:
+{"user":{"id":0,"email":null,"password":null,"billing":{"first_name":"","last_name":"","phone":"","address":"","zip":"","state":"","country":"US","city":""},"membership":null}}
+Response:
+{"success":true,"errors":[]}
+===========================================================
+
+===========================================================
+Date: 2017-10-26 13:20:54
+Event: updatedOrder
+Request payload:
+{"user":{"id":0,"email":null,"password":null,"billing":{"first_name":"","last_name":"","phone":"","address":"","zip":"","state":"","country":"US","city":""},"membership":null}}
+Response:
+{"success":true,"errors":[]}
+===========================================================
+
+===========================================================
+Date: 2017-10-26 13:20:55
+Event: updatedMembershipLevel
+Request payload:
+{"user":{"id":35,"email":"devpptest@dvlpmt.com","password":"$2y$10$PfezBQSPftacv85pFa40Oun123Po\/4YwCUSgEf\/57.KlfpM163Ooa","billing":{"first_name":"","last_name":"","phone":"","address":"","zip":"","state":"","country":"","city":""},"membership":{"id":1,"name":"Basic Plan","slug":"basic-plan","starts_at":1509024055,"ends_at":1540560055}}}
+Response:
+{"success":true,"errors":[]}
+===========================================================
+
+===========================================================
+Date: 2017-10-26 13:20:55
+Event: updatedOrder
+Request payload:
+{"user":{"id":35,"email":"devpptest@dvlpmt.com","password":"$2y$10$PfezBQSPftacv85pFa40Oun123Po\/4YwCUSgEf\/57.KlfpM163Ooa","billing":{"first_name":"","last_name":"","phone":"","address":"","zip":"","state":"","country":"US","city":""},"membership":{"id":"1","name":"Basic Plan","slug":"basic-plan","starts_at":1509024055,"ends_at":1540560055}}}
+Response:
+{"success":true,"errors":[]}
+===========================================================
+
+===========================================================
+Date: 2017-10-26 17:43:33
+Event: updatedMembershipLevel
+Request payload:
+{"user":{"id":36,"email":"project-manager-1@hotmail.com","password":"$2y$10$aHNB0tj.ad6iMGXvJnolteMNdP3EC.gR3g5sYUQAViPHHUSgz6UZC","billing":{"first_name":"Lisa","last_name":"Davis","phone":"","address":"","zip":"","state":"","country":"","city":""},"membership":{"id":2,"name":"Bronze Plan","slug":"bronze-plan","starts_at":1509039812,"ends_at":1540575812}}}
+Response:
+{"success":true,"errors":[]}
+===========================================================
+
+===========================================================
+Date: 2017-10-26 17:43:33
+Event: updatedOrder
+Request payload:
+{"user":{"id":36,"email":"project-manager-1@hotmail.com","password":"$2y$10$aHNB0tj.ad6iMGXvJnolteMNdP3EC.gR3g5sYUQAViPHHUSgz6UZC","billing":{"first_name":"Lisa","last_name":"Davis","phone":"6662853350","address":"456 main","zip":"85201","state":"AZ","country":"US","city":"PHOENIX"},"membership":{"id":"2","name":"Bronze Plan","slug":"bronze-plan","starts_at":1509039812,"ends_at":1540575812}}}
+Response:
+{"success":true,"errors":[]}
+===========================================================
+
+===========================================================
+Date: 2017-10-29 23:32:45
+Event: updatedMembershipLevel
+Request payload:
+{"user":{"id":37,"email":"mario@dvlpmt.com","password":"$2y$10$tPlCzlBpwelZQVCYwRs4PO\/cYME9VxIRVI8SUFZIL1J56CEIOV40K","billing":{"first_name":"","last_name":"","phone":"","address":"","zip":"","state":"","country":"","city":""},"membership":{"id":4,"name":"Platinum Plan","slug":"platinum-plan","starts_at":1509319965,"ends_at":1540855965}}}
+Response:
+{"success":true,"errors":[]}
+===========================================================
+
+===========================================================
+Date: 2017-10-29 23:32:46
+Event: updatedProfile
+Request payload:
+{"user":{"id":37,"email":"mario@dvlpmt.com","password":"$2y$10$tPlCzlBpwelZQVCYwRs4PO\/cYME9VxIRVI8SUFZIL1J56CEIOV40K","billing":{"first_name":"","last_name":"","phone":"","address":"","zip":"","state":"","country":"","city":""},"membership":{"id":4,"name":"Platinum Plan","slug":"platinum-plan","starts_at":1509319965,"ends_at":1540855965}}}
+Response:
+{"success":true,"errors":[]}
+===========================================================
+
+===========================================================
+Date: 2017-10-29 23:55:35
+Event: updatedMembershipLevel
+Request payload:
+{"user":{"id":38,"email":"dev123@dvlpmt.com","password":"$2y$10$4rGBMmPsbSqprpBRDy40a.5CtkZcZJBHB20IL6Vn5GknV2l0CKoai","billing":{"first_name":"Dev","last_name":"Test","phone":"","address":"","zip":"","state":"","country":"","city":""},"membership":{"id":3,"name":"Silver Plan","slug":"silver-plan","starts_at":1509321335,"ends_at":1540857335}}}
+Response:
+{"success":true,"errors":[]}
+===========================================================
+
+===========================================================
+Date: 2017-10-29 23:55:35
+Event: updatedOrder
+Request payload:
+{"user":{"id":38,"email":"dev123@dvlpmt.com","password":"$2y$10$4rGBMmPsbSqprpBRDy40a.5CtkZcZJBHB20IL6Vn5GknV2l0CKoai","billing":{"first_name":"Dev","last_name":"Test","phone":"111111","address":"Address Test","zip":"12121","state":"AZ","country":"US","city":"City Test"},"membership":{"id":"3","name":"Silver Plan","slug":"silver-plan","starts_at":1509321335,"ends_at":1540857335}}}
+Response:
+{"success":true,"errors":[]}
+===========================================================
+
+===========================================================
+Date: 2017-10-29 23:56:44
+Event: updatedMembershipLevel
+Request payload:
+{"user":{"id":39,"email":"mario2@dvlpmt.com","password":"$2y$10$ghf2nAce31VAHp.65zmT3.ao2FkEz37WVQrjL0M214nVKcu5tQx3W","billing":{"first_name":"mario","last_name":"mario","phone":"","address":"","zip":"","state":"","country":"","city":""},"membership":{"id":3,"name":"Silver Plan","slug":"silver-plan","starts_at":1509321404,"ends_at":1540857404}}}
+Response:
+{"success":true,"errors":[]}
+===========================================================
+
+===========================================================
+Date: 2017-10-29 23:56:44
+Event: updatedOrder
+Request payload:
+{"user":{"id":39,"email":"mario2@dvlpmt.com","password":"$2y$10$ghf2nAce31VAHp.65zmT3.ao2FkEz37WVQrjL0M214nVKcu5tQx3W","billing":{"first_name":"Mario","last_name":"Mario","phone":"12321321321","address":"mario","zip":"1234","state":"mario","country":"US","city":"mario"},"membership":{"id":"3","name":"Silver Plan","slug":"silver-plan","starts_at":1509321404,"ends_at":1540857404}}}
+Response:
+{"success":true,"errors":[]}
+===========================================================
+
+===========================================================
+Date: 2017-10-30 00:42:32
+Event: updatedMembershipLevel
+Request payload:
+{"user":{"id":40,"email":"yalverio25@gmail.com","password":"$2y$10$1L1i09wXQvqISAXuzgv7C.HJjtoyrfnRgqtMhgTbO3XZFAwpSZMuK","billing":{"first_name":"Nu","last_name":"Look","phone":"","address":"","zip":"","state":"","country":"","city":""},"membership":{"id":9,"name":"Platinum Plan Trial","slug":"platinum-plan-trial","starts_at":1509324152,"ends_at":1540860152}}}
+Response:
+{"success":true,"errors":[]}
+===========================================================
+
+===========================================================
+Date: 2017-11-24 14:49:13
+Event: updatedMembershipLevel
+Request payload:
+{"user":{"id":32,"email":null,"password":null,"billing":{"first_name":null,"last_name":null,"phone":null,"address":null,"zip":null,"state":null,"country":null,"city":null},"membership":null}}
+Response:
+{"success":true,"errors":[]}
+===========================================================
+
+===========================================================
+Date: 2017-11-28 17:48:37
+Event: updatedMembershipLevel
+Request payload:
+{"user":{"id":40,"email":"yalverio25@gmail.com","password":"$2y$10$1L1i09wXQvqISAXuzgv7C.HJjtoyrfnRgqtMhgTbO3XZFAwpSZMuK","billing":{"first_name":"Nu","last_name":"Look","phone":"(334) 456-7898","address":"Adk","zip":"85016","state":"Az","country":"US","city":"Tm"},"membership":null}}
+Response:
+{"success":true,"errors":[]}
+===========================================================
+
+===========================================================
+Date: 2017-12-24 10:04:52
+Event: updatedMembershipLevel
+Request payload:
+{"user":{"id":27,"email":null,"password":null,"billing":{"first_name":null,"last_name":null,"phone":null,"address":null,"zip":null,"state":null,"country":null,"city":null},"membership":null}}
+Response:
+{"success":true,"errors":[]}
+===========================================================
+
+===========================================================
+Date: 2018-02-23 17:56:11
+Event: updatedMembershipLevel
+Request payload:
+{"user":{"id":41,"email":"system@l6elite.com","password":"$2y$10$3\/7VwXWiYGVGeEVD0PLnEew9l0TxZjWMahMy68Q5zYEUCtHs8Nf0u","billing":{"first_name":"Mary","last_name":"Agostini","phone":"","address":"","zip":"","state":"","country":"","city":""},"membership":{"id":7,"name":"Bronze Plan Trial","slug":"bronze-plan-trial","starts_at":1519408570,"ends_at":1550944570}}}
+Response:
+{"success":true,"errors":[]}
+===========================================================
+
+===========================================================
+Date: 2018-03-25 10:05:10
+Event: updatedMembershipLevel
+Request payload:
+{"user":{"id":41,"email":"system@l6elite.com","password":"$2y$10$3\/7VwXWiYGVGeEVD0PLnEew9l0TxZjWMahMy68Q5zYEUCtHs8Nf0u","billing":{"first_name":"Mary","last_name":"Agostini","phone":"(419) 770-9000","address":"123 Main street","zip":"28397","state":"OH","country":"US","city":"Cleveland"},"membership":null}}
+Response:
+{"success":true,"errors":[]}
+===========================================================
+
+===========================================================
+Date: 2018-03-27 23:16:29
+Event: updatedMembershipLevel
+Request payload:
+{"user":{"id":1,"email":"project-manager-1@outlook.com","password":"$2y$10$05nu.kTO9IHUf1L2gAvrauaUIDV1Lenu0fKrTdGTRhHtX\/MmK1hcW","billing":{"first_name":"","last_name":"","phone":"","address":"","zip":"","state":"","country":"","city":""},"membership":{"id":1,"name":"Basic Plan","slug":"basic-plan","starts_at":1522192589,"ends_at":1553728589}}}
+Response:
+{"success":true,"errors":[]}
+===========================================================
+
+===========================================================
+Date: 2018-03-27 23:16:29
+Event: updatedOrder
+Request payload:
+{"user":{"id":1,"email":"project-manager-1@outlook.com","password":"$2y$10$05nu.kTO9IHUf1L2gAvrauaUIDV1Lenu0fKrTdGTRhHtX\/MmK1hcW","billing":{"first_name":"Mary","last_name":"Agostini","phone":"4192611490","address":"123 main street","zip":"50771","state":"MI","country":"US","city":"Detroit"},"membership":{"id":"1","name":"Basic Plan","slug":"basic-plan","starts_at":1522192589,"ends_at":1553728589}}}
+Response:
+{"success":true,"errors":[]}
+===========================================================
+
+===========================================================
+Date: 2018-03-27 23:18:42
+Event: updatedProfile
+Request payload:
+{"user":{"id":1,"email":"project-manager-1@outlook.com","password":"$2y$10$05nu.kTO9IHUf1L2gAvrauaUIDV1Lenu0fKrTdGTRhHtX\/MmK1hcW","billing":{"first_name":"Mary","last_name":"Agostini","phone":"419-261-1490","address":"123 main street","zip":"50771","state":"MI","country":"US","city":"Detroit"},"membership":{"id":1,"name":"Basic Plan","slug":"basic-plan","starts_at":1522192589,"ends_at":1553728589}}}
+Response:
+{"success":true,"errors":[]}
+===========================================================
+
+===========================================================
+Date: 2018-03-27 23:19:04
+Event: updatedProfile
+Request payload:
+{"user":{"id":1,"email":"project-manager-1@outlook.com","password":"$2y$10$05nu.kTO9IHUf1L2gAvrauaUIDV1Lenu0fKrTdGTRhHtX\/MmK1hcW","billing":{"first_name":"Mary","last_name":"Agostini","phone":"419-261-1490","address":"123 main street","zip":"50771","state":"MI","country":"US","city":"Detroit"},"membership":{"id":1,"name":"Basic Plan","slug":"basic-plan","starts_at":1522192589,"ends_at":1553728589}}}
+Response:
+{"success":true,"errors":[]}
+===========================================================
+
+===========================================================
+Date: 2018-03-28 01:40:26
+Event: updatedProfile
+Request payload:
+{"user":{"id":1,"email":"project-manager-1@outlook.com","password":"$2y$10$05nu.kTO9IHUf1L2gAvrauaUIDV1Lenu0fKrTdGTRhHtX\/MmK1hcW","billing":{"first_name":"Mary","last_name":"Agostini","phone":"419-261-1490","address":"123 main street","zip":"50771","state":"MI","country":"US","city":"Detroit"},"membership":{"id":1,"name":"Basic Plan","slug":"basic-plan","starts_at":1522192589,"ends_at":1553728589}}}
+Response:
+{"success":true,"errors":[]}
+===========================================================
+
+===========================================================
+Date: 2018-03-28 01:42:36
+Event: updatedProfile
+Request payload:
+{"user":{"id":1,"email":"project-manager-1@outlook.com","password":"$2y$10$05nu.kTO9IHUf1L2gAvrauaUIDV1Lenu0fKrTdGTRhHtX\/MmK1hcW","billing":{"first_name":"Admin","last_name":"Admin","phone":"419-261-1490","address":"123 main street","zip":"50771","state":"MI","country":"US","city":"Detroit"},"membership":{"id":1,"name":"Basic Plan","slug":"basic-plan","starts_at":1522192589,"ends_at":1553728589}}}
+Response:
+{"success":true,"errors":[]}
+===========================================================
+
+===========================================================
+Date: 2018-03-28 01:50:43
+Event: updatedMembershipLevel
+Request payload:
+{"user":{"id":42,"email":"m-agostini@hotmail.com","password":"$2y$10$M.ediuC9uszf2phWeDpQGukBYTE3IKpZWw9WuA3WPt5.m8rRbU2fq","billing":{"first_name":"Mary","last_name":"Agostini","phone":"","address":"","zip":"","state":"","country":"","city":""},"membership":{"id":1,"name":"Basic Plan","slug":"basic-plan","starts_at":1522201843,"ends_at":1553737843}}}
+Response:
+{"success":true,"errors":[]}
+===========================================================
+
+===========================================================
+Date: 2018-03-28 01:50:43
+Event: updatedOrder
+Request payload:
+{"user":{"id":42,"email":"m-agostini@hotmail.com","password":"$2y$10$M.ediuC9uszf2phWeDpQGukBYTE3IKpZWw9WuA3WPt5.m8rRbU2fq","billing":{"first_name":"Mary","last_name":"Agostini","phone":"4192611490","address":"123 Main street","zip":"28397","state":"MI","country":"US","city":"Detroit"},"membership":{"id":"1","name":"Basic Plan","slug":"basic-plan","starts_at":1522201843,"ends_at":1553737843}}}
+Response:
+{"success":true,"errors":[]}
+===========================================================
+
+===========================================================
+Date: 2018-03-28 20:16:23
+Event: updatedMembershipLevel
+Request payload:
+{"user":{"id":1,"email":"project-manager-1@outlook.com","password":"$2y$10$05nu.kTO9IHUf1L2gAvrauaUIDV1Lenu0fKrTdGTRhHtX\/MmK1hcW","billing":{"first_name":"Admin","last_name":"Admin","phone":"419-261-1490","address":"123 main street","zip":"50771","state":"MI","country":"US","city":"Detroit"},"membership":null}}
+Response:
+{"success":true,"errors":[]}
+===========================================================
+
+===========================================================
+Date: 2018-03-28 20:57:56
+Event: updatedMembershipLevel
+Request payload:
+{"user":{"id":43,"email":"new@l6elite.com","password":"$2y$10$3hywo5wEvt31JzPuqo2oX.9Ko281eIsgAP2Y4DwqTKVpWKiQIpEEq","billing":{"first_name":"Bre","last_name":"Wallace","phone":"","address":"","zip":"","state":"","country":"","city":""},"membership":{"id":6,"name":"Basic Plan Trial","slug":"basic-plan-trial","starts_at":1522270676,"ends_at":1553806676}}}
+Response:
+{"success":true,"errors":[]}
+===========================================================
+
+===========================================================
+Date: 2018-04-03 04:14:18
+Event: updatedMembershipLevel
+Request payload:
+{"user":{"id":34,"email":"info@l6elite.com","password":"$2y$10$7Yt5e8BpPmlT\/SrhWnbPIOM.xXADyw9KDa.gTiwsS4OCEK0qOaTnG","billing":{"first_name":"Real","last_name":"Tester","phone":"662-468-8099","address":"12345","zip":"85062","state":"AZ","country":"US","city":"new hampshire"},"membership":null}}
+Response:
+{"success":true,"errors":[]}
+===========================================================
+
+===========================================================
+Date: 2018-04-03 04:14:18
+Event: updatedMembershipLevel
+Request payload:
+{"user":{"id":37,"email":"mario@dvlpmt.com","password":"$2y$10$tPlCzlBpwelZQVCYwRs4PO\/cYME9VxIRVI8SUFZIL1J56CEIOV40K","billing":{"first_name":"","last_name":"","phone":"","address":"","zip":"","state":"","country":"","city":""},"membership":null}}
+Response:
+{"success":true,"errors":[]}
+===========================================================
+
+===========================================================
+Date: 2018-04-03 04:14:19
+Event: updatedMembershipLevel
+Request payload:
+{"user":{"id":39,"email":"mario2@dvlpmt.com","password":"$2y$10$ghf2nAce31VAHp.65zmT3.ao2FkEz37WVQrjL0M214nVKcu5tQx3W","billing":{"first_name":"mario","last_name":"mario","phone":"12321321321","address":"mario","zip":"1234","state":"mario","country":"US","city":"mario"},"membership":null}}
+Response:
+{"success":true,"errors":[]}
+===========================================================
+
+===========================================================
+Date: 2018-04-03 04:14:19
+Event: updatedMembershipLevel
+Request payload:
+{"user":{"id":36,"email":"project-manager-1@hotmail.com","password":"$2y$10$aHNB0tj.ad6iMGXvJnolteMNdP3EC.gR3g5sYUQAViPHHUSgz6UZC","billing":{"first_name":"Lisa","last_name":"Davis","phone":"6662853350","address":"456 main","zip":"85201","state":"AZ","country":"US","city":"PHOENIX"},"membership":null}}
+Response:
+{"success":true,"errors":[]}
+===========================================================
+
+===========================================================
+Date: 2018-04-03 04:14:19
+Event: updatedMembershipLevel
+Request payload:
+{"user":{"id":33,"email":"support@l6elite.com","password":"$2y$10$a09W0nsz8rSGINtaRFxqXeM6VTFJNU5Kt8XDkP3SbNBV6ThWSu3zy","billing":{"first_name":"Bre","last_name":"Wallace","phone":"501-282-3690","address":"1234 main road","zip":"85283","state":"AZ","country":"US","city":"Avondale"},"membership":null}}
+Response:
+{"success":true,"errors":[]}
+===========================================================
+
+===========================================================
+Date: 2018-04-03 04:14:19
+Event: updatedMembershipLevel
+Request payload:
+{"user":{"id":30,"email":"bre@l6elite.com","password":"$2y$10$uvIaTfQYIq.AaI1DgK8reeocymfjwxymqYK8wWb5LQK49UAdZTGmy","billing":{"first_name":"NU","last_name":"LOOK","phone":"344-206-6788","address":"1234 Main st","zip":"85016","state":"AZ","country":"US","city":"Phoenix"},"membership":null}}
+Response:
+{"success":true,"errors":[]}
+===========================================================
+
+===========================================================
+Date: 2018-04-04 18:19:12
+Event: updatedProfile
+Request payload:
+{"user":{"id":42,"email":"m-agostini@hotmail.com","password":"$2y$10$MlopiSvdjnywkN.KogJmYezeG2WMe4C855U1ZubIj24kNIvLKlmPC","billing":{"first_name":"Mary","last_name":"Agostini","phone":"(419) 261-1490","address":"123 Main street","zip":"28397","state":"MI","country":"US","city":"Detroit"},"membership":{"id":1,"name":"Basic Plan","slug":"basic-plan","starts_at":1522201843,"ends_at":1553737843}}}
+Response:
+{"success":true,"errors":[]}
+===========================================================
+
+===========================================================
+Date: 2020-08-20 17:00:23
+Event: updatedMembershipLevel
+Request payload:
+{"user":{"id":43,"email":"new@l6elite.com","password":"$2y$10$3hywo5wEvt31JzPuqo2oX.9Ko281eIsgAP2Y4DwqTKVpWKiQIpEEq","billing":{"first_name":"Bre","last_name":"Wallace","phone":"(480) 593-8134","address":"123","zip":"85282","state":"a","country":"US","city":"tEMPE"},"membership":null}}
+Response:
+{"success":true,"errors":[]}
+===========================================================
+
+===========================================================
+Date: 2020-08-20 17:00:24
+Event: updatedMembershipLevel
+Request payload:
+{"user":{"id":38,"email":"dev123@dvlpmt.com","password":"$2y$10$4rGBMmPsbSqprpBRDy40a.5CtkZcZJBHB20IL6Vn5GknV2l0CKoai","billing":{"first_name":"Dev","last_name":"Test","phone":"111111","address":"Address Test","zip":"12121","state":"AZ","country":"US","city":"City Test"},"membership":null}}
+Response:
+{"success":true,"errors":[]}
+===========================================================
+
+===========================================================
+Date: 2020-08-20 17:00:25
+Event: updatedMembershipLevel
+Request payload:
+{"user":{"id":42,"email":"m-agostini@hotmail.com","password":"$2y$10$MlopiSvdjnywkN.KogJmYezeG2WMe4C855U1ZubIj24kNIvLKlmPC","billing":{"first_name":"Mary","last_name":"Agostini","phone":"(419) 261-1490","address":"123 Main street","zip":"28397","state":"MI","country":"US","city":"Detroit"},"membership":null}}
+Response:
+{"success":true,"errors":[]}
+===========================================================
+
+===========================================================
+Date: 2020-09-01 15:42:47
+Event: updatedProfile
+Request payload:
+{"user":{"id":45,"email":"dom100gov@gmail.com","password":"$P$BULRltLkp5wFGKgNfjYFO0vUNPkBxC0","billing":{"first_name":"","last_name":"","phone":"","address":"","zip":"","state":"","country":"","city":""},"membership":null}}
+Response:
+{"success":true,"errors":[]}
+===========================================================
+
+===========================================================
+Date: 2020-09-02 08:08:20
+Event: updatedProfile
+Request payload:
+{"user":{"id":45,"email":"dom100gov@gmail.com","password":"$P$BhDPS1A.T.VEBWOimOlWGErEK9L9yT\/","billing":{"first_name":"","last_name":"","phone":"","address":"","zip":"","state":"","country":"","city":""},"membership":null}}
+Response:
+{"success":true,"errors":[]}
+===========================================================
+
+===========================================================
+Date: 2020-09-06 20:13:30
+Event: updatedMembershipLevel
+Request payload:
+{"user":{"id":1,"email":"johnikems10thousand@gmail.com","password":"$P$BEfTF.WEnPul.FktHz.7xt.ErALLex.","billing":{"first_name":"","last_name":"","phone":"","address":"","zip":"","state":"","country":"","city":""},"membership":{"id":3,"name":"Silver Plan","slug":"silver-plan","starts_at":1599423209,"ends_at":1630959209}}}
+Response:
+{"success":true,"errors":[]}
+===========================================================
+
+===========================================================
+Date: 2020-09-06 23:37:07
+Event: updatedMembershipLevel
+Request payload:
+{"user":{"id":1,"email":"johnikems10thousand@gmail.com","password":"$P$BEfTF.WEnPul.FktHz.7xt.ErALLex.","billing":{"first_name":"Ricky","last_name":"Moss","phone":"414-264-8022","address":"1234 Main Rd","zip":"85282","state":"AZ","country":"US","city":"Phoenix"},"membership":{"id":3,"name":"Silver Plan","slug":"silver-plan","starts_at":1599423209,"ends_at":1630959209}}}
+Response:
+{"success":true,"errors":[]}
+===========================================================
+
+===========================================================
+Date: 2020-09-06 23:37:49
+Event: updatedMembershipLevel
+Request payload:
+{"user":{"id":1,"email":"johnikems10thousand@gmail.com","password":"$P$BEfTF.WEnPul.FktHz.7xt.ErALLex.","billing":{"first_name":"Ricky","last_name":"Moss","phone":"(414) 264-8022","address":"1234 Main Rd","zip":"85282","state":"AZ","country":"US","city":"Phoenix"},"membership":null}}
+Response:
+{"success":true,"errors":[]}
+===========================================================
+
+===========================================================
+Date: 2020-09-06 23:43:52
+Event: updatedMembershipLevel
+Request payload:
+{"user":{"id":4,"email":"bwallace@bminconsulting.com","password":"$P$BeR5PYZJdL4ZBCS\/KGASrnfrlz8tJb0","billing":{"first_name":"Bre","last_name":"Wallace","phone":"","address":"","zip":"","state":"","country":"","city":""},"membership":{"id":4,"name":"Platinum Plan","slug":"platinum-plan","starts_at":1599435832,"ends_at":1630971832}}}
+Response:
+{"success":true,"errors":[]}
+===========================================================
+
+===========================================================
+Date: 2020-09-12 15:38:41
+Event: updatedProfile
+Request payload:
+{"user":{"id":1,"email":"project-manager-1@outlook.com","password":"02df521de2422717a29f376c3a720120","billing":{"first_name":"Ricky","last_name":"Moss","phone":"(414) 264-8022","address":"1234 Main Rd","zip":"85282","state":"AZ","country":"US","city":"Phoenix"},"membership":null}}
+Response:
+{"success":true,"errors":[]}
+===========================================================
+
+===========================================================
+Date: 2020-09-15 07:19:12
+Event: updatedMembershipLevel
+Request payload:
+{"user":{"id":1,"email":"project-manager-1@outlook.com","password":"02df521de2422717a29f376c3a720120","billing":{"first_name":"Ricky","last_name":"Moss","phone":"(414) 264-8022","address":"1234 Main Rd","zip":"85282","state":"AZ","country":"US","city":"Phoenix"},"membership":{"id":3,"name":"Silver Plan","slug":"silver-plan","starts_at":1600154351,"ends_at":1631690351}}}
+Response:
+{"success":true,"errors":[]}
+===========================================================
+
+===========================================================
+Date: 2020-09-15 08:09:37
+Event: updatedProfile
+Request payload:
+{"user":{"id":5,"email":"storm00530@gmail.com","password":"$P$BK5a0DmpV9lKxwB661DHYqckUYKltc1","billing":{"first_name":"r","last_name":"r","phone":"","address":"","zip":"","state":"","country":"","city":""},"membership":null}}
+Response:
+{"success":true,"errors":[]}
+===========================================================
+
+===========================================================
+Date: 2020-09-15 08:13:24
+Event: updatedMembershipLevel
+Request payload:
+{"user":{"id":5,"email":"storm00530@gmail.com","password":"$P$BK5a0DmpV9lKxwB661DHYqckUYKltc1","billing":{"first_name":"r","last_name":"r","phone":"","address":"","zip":"","state":"","country":"","city":""},"membership":{"id":4,"name":"Platinum Plan","slug":"platinum-plan","starts_at":1600157604,"ends_at":1631693604}}}
+Response:
+{"success":true,"errors":[]}
+===========================================================
+
+===========================================================
+Date: 2020-09-16 19:11:40
+Event: updatedProfile
+Request payload:
+{"user":{"id":6,"email":"qwe@gmail.com","password":"$P$BNnFnSZdZxlfVz9BGEhK.b8XX.PxiE\/","billing":{"first_name":"asdf","last_name":"asdf","phone":"","address":"","zip":"","state":"","country":"","city":""},"membership":null}}
+Response:
+{"success":true,"errors":[]}
+===========================================================
+
+===========================================================
+Date: 2020-09-16 21:51:33
+Event: updatedMembershipLevel
+Request payload:
+{"user":{"id":6,"email":"qwe@gmail.com","password":"$P$BNnFnSZdZxlfVz9BGEhK.b8XX.PxiE\/","billing":{"first_name":"asdf","last_name":"asdf","phone":"","address":"","zip":"","state":"","country":"","city":""},"membership":{"id":4,"name":"Platinum Plan","slug":"platinum-plan","starts_at":1600293091,"ends_at":1631829091}}}
+Response:
+
+{"success":true,"errors":[]}
+===========================================================
+
+===========================================================
+Date: 2020-09-17 16:33:14
+Event: updatedProfile
+Request payload:
+{"user":{"id":7,"email":"aaa@gmail.com","password":"$P$BVy903jYZyEr71N16oTrCPInACl1Qd\/","billing":{"first_name":"aaa","last_name":"aaa","phone":"","address":"","zip":"","state":"","country":"","city":""},"membership":null}}
+Response:
+{"success":true,"errors":[]}
+===========================================================
+
+===========================================================
+Date: 2020-09-17 16:35:55
+Event: updatedMembershipLevel
+Request payload:
+{"user":{"id":7,"email":"aaa@gmail.com","password":"$P$BVy903jYZyEr71N16oTrCPInACl1Qd\/","billing":{"first_name":"aaa","last_name":"aaa","phone":"","address":"","zip":"","state":"","country":"","city":""},"membership":{"id":4,"name":"Platinum Plan","slug":"platinum-plan","starts_at":1600360554,"ends_at":1631896554}}}
+Response:
+{"success":true,"errors":[]}
+===========================================================
+
+===========================================================
+Date: 2020-09-17 16:38:39
+Event: updatedProfile
+Request payload:
+{"user":{"id":3,"email":"dom100gov@gmail.com","password":"$P$B3K.BzcD\/cqZ.B376TcyOe9g\/l3Q55.","billing":{"first_name":"","last_name":"","phone":"","address":"","zip":"","state":"","country":"","city":""},"membership":null}}
+Response:
+{"success":true,"errors":[]}
+===========================================================
+
+===========================================================
+Date: 2020-09-17 21:58:28
+Event: updatedMembershipLevel
+Request payload:
+{"user":{"id":1,"email":"project-manager-1@outlook.com","password":"02df521de2422717a29f376c3a720120","billing":{"first_name":"Ricky","last_name":"Moss","phone":"(414) 264-8022","address":"1234 Main Rd","zip":"85282","state":"AZ","country":"US","city":"Phoenix"},"membership":{"id":1,"name":"Basic Plan","slug":"basic-plan","starts_at":1600379905,"ends_at":1631915905}}}
+Response:
+{"success":true,"errors":[]}
+===========================================================
+
+===========================================================
+Date: 2020-09-17 21:59:25
+Event: updatedMembershipLevel
+Request payload:
+{"user":{"id":1,"email":"project-manager-1@outlook.com","password":"02df521de2422717a29f376c3a720120","billing":{"first_name":"Ricky","last_name":"Moss","phone":"(414) 264-8022","address":"1234 Main Rd","zip":"85282","state":"AZ","country":"US","city":"Phoenix"},"membership":null}}
+Response:
+{"success":true,"errors":[]}
+===========================================================
+
+===========================================================
+Date: 2020-09-17 22:13:12
+Event: updatedMembershipLevel
+Request payload:
+{"user":{"id":8,"email":"info@bminconsulting.com","password":"$P$BssfP2WIgM.\/9GXmQ0.GjzHIiAQcJh0","billing":{"first_name":"Bre","last_name":"Wallace","phone":"","address":"","zip":"","state":"","country":"","city":""},"membership":{"id":1,"name":"Basic Plan","slug":"basic-plan","starts_at":1600380791,"ends_at":1631916791}}}
+Response:
+{"success":true,"errors":[]}
+===========================================================
+

@@ -1,0 +1,1 @@
+[25-Oct-2013 01:04:21] PHP Fatal error:  Class 'PHPExcel_Shared_String' not found in /home4/xavier/public_html/360Connect/plugins/phpexcel/Classes/PHPExcel/Autoloader.php on line 36

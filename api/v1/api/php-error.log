@@ -1,0 +1,275 @@
+[14-Jan-2018 12:07:26 UTC] PHP Fatal error:  Uncaught Error: Class 'Monolog\Logger' not found in /var/www/api/v1/generated-conf/config.php:24
+Stack trace:
+#0 /var/www/api/v1/api/index.php(48): require_once()
+#1 {main}
+  thrown in /var/www/api/v1/generated-conf/config.php on line 24
+[14-Jan-2018 12:07:26 UTC] PHP Fatal error:  Uncaught Error: Class 'Monolog\Logger' not found in /var/www/api/v1/generated-conf/config.php:24
+Stack trace:
+#0 /var/www/api/v1/api/index.php(48): require_once()
+#1 {main}
+  thrown in /var/www/api/v1/generated-conf/config.php on line 24
+[14-Jan-2018 12:07:39 UTC] PHP Fatal error:  Uncaught Error: Class 'Monolog\Logger' not found in /var/www/api/v1/generated-conf/config.php:24
+Stack trace:
+#0 /var/www/api/v1/api/index.php(48): require_once()
+#1 {main}
+  thrown in /var/www/api/v1/generated-conf/config.php on line 24
+[14-Jan-2018 12:07:39 UTC] PHP Fatal error:  Uncaught Error: Class 'Monolog\Logger' not found in /var/www/api/v1/generated-conf/config.php:24
+Stack trace:
+#0 /var/www/api/v1/api/index.php(48): require_once()
+#1 {main}
+  thrown in /var/www/api/v1/generated-conf/config.php on line 24
+[14-Jan-2018 12:07:41 UTC] PHP Fatal error:  Uncaught Error: Class 'Monolog\Logger' not found in /var/www/api/v1/generated-conf/config.php:24
+Stack trace:
+#0 /var/www/api/v1/api/index.php(48): require_once()
+#1 {main}
+  thrown in /var/www/api/v1/generated-conf/config.php on line 24
+[14-Jan-2018 12:07:41 UTC] PHP Fatal error:  Uncaught Error: Class 'Monolog\Logger' not found in /var/www/api/v1/generated-conf/config.php:24
+Stack trace:
+#0 /var/www/api/v1/api/index.php(48): require_once()
+#1 {main}
+  thrown in /var/www/api/v1/generated-conf/config.php on line 24
+[14-Jan-2018 12:07:54 UTC] PHP Fatal error:  Uncaught Error: Class 'Monolog\Logger' not found in /var/www/api/v1/generated-conf/config.php:24
+Stack trace:
+#0 /var/www/api/v1/api/index.php(48): require_once()
+#1 {main}
+  thrown in /var/www/api/v1/generated-conf/config.php on line 24
+[14-Jan-2018 12:07:54 UTC] PHP Fatal error:  Uncaught Error: Class 'Monolog\Logger' not found in /var/www/api/v1/generated-conf/config.php:24
+Stack trace:
+#0 /var/www/api/v1/api/index.php(48): require_once()
+#1 {main}
+  thrown in /var/www/api/v1/generated-conf/config.php on line 24
+[14-Jan-2018 12:07:56 UTC] PHP Fatal error:  Uncaught Error: Class 'Monolog\Logger' not found in /var/www/api/v1/generated-conf/config.php:24
+Stack trace:
+#0 /var/www/api/v1/api/index.php(48): require_once()
+#1 {main}
+  thrown in /var/www/api/v1/generated-conf/config.php on line 24
+[14-Jan-2018 12:07:56 UTC] PHP Fatal error:  Uncaught Error: Class 'Monolog\Logger' not found in /var/www/api/v1/generated-conf/config.php:24
+Stack trace:
+#0 /var/www/api/v1/api/index.php(48): require_once()
+#1 {main}
+  thrown in /var/www/api/v1/generated-conf/config.php on line 24
+[14-Jan-2018 12:08:05 UTC] PHP Fatal error:  Uncaught Error: Class 'Monolog\Logger' not found in /var/www/api/v1/generated-conf/config.php:24
+Stack trace:
+#0 /var/www/api/v1/api/index.php(48): require_once()
+#1 {main}
+  thrown in /var/www/api/v1/generated-conf/config.php on line 24
+[14-Jan-2018 12:08:05 UTC] PHP Fatal error:  Uncaught Error: Class 'Monolog\Logger' not found in /var/www/api/v1/generated-conf/config.php:24
+Stack trace:
+#0 /var/www/api/v1/api/index.php(48): require_once()
+#1 {main}
+  thrown in /var/www/api/v1/generated-conf/config.php on line 24
+[14-Jan-2018 12:08:09 UTC] PHP Fatal error:  Uncaught Error: Class 'Monolog\Logger' not found in /var/www/api/v1/generated-conf/config.php:24
+Stack trace:
+#0 /var/www/api/v1/api/index.php(48): require_once()
+#1 {main}
+  thrown in /var/www/api/v1/generated-conf/config.php on line 24
+[14-Jan-2018 12:08:09 UTC] PHP Fatal error:  Uncaught Error: Class 'Monolog\Logger' not found in /var/www/api/v1/generated-conf/config.php:24
+Stack trace:
+#0 /var/www/api/v1/api/index.php(48): require_once()
+#1 {main}
+  thrown in /var/www/api/v1/generated-conf/config.php on line 24
+[14-Jan-2018 12:08:24 UTC] PHP Fatal error:  Uncaught Error: Class 'Monolog\Logger' not found in /var/www/api/v1/generated-conf/config.php:24
+Stack trace:
+#0 /var/www/api/v1/api/index.php(48): require_once()
+#1 {main}
+  thrown in /var/www/api/v1/generated-conf/config.php on line 24
+[14-Jan-2018 12:08:24 UTC] PHP Fatal error:  Uncaught Error: Class 'Monolog\Logger' not found in /var/www/api/v1/generated-conf/config.php:24
+Stack trace:
+#0 /var/www/api/v1/api/index.php(48): require_once()
+#1 {main}
+  thrown in /var/www/api/v1/generated-conf/config.php on line 24
+[14-Jan-2018 12:08:39 UTC] PHP Fatal error:  Uncaught Error: Class 'Monolog\Logger' not found in /var/www/api/v1/generated-conf/config.php:24
+Stack trace:
+#0 /var/www/api/v1/api/index.php(48): require_once()
+#1 {main}
+  thrown in /var/www/api/v1/generated-conf/config.php on line 24
+[14-Jan-2018 12:08:39 UTC] PHP Fatal error:  Uncaught Error: Class 'Monolog\Logger' not found in /var/www/api/v1/generated-conf/config.php:24
+Stack trace:
+#0 /var/www/api/v1/api/index.php(48): require_once()
+#1 {main}
+  thrown in /var/www/api/v1/generated-conf/config.php on line 24
+[14-Jan-2018 12:08:54 UTC] PHP Fatal error:  Uncaught Error: Class 'Monolog\Logger' not found in /var/www/api/v1/generated-conf/config.php:24
+Stack trace:
+#0 /var/www/api/v1/api/index.php(48): require_once()
+#1 {main}
+  thrown in /var/www/api/v1/generated-conf/config.php on line 24
+[14-Jan-2018 12:08:54 UTC] PHP Fatal error:  Uncaught Error: Class 'Monolog\Logger' not found in /var/www/api/v1/generated-conf/config.php:24
+Stack trace:
+#0 /var/www/api/v1/api/index.php(48): require_once()
+#1 {main}
+  thrown in /var/www/api/v1/generated-conf/config.php on line 24
+[14-Jan-2018 12:09:14 UTC] PHP Fatal error:  Uncaught Error: Class 'Monolog\Logger' not found in /var/www/api/v1/generated-conf/config.php:24
+Stack trace:
+#0 /var/www/api/v1/api/index.php(48): require_once()
+#1 {main}
+  thrown in /var/www/api/v1/generated-conf/config.php on line 24
+[14-Jan-2018 12:09:14 UTC] PHP Fatal error:  Uncaught Error: Class 'Monolog\Logger' not found in /var/www/api/v1/generated-conf/config.php:24
+Stack trace:
+#0 /var/www/api/v1/api/index.php(48): require_once()
+#1 {main}
+  thrown in /var/www/api/v1/generated-conf/config.php on line 24
+[14-Jan-2018 12:09:24 UTC] PHP Fatal error:  Uncaught Error: Class 'Monolog\Logger' not found in /var/www/api/v1/generated-conf/config.php:24
+Stack trace:
+#0 /var/www/api/v1/api/index.php(48): require_once()
+#1 {main}
+  thrown in /var/www/api/v1/generated-conf/config.php on line 24
+[14-Jan-2018 12:09:24 UTC] PHP Fatal error:  Uncaught Error: Class 'Monolog\Logger' not found in /var/www/api/v1/generated-conf/config.php:24
+Stack trace:
+#0 /var/www/api/v1/api/index.php(48): require_once()
+#1 {main}
+  thrown in /var/www/api/v1/generated-conf/config.php on line 24
+[14-Jan-2018 12:09:39 UTC] PHP Fatal error:  Uncaught Error: Class 'Monolog\Logger' not found in /var/www/api/v1/generated-conf/config.php:24
+Stack trace:
+#0 /var/www/api/v1/api/index.php(48): require_once()
+#1 {main}
+  thrown in /var/www/api/v1/generated-conf/config.php on line 24
+[14-Jan-2018 12:09:39 UTC] PHP Fatal error:  Uncaught Error: Class 'Monolog\Logger' not found in /var/www/api/v1/generated-conf/config.php:24
+Stack trace:
+#0 /var/www/api/v1/api/index.php(48): require_once()
+#1 {main}
+  thrown in /var/www/api/v1/generated-conf/config.php on line 24
+[14-Jan-2018 12:09:54 UTC] PHP Fatal error:  Uncaught Error: Class 'Monolog\Logger' not found in /var/www/api/v1/generated-conf/config.php:24
+Stack trace:
+#0 /var/www/api/v1/api/index.php(48): require_once()
+#1 {main}
+  thrown in /var/www/api/v1/generated-conf/config.php on line 24
+[14-Jan-2018 12:09:54 UTC] PHP Fatal error:  Uncaught Error: Class 'Monolog\Logger' not found in /var/www/api/v1/generated-conf/config.php:24
+Stack trace:
+#0 /var/www/api/v1/api/index.php(48): require_once()
+#1 {main}
+  thrown in /var/www/api/v1/generated-conf/config.php on line 24
+[14-Jan-2018 12:10:09 UTC] PHP Fatal error:  Uncaught Error: Class 'Monolog\Logger' not found in /var/www/api/v1/generated-conf/config.php:24
+Stack trace:
+#0 /var/www/api/v1/api/index.php(48): require_once()
+#1 {main}
+  thrown in /var/www/api/v1/generated-conf/config.php on line 24
+[14-Jan-2018 12:10:09 UTC] PHP Fatal error:  Uncaught Error: Class 'Monolog\Logger' not found in /var/www/api/v1/generated-conf/config.php:24
+Stack trace:
+#0 /var/www/api/v1/api/index.php(48): require_once()
+#1 {main}
+  thrown in /var/www/api/v1/generated-conf/config.php on line 24
+[14-Jan-2018 12:10:24 UTC] PHP Fatal error:  Uncaught Error: Class 'Monolog\Logger' not found in /var/www/api/v1/generated-conf/config.php:24
+Stack trace:
+#0 /var/www/api/v1/api/index.php(48): require_once()
+#1 {main}
+  thrown in /var/www/api/v1/generated-conf/config.php on line 24
+[14-Jan-2018 12:10:24 UTC] PHP Fatal error:  Uncaught Error: Class 'Monolog\Logger' not found in /var/www/api/v1/generated-conf/config.php:24
+Stack trace:
+#0 /var/www/api/v1/api/index.php(48): require_once()
+#1 {main}
+  thrown in /var/www/api/v1/generated-conf/config.php on line 24
+[14-Jan-2018 12:10:39 UTC] PHP Fatal error:  Uncaught Error: Class 'Monolog\Logger' not found in /var/www/api/v1/generated-conf/config.php:24
+Stack trace:
+#0 /var/www/api/v1/api/index.php(48): require_once()
+#1 {main}
+  thrown in /var/www/api/v1/generated-conf/config.php on line 24
+[14-Jan-2018 12:10:39 UTC] PHP Fatal error:  Uncaught Error: Class 'Monolog\Logger' not found in /var/www/api/v1/generated-conf/config.php:24
+Stack trace:
+#0 /var/www/api/v1/api/index.php(48): require_once()
+#1 {main}
+  thrown in /var/www/api/v1/generated-conf/config.php on line 24
+[14-Jan-2018 12:28:13 UTC] PHP Fatal error:  Uncaught Error: Call to a member function getId() on null in /var/www/api/v1/api/api_models/projects.class.php:118
+Stack trace:
+#0 /var/www/api/v1/api/api_models/projects.class.php(10): l6eprojects->handlePost(Array)
+#1 /var/www/api/v1/api/api.class.php(365): l6eprojects->__construct(Array)
+#2 /var/www/api/v1/api/index.php(59): API->processAPI()
+#3 {main}
+  thrown in /var/www/api/v1/api/api_models/projects.class.php on line 118
+[09-Feb-2018 17:36:49 UTC] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function imageUploadHandler::__construct(), 0 passed in /var/www/L6Elite/api/v1/api/api.class.php on line 137 and exactly 1 expected in /var/www/L6Elite/api/v1/api/api_models/uploadmanager.class.php:7
+Stack trace:
+#0 /var/www/L6Elite/api/v1/api/api.class.php(137): imageUploadHandler->__construct()
+#1 /var/www/L6Elite/api/v1/api/api_app.class.php(5): API->__construct('imageupload')
+#2 /var/www/L6Elite/api/v1/api/index.php(58): APIApp->__construct('imageupload', 'http://app.l6el...')
+#3 {main}
+  thrown in /var/www/L6Elite/api/v1/api/api_models/uploadmanager.class.php on line 7
+[09-Feb-2018 17:57:33 UTC] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function imageUploadHandler::__construct(), 0 passed in /var/www/L6Elite/api/v1/api/api.class.php on line 137 and exactly 1 expected in /var/www/L6Elite/api/v1/api/api_models/uploadmanager.class.php:7
+Stack trace:
+#0 /var/www/L6Elite/api/v1/api/api.class.php(137): imageUploadHandler->__construct()
+#1 /var/www/L6Elite/api/v1/api/api_app.class.php(5): API->__construct('imageupload')
+#2 /var/www/L6Elite/api/v1/api/index.php(58): APIApp->__construct('imageupload', 'http://app.l6el...')
+#3 {main}
+  thrown in /var/www/L6Elite/api/v1/api/api_models/uploadmanager.class.php on line 7
+[09-Feb-2018 19:22:58 UTC] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function APIApp::__construct(), 0 passed in /var/www/L6Elite/api/v1/api/api_models/controltestplan.class.php on line 8 and at least 1 expected in /var/www/L6Elite/api/v1/api/api_app.class.php:4
+Stack trace:
+#0 /var/www/L6Elite/api/v1/api/api_models/controltestplan.class.php(8): APIApp->__construct()
+#1 /var/www/L6Elite/api/v1/api/api.class.php(365): l6econtroltestplan->__construct(Array)
+#2 /var/www/L6Elite/api/v1/api/index.php(59): API->processAPI()
+#3 {main}
+  thrown in /var/www/L6Elite/api/v1/api/api_app.class.php on line 4
+[15-Feb-2018 21:54:19 UTC] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function APIApp::__construct(), 0 passed in /var/www/L6Elite/api/v1/api/api_models/controltestplan.class.php on line 8 and at least 1 expected in /var/www/L6Elite/api/v1/api/api_app.class.php:4
+Stack trace:
+#0 /var/www/L6Elite/api/v1/api/api_models/controltestplan.class.php(8): APIApp->__construct()
+#1 /var/www/L6Elite/api/v1/api/api.class.php(365): l6econtroltestplan->__construct(Array)
+#2 /var/www/L6Elite/api/v1/api/index.php(59): API->processAPI()
+#3 {main}
+  thrown in /var/www/L6Elite/api/v1/api/api_app.class.php on line 4
+[15-Feb-2018 23:02:04 UTC] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function APIApp::__construct(), 0 passed in /var/www/L6Elite/api/v1/api/api_models/controltestplan.class.php on line 8 and at least 1 expected in /var/www/L6Elite/api/v1/api/api_app.class.php:4
+Stack trace:
+#0 /var/www/L6Elite/api/v1/api/api_models/controltestplan.class.php(8): APIApp->__construct()
+#1 /var/www/L6Elite/api/v1/api/api.class.php(365): l6econtroltestplan->__construct(Array)
+#2 /var/www/L6Elite/api/v1/api/index.php(59): API->processAPI()
+#3 {main}
+  thrown in /var/www/L6Elite/api/v1/api/api_app.class.php on line 4
+[16-Feb-2018 15:04:59 UTC] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function APIApp::__construct(), 0 passed in /var/www/L6Elite/api/v1/api/api_models/controltestplan.class.php on line 8 and at least 1 expected in /var/www/L6Elite/api/v1/api/api_app.class.php:4
+Stack trace:
+#0 /var/www/L6Elite/api/v1/api/api_models/controltestplan.class.php(8): APIApp->__construct()
+#1 /var/www/L6Elite/api/v1/api/api.class.php(365): l6econtroltestplan->__construct(Array)
+#2 /var/www/L6Elite/api/v1/api/index.php(59): API->processAPI()
+#3 {main}
+  thrown in /var/www/L6Elite/api/v1/api/api_app.class.php on line 4
+[16-Feb-2018 15:07:13 UTC] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function APIApp::__construct(), 0 passed in /var/www/L6Elite/api/v1/api/api_models/controltestplan.class.php on line 8 and at least 1 expected in /var/www/L6Elite/api/v1/api/api_app.class.php:4
+Stack trace:
+#0 /var/www/L6Elite/api/v1/api/api_models/controltestplan.class.php(8): APIApp->__construct()
+#1 /var/www/L6Elite/api/v1/api/api.class.php(365): l6econtroltestplan->__construct(Array)
+#2 /var/www/L6Elite/api/v1/api/index.php(59): API->processAPI()
+#3 {main}
+  thrown in /var/www/L6Elite/api/v1/api/api_app.class.php on line 4
+[16-Feb-2018 15:07:58 UTC] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function APIApp::__construct(), 0 passed in /var/www/L6Elite/api/v1/api/api_models/controltestplan.class.php on line 8 and at least 1 expected in /var/www/L6Elite/api/v1/api/api_app.class.php:4
+Stack trace:
+#0 /var/www/L6Elite/api/v1/api/api_models/controltestplan.class.php(8): APIApp->__construct()
+#1 /var/www/L6Elite/api/v1/api/api.class.php(365): l6econtroltestplan->__construct(Array)
+#2 /var/www/L6Elite/api/v1/api/index.php(59): API->processAPI()
+#3 {main}
+  thrown in /var/www/L6Elite/api/v1/api/api_app.class.php on line 4
+[16-Feb-2018 15:08:27 UTC] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function APIApp::__construct(), 0 passed in /var/www/L6Elite/api/v1/api/api_models/controltestplan.class.php on line 8 and at least 1 expected in /var/www/L6Elite/api/v1/api/api_app.class.php:4
+Stack trace:
+#0 /var/www/L6Elite/api/v1/api/api_models/controltestplan.class.php(8): APIApp->__construct()
+#1 /var/www/L6Elite/api/v1/api/api.class.php(365): l6econtroltestplan->__construct(Array)
+#2 /var/www/L6Elite/api/v1/api/index.php(59): API->processAPI()
+#3 {main}
+  thrown in /var/www/L6Elite/api/v1/api/api_app.class.php on line 4
+[16-Feb-2018 15:09:40 UTC] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function APIApp::__construct(), 0 passed in /var/www/L6Elite/api/v1/api/api_models/controltestplan.class.php on line 8 and at least 1 expected in /var/www/L6Elite/api/v1/api/api_app.class.php:4
+Stack trace:
+#0 /var/www/L6Elite/api/v1/api/api_models/controltestplan.class.php(8): APIApp->__construct()
+#1 /var/www/L6Elite/api/v1/api/api.class.php(365): l6econtroltestplan->__construct(Array)
+#2 /var/www/L6Elite/api/v1/api/index.php(59): API->processAPI()
+#3 {main}
+  thrown in /var/www/L6Elite/api/v1/api/api_app.class.php on line 4
+[16-Feb-2018 15:10:05 UTC] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function APIApp::__construct(), 0 passed in /var/www/L6Elite/api/v1/api/api_models/controltestplan.class.php on line 8 and at least 1 expected in /var/www/L6Elite/api/v1/api/api_app.class.php:4
+Stack trace:
+#0 /var/www/L6Elite/api/v1/api/api_models/controltestplan.class.php(8): APIApp->__construct()
+#1 /var/www/L6Elite/api/v1/api/api.class.php(365): l6econtroltestplan->__construct(Array)
+#2 /var/www/L6Elite/api/v1/api/index.php(59): API->processAPI()
+#3 {main}
+  thrown in /var/www/L6Elite/api/v1/api/api_app.class.php on line 4
+[16-Feb-2018 15:13:23 UTC] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function APIApp::__construct(), 0 passed in /var/www/L6Elite/api/v1/api/api_models/controltestplan.class.php on line 8 and at least 1 expected in /var/www/L6Elite/api/v1/api/api_app.class.php:4
+Stack trace:
+#0 /var/www/L6Elite/api/v1/api/api_models/controltestplan.class.php(8): APIApp->__construct()
+#1 /var/www/L6Elite/api/v1/api/api.class.php(365): l6econtroltestplan->__construct(Array)
+#2 /var/www/L6Elite/api/v1/api/index.php(59): API->processAPI()
+#3 {main}
+  thrown in /var/www/L6Elite/api/v1/api/api_app.class.php on line 4
+[16-Feb-2018 15:14:47 UTC] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function APIApp::__construct(), 0 passed in /var/www/L6Elite/api/v1/api/api_models/controltestplan.class.php on line 8 and at least 1 expected in /var/www/L6Elite/api/v1/api/api_app.class.php:4
+Stack trace:
+#0 /var/www/L6Elite/api/v1/api/api_models/controltestplan.class.php(8): APIApp->__construct()
+#1 /var/www/L6Elite/api/v1/api/api.class.php(365): l6econtroltestplan->__construct(Array)
+#2 /var/www/L6Elite/api/v1/api/index.php(59): API->processAPI()
+#3 {main}
+  thrown in /var/www/L6Elite/api/v1/api/api_app.class.php on line 4
+[16-Feb-2018 15:16:54 UTC] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function APIApp::__construct(), 0 passed in /var/www/L6Elite/api/v1/api/api_models/controltestplan.class.php on line 8 and at least 1 expected in /var/www/L6Elite/api/v1/api/api_app.class.php:4
+Stack trace:
+#0 /var/www/L6Elite/api/v1/api/api_models/controltestplan.class.php(8): APIApp->__construct()
+#1 /var/www/L6Elite/api/v1/api/api.class.php(365): l6econtroltestplan->__construct(Array)
+#2 /var/www/L6Elite/api/v1/api/index.php(59): API->processAPI()
+#3 {main}
+  thrown in /var/www/L6Elite/api/v1/api/api_app.class.php on line 4

@@ -1,0 +1,137 @@
+<div class="page page-project" ng-controller="ProjectCtrl">
+	<header class="project-header">
+		<div class="project-header-text">
+			{{projectDetail.Name}}
+		</div>
+		<div class="project-info">
+			<ul class="list-unstyled list-inline" style="float:left">
+				<li>PROJ{{projectId}}</li>
+				<li><i class="fa fa-check"></i> Tasks <span class="text-muted">({{$root.currentProject.tasksLeft}})</span</li>
+			</ul>
+			<md-menu ng-if="userCanEditProjects()" md-position-mode="target-right target" style="padding:0px;line-height:0px;" class="pull-right">
+				<md-button style="height: 25px;padding: 0;margin: 0;font-size: 25px;min-height:0px;line-height: 0" aria-label="Open Menu" class="md-icon-button subphase-menu-button" ng-click="$mdOpenMenu($event)">
+					<md-icon md-menu-origin><span style="color:#fff" class="fa fa-info-circle"></span></md-icon>
+				</md-button>
+				<md-menu-content width="2">
+					<md-menu-item ng-show="projectDetail.Status == 'active'"><md-button ng-click="archiveProject()"> <span md-menu-align-target>Archive Project</span></md-button></md-menu-item>
+					<md-menu-item ng-show="projectDetail.Status == 'complete' || projectDetail.Status == 'inactive'"><md-button ng-click="reOpenProject()"> <span md-menu-align-target>Re-Open Project</span></md-button></md-menu-item>
+					<md-menu-item><md-button ng-click="deleteProject()"> <span md-menu-align-target>Delete Project</span></md-button></md-menu-item>
+				</md-menu-content>
+			</md-menu>
+		</div>
+	</header>
+	<div class="row">
+		<!-- <i class="fa fa-ellipsis-h pull-right"></i> -->
+	</div>
+	<div class="row">
+		<div class="col-sm-2 col-sm-offset-1">
+			<div class="panel mini-box" ng-class="{'ui-ribbon-container ui-ribbon-success':phaseData.Define.completedTasks == phaseData.Define.totalTasks}">
+				<div class="ui-ribbon-wrapper" ng-show="phaseData.Define.completedTasks == phaseData.Define.totalTasks">
+					<div class="ui-ribbon">
+						Complete
+					</div>
+				</div>
+				<div class="box-info">
+					<p class="size-h2">Define</p>
+					<a href="#/define/{{projectId}}/1">{{phaseData.Define.completedTasks + '/' + phaseData.Define.totalTasks}} Complete</a>
+				</div>
+			</div>
+		</div>
+		<div class="col-sm-2">
+			<div class="panel mini-box" ng-class="{'ui-ribbon-container ui-ribbon-success':phaseData.Measure.completedTasks == phaseData.Measure.totalTasks}">
+				<div class="ui-ribbon-wrapper" ng-show="phaseData.Measure.completedTasks == phaseData.Measure.totalTasks">
+					<div class="ui-ribbon">
+						Complete
+					</div>
+				</div>
+				<div class="box-info">
+					<p class="size-h2">Measure</p>
+					<a href="#/measure/{{projectId}}/1">{{phaseData.Measure.completedTasks + '/' + phaseData.Measure.totalTasks}} Complete</a>
+				</div>
+			</div>
+		</div>
+		<div class="col-sm-2">
+			<div class="panel mini-box" ng-class="{'ui-ribbon-container ui-ribbon-success':phaseData.Analyze.completedTasks == phaseData.Analyze.totalTasks}">
+				<div class="ui-ribbon-wrapper" ng-show="phaseData.Analyze.completedTasks == phaseData.Analyze.totalTasks">
+					<div class="ui-ribbon">
+						Complete
+					</div>
+				</div>
+				<div class="box-info">
+					<p class="size-h2">Analyze</p>
+					<a href="#/analyze/{{projectId}}/1">{{phaseData.Analyze.completedTasks + '/' + phaseData.Analyze.totalTasks}} Complete</a>
+				</div>
+			</div>
+		</div>
+		<div class="col-sm-2">
+			<div class="panel mini-box" ng-class="{'ui-ribbon-container ui-ribbon-success': phaseData.Improve.completedTasks == phaseData.Improve.totalTasks}">
+				<div class="ui-ribbon-wrapper" ng-show="phaseData.Improve.completedTasks == phaseData.Improve.totalTasks">
+					<div class="ui-ribbon">
+						Complete
+					</div>
+				</div>
+				<div class="box-info">
+					<p class="size-h2">Improve</p>
+					<a href="#/improve/{{projectId}}/1">{{phaseData.Improve.completedTasks + '/' + phaseData.Improve.totalTasks}} Complete</a>
+				</div>
+			</div>
+		</div>
+		<div class="col-sm-2">
+			<div class="panel mini-box" ng-class="{'ui-ribbon-container ui-ribbon-success': phaseData.Control.completedTasks == phaseData.Control.totalTasks}">
+				<div class="ui-ribbon-wrapper" ng-show="phaseData.Control.completedTasks == phaseData.Control.totalTasks">
+					<div class="ui-ribbon">
+						Complete
+					</div>
+				</div>
+				<div class="box-info">
+					<p class="size-h2">Control</p>
+					<a href="#/control/{{projectId}}/1">{{phaseData.Control.completedTasks + '/' + phaseData.Control.totalTasks}} Complete</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row" data-ng-controller="GanttCtrl">
+		<div class="col-md-12">
+			<div class="panel panel-default">
+				<div class="panel-body padding-lg">
+					<div class="row">
+						<div class="col-md-12">
+							<div class="panel">
+								<div class="panel-heading text-center">Project Overview</div>
+								<div class="panel-body">
+									<div gantt
+									     data="data"
+									     timespans="timespans"
+									     show-side="true"
+									     allow-side-resizing="true"
+									     daily="options.daily"
+									     view-scale="options.scale"
+									     column-width="30"
+									     on-scroll="scrollEvent(event)"
+									     current-date="options.currentDate"
+									     current-date-value="options.currentDateValue"
+											 row-content="options.rowContent"
+									>
+									    <gantt-tree enabled="true"
+									                header-content="options.treeHeaderContent"
+									                keep-ancestor-on-filter-row="true">
+									    </gantt-tree>
+									    <gantt-table enabled="true"
+									                 columns="options.treeTableColumns"
+									                 formatters="options.columnsFormatters"
+									                 headers="options.columnsHeaders"
+									                 header-contents="options.headerContents">
+									    </gantt-table>
+										<gantt-groups></gantt-groups>
+										<gantt-tooltips></gantt-tooltips>
+										<gantt-resize-sensor></gantt-resize-sensor>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

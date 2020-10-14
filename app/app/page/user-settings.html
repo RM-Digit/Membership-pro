@@ -1,0 +1,238 @@
+<div ng-controller="UserManagementCtrl">
+	<div class="page user-settings">
+		<div class="row">
+			<div class="col-sm-12 col-md-6">
+				<h2 class="section-header">Manage User Accounts <span class="label label-primary" style="font-size: 16px;line-height: 17px;padding: 4px 8px;display: inline-block;position: relative;top: -3px;">({{getNumberOfUsers()}}/{{getMaxNumberOfUsers()}})</span></h2>
+				<section class="panel panel-default">
+					<div class="panel-body no-padding">
+						<md-tabs md-selected="selectedIndex" md-border-bottom md-dynamic-height>
+							<md-tab	label="Active Users" style="height:400px">
+								<div layout layout-sm="column">
+									<md-input-container flex>
+										<label>Search Users</label>
+										<input ng-model="activeUserSearch">
+									</md-input-container>
+								</div>
+								<md-list class="ui-material-list" style="max-height:350px; overflow: auto">
+									<md-list-item ng-repeat="user in allContacts | filter:activeUserSearch | orderBy:'name'" ng-if="user.id > 0 && user.status == 'active'">
+										<img alt="" ng-src="{{user.image}}" class="img-circle img40_40 md-avatar">
+										<div class="list-item-text">
+											<h3>{{user.name}}</h3>
+											<p>{{user.email}}</p>
+										</div>
+										<md-icon ng-if="!user.is_superadmin" class="list-contact md-secondary zmdi zmdi-edit" ng-click="showUserEditor(user.id)" aria-label="Edit"></md-icon>
+									</md-list-item>
+								</md-list>
+								<md-button ng-disabled="!canCreateUserAccount()" class="btn-w-md md-accent pull-right" ng-click="loadNewUser()"><span class="zmdi zmdi-account-add"></span> Create User Account</md-button>
+							</md-tab>
+							<md-tab	label="Inactive Users">
+								<div layout layout-sm="column">
+									<md-input-container flex>
+										<label>Search Users</label>
+										<input ng-model="softUserSearch">
+									</md-input-container>
+								</div>
+								<md-list class="ui-material-list" style="max-height:350px; overflow: auto">
+									<md-list-item ng-repeat="user in allContacts | filter:softUserSearch | orderBy:'name'" ng-if="user.id > 0 && user.status == 'inactive'">
+										<img alt="" ng-src="{{user.image}}" class="img-circle img40_40 md-avatar">
+										<div class="list-item-text">
+											<h3>{{user.name}}</h3>
+											<p>{{user.email}}</p>
+										</div>
+										<md-icon class="list-contact md-secondary zmdi zmdi-edit" ng-click="showUserEditor(user.id)" aria-label="Add User"></md-icon>
+									</md-list-item>
+								</md-list>
+								<md-button ng-disabled="!canCreateUserAccount()" class="btn-w-md md-accent pull-right" ng-click="loadNewUser()"><span class="zmdi zmdi-account-add"></span> Create User Account</md-button>
+							</md-tab>
+							<md-tab	label="Pending Users">
+								<div layout layout-sm="column">
+									<md-input-container flex>
+										<label>Search Users</label>
+										<input ng-model="softUserSearch">
+									</md-input-container>
+								</div>
+								<md-list class="ui-material-list" style="max-height:350px; overflow: auto">
+									<md-list-item ng-repeat="user in allContacts | filter:softUserSearch | orderBy:'name'" ng-if="user.id > 0 && user.status == 'pending'">
+										<img alt="" ng-src="{{user.image}}" class="img-circle img40_40 md-avatar">
+										<div class="list-item-text">
+											<h3>{{user.name}}</h3>
+											<p>{{user.email}}</p>
+										</div>
+										<md-icon class="list-contact md-secondary zmdi zmdi-edit" ng-click="showUserEditor(user.id)" aria-label="Add User"></md-icon>
+									</md-list-item>
+								</md-list>
+								<md-button ng-disabled="!canCreateUserAccount()" class="btn-w-md md-accent pull-right" ng-click="loadNewUser()"><span class="zmdi zmdi-account-add"></span> Create User Account</md-button>
+							</md-tab>
+						</md-tabs>
+					</div>
+				</section>
+			</div>
+			<div class="col-sm-12 col-md-6">
+				<h2 class="section-header">Manage Access Levels</h2>
+				<section class="panel panel-default">
+					<div class="panel-body no-padding">
+						<div layout layout-sm="column">
+							<md-input-container flex>
+								<label>Search Access Levels</label>
+								<input ng-model="accessLevelSearch">
+							</md-input-container>
+						</div>
+						<md-list class="ui-material-list" style="max-height:350px; overflow: auto">
+							<md-list-item ng-repeat="lvl in accessLevels | filter:accessLevelSearch | orderBy:'Name'">
+								<div>
+									<p>{{lvl.Name}}</p>
+								</div>
+								<md-icon ng-if="lvl.Name != 'Master Admin'" class="list-contact md-secondary zmdi zmdi-edit" ng-click="editAccessLevel(lvl)" aria-label="Edit"></md-icon>
+							</md-list-item>
+						</md-list>
+						<md-button class="btn-w-md md-accent pull-right" ng-click="loadNewAccessLevel()"><span class="zmdi zmdi-globe-lock"></span> Create Access Level</md-button>
+					</div>
+				</section>
+			</div>
+		</div>
+	</div>
+	<script type="text/ng-template" id="usereditor.html">
+		<div class="modal-header">
+			<h3 class="modal-title">{{(selectedUser.Id) ? 'Edit' : 'Create A New'}} User</h3>
+		</div>
+		<div class="modal-body">
+			<div class="row">
+				<div class="col-sm-4">
+					<div class="row">
+						<div class="col-sm-12">
+							<div class="ih-item ih-material">
+								<div class="img">
+									<img ng-src="{{selectedUser.ProfileImageUrl}}"/>
+									<div class="img-toolbar">
+										<md-button type="file" ngf-select="uploadFiles($file, $invalidFiles)" accept="image/*" ngf-max-height="1000" ngf-max-size="2MB" flex="10" class="md-raised md-accent md-button md-ink-ripple pull-right" ng-transclude=""><span class="ng-scope"><i class="zmdi zmdi-upload"></i></span><div class="md-ripple-container"></div></md-button>
+										<md-button flex="10" style="margin-right:3px;" class="md-raised md-warn md-button md-ink-ripple pull-right" ng-transclude="" ng-click="deleteProfileImage()" ng-show="selectedUser.ProfileImageUrl != 'images/generic-profile.png'"><span class="ng-scope"><i class="zmdi zmdi-delete"></i></span><div class="md-ripple-container"></div></md-button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-12">
+							<div layout layout-align="center" style="text-align:left">
+								<md-input-container flex="100" style="margin-bottom:3px">
+									<label>User Status</label>
+									<md-select user-select ng-model="selectedUser.Status" aria-label="Status select">
+										<md-option ng-repeat="s in ['Active','Inactive']" value="{{s | lowercase}}">{{s}}</md-option>
+									</md-select>
+								</md-input-container>
+							</div>
+							<div layout layout-align="center" ng-if="selectedUser.Id">
+								<md-button flex="100" class="md-raised md-accent md-button md-ink-ripple pull-right" ng-transclude="" ng-click="resetPassword()"><span class="ng-scope">Reset Password</span><div class="md-ripple-container"></div></md-button>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-8">
+					<div layout layout-align="center" style="text-align:left">
+						<md-input-container flex-gt-sm="50" flex="100">
+							<label>First Name</label>
+							<input type="text" ng-model="selectedUser.FirstName">
+						</md-input-container>
+						<md-input-container flex-gt-sm="50" flex="100">
+							<label>Last Name</label>
+							<input type="text" ng-model="selectedUser.LastName">
+						</md-input-container>
+					</div>
+					<div layout layout-align="center" style="text-align:left">
+						<md-input-container flex-gt-sm="{{ selectedUser.Id ? 100 : 50 }}" flex="100">
+							<label>Email Address</label>
+							<input type="text" ng-model="selectedUser.EmailAddress">
+						</md-input-container>
+						<md-input-container ng-if="!selectedUser.Id" flex-gt-sm="50" flex="100">
+							<label>Password</label>
+							<input type="password" ng-model="selectedUser.Password">
+						</md-input-container>
+					</div>
+					<div layout layout-align="center" style="text-align:left">
+						<md-input-container flex-gt-sm="50" flex="100">
+							<label>Phone</label>
+							<input type="text" ng-model="selectedUser.Phone">
+						</md-input-container>
+						<md-input-container flex-gt-sm="50" flex="100">
+							<label>Zip/Postal Code</label>
+							<input type="text" ng-model="selectedUser.Zip">
+						</md-input-container>
+					</div>
+					<div layout layout-align="center" style="text-align:left">
+						<md-input-container flex-gt-sm="50" flex="100">
+							<label>Work Title</label>
+							<input type="text" ng-model="selectedUser.WorkTitle">
+						</md-input-container>
+						<md-input-container flex-gt-sm="50" flex="100">
+							<label>Reports To</label>
+							<md-select user-select ng-model="selectedUser.ReportsTo" aria-label="Reports to select">
+								<md-option ng-repeat="c in allContacts" value="{{c.id}}"><img class="user-select-img" ng-src="{{c.image}}" ng-show="c.image != ''"/> {{c.name + ((c.email) ? ' (' + c.email + ')' : '')}} </md-option>
+							</md-select>
+						</md-input-container>
+					</div>
+					<div layout layout-align="center" style="text-align:left">
+						<md-input-container flex-gt-sm="100" flex="100">
+							<label>Access Level</label>
+							<md-select ng-disabled="selectedUser.IsSuperAdmin" user-select ng-model="selectedUser.AccessLevelId" aria-label="Access Level to select">
+								<md-option ng-disabled="lvl.Name == 'Master Admin'" ng-value="lvl.Id" ng-repeat="lvl in accessLevels">{{lvl.Name}}</md-option>
+							</md-select>
+						</md-input-container>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="modal-footer">
+			<md-button ng-if="selectedUser.Id" class="md-primary md-warn btn-w-md md-button md-ink-ripple pull-left" ng-transclude="" ng-click="loadDeleteUser()">
+				<span class="ng-scope">Delete User</span>
+				<div class="md-ripple-container"></div>
+			</md-button>
+			<md-button class="md-raised md-primary btn-w-md md-button md-ink-ripple pull-right" ng-transclude="" ng-click="submitUser()"><span class="ng-scope">Save User</span><div class="md-ripple-container"></div></md-button>
+			<md-button class="md-raised md-warn btn-w-md md-button md-ink-ripple pull-right" style="margin-right:10px;" ng-transclude="" ng-click="closeModal()"><span class="ng-scope">Cancel</span><div class="md-ripple-container"></div></md-button>
+		</div>
+	</script>
+	<script type="text/ng-template" id="accessleveleditor.html">
+		<div class="modal-header">
+			<h3 class="modal-title">{{(selectedAccessLevel.Id) ? 'Create A New' : 'Edit'}}  Access Level</h3>
+		</div>
+		<div class="modal-body">
+			<div class="row">
+				<div class="col-sm-12">
+					<div layout layout-align="center" style="text-align:left">
+						<md-input-container flex-gt-sm="100" flex="100">
+							<label>Access Level Name</label>
+							<input type="text" ng-model="selectedAccessLevel.Name" ng-disabled="selectedAccessLevel.ClientId == null">
+						</md-input-container>
+					</div>
+					<md-input-container class="full-width">
+						<label>Access Options List</label>
+						<md-select multiple="true" ng-model="selectedAccessLevel.selectedOptions" aria-label="select" ng-disabled="selectedAccessLevel.ClientId == null">
+							<md-option ng-value="op" ng-repeat="op in accessLevelOptions">{{op.Name}}</md-option>
+						</md-select>
+					</md-input-container>
+				</div>
+			</div>
+		</div>
+		<div class="modal-footer">
+			<md-button ng-if="selectedAccessLevel.Id != 1 && selectedAccessLevel.Id != 2" class="md-raised md-primary btn-w-md md-button md-ink-ripple pull-right" ng-transclude="" ng-click="submitAccessLevel()" ><span class="ng-scope">Save Access Level</span><div class="md-ripple-container"></div></md-button>
+			<md-button class="md-raised md-accent btn-w-md md-button md-ink-ripple pull-right" style="margin-right:10px;" ng-transclude="" ng-click="closeModal()"><span class="ng-scope">Cancel</span><div class="md-ripple-container"></div></md-button>
+		</div>
+	</script>
+	<script type="text/ng-template" id="userdelete.html">
+		<div class="modal-header">
+			<h3 class="modal-title">Delete User</h3>
+		</div>
+		<div class="modal-body">
+			<div class="alert alert-info">First, you have to transfer all projects by this user to another user:</div>
+			<md-input-container class="full-width">
+				<label>Choose User:</label>
+				<md-select user-select ng-model="deleteUser.TransferUserId" aria-label="Reports to select">
+					<md-option ng-repeat="c in allContacts" ng-if="c.id" value="{{c.id}}"><img class="user-select-img" ng-src="{{c.image}}" ng-show="c.image != ''"/> {{c.name + ((c.email) ? ' (' + c.email + ')' : '')}} </md-option>
+				</md-select>
+			</md-input-container>
+		</div>
+		<div class="modal-footer">
+			<md-button class="md-raised md-primary btn-w-md md-button md-ink-ripple pull-right" ng-transclude="" ng-click="submitDeleteUser()" ng-disabled="deleteUser.TransferUserId == null" ><span class="ng-scope">Delete User</span><div class="md-ripple-container"></div></md-button>
+			<md-button class="md-raised md-accent btn-w-md md-button md-ink-ripple pull-right" style="margin-right:10px;" ng-transclude="" ng-click="closeModal()"><span class="ng-scope">Cancel</span><div class="md-ripple-container"></div></md-button>
+		</div>
+	</script>
+</div>

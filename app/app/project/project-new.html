@@ -1,0 +1,174 @@
+<div class="page page-project page-project-new" ng-controller="ProjectNewCtrl">
+<div ng-if="userDetails.AccessLevelDetail.indexOf('Create Projects') > -1">
+	<header class="project-header">
+		<div class="project-header-text">
+			<p>New Project</p>
+		</div>
+		<div class="project-info">
+			<ul class="list-unstyled list-inline">
+			</ul>
+		</div>
+	</header>
+	<div class="row">
+		<section class="panel panel-default">
+			<div class="panel-body">
+				<div class="row">
+					<div class="col-sm-12">
+						<div style="text-align: center;">
+							<p style="font-weight:100; font-size:3em; margin-bottom:20px">Starting A New Project Are We?</p>
+							<div class="l6_step" style="margin-top:0;" data-step-required="Name,Type">
+								<p class="lead">First thing's first, what type of project is this, and what are you going to name it?</p>
+								<div layout layout-align="center" style="text-align:left">
+									<md-input-container flex-gt-sm="50" flex="100">
+										<label>Project Name</label>
+										<input type="text" ng-blur="validateField($event)" ng-model="projectCharter.Name">
+									</md-input-container>
+								</div>
+								<div layout layout-align="center" style="text-align:left">
+									<md-input-container flex-gt-sm="50" flex="100">
+										<label>Project Type</label>
+										<input type="text" ng-blur="validateField($event)" ng-model="projectCharter.Type">
+									</md-input-container>
+								</div>
+							</div>
+							<!-- <div class="l6_step" data-step-required="DiagramType">
+								<p class="lead">Are you going to use a SIPOC or Value Stream Diagram?</p>
+								<div style="text-align:left" layout-sm="column" layout="row" layout-align="center">
+									<md-input-container flex-sm="100" flex="60">
+										<md-select ng-blur="validateField($event)" aria-label="Using SIPOC or Value Stream Diagram?" ng-model="projectCharter.DiagramType">
+											<md-option ng-value="opt" ng-repeat="opt in diagramOpts">{{ opt }}</md-option>
+										</md-select>
+									</md-input-container>
+								</div>
+							</div> -->
+							<div class="l6_step" data-step-required="BusinessUnit,Location,Sponsor,Lead">
+								<p class="lead">Now let's knock out some basic information about your project.</p>
+								<div layout-sm="column" layout="row" style="text-align:left" layout-align="center">
+									<md-input-container class="md-block" flex-sm="100" flex="45">
+										<label>Project Sponsor</label>
+										<md-content class="autocomplete contactChips" layout="column" ng-cloak>
+											<md-contact-chips ng-model="projectCharter.Sponsor" md-contacts="querySearch($query)" md-contact-name="name" md-contact-image="image" md-contact-email="email" md-require-match="true" md-highlight-flags="i" filter-selected="filterSelected"></md-contact-chips>
+										</md-content>
+									</md-input-container>
+									<md-input-container class="md-block" flex-sm="100" flex="45">
+										<label>Project Lead</label>
+										<md-content class="autocomplete contactChips" layout="column" ng-cloak>
+											<md-contact-chips ng-model="projectCharter.Lead" md-contacts="querySearch($query)" md-contact-name="name" md-contact-image="image" md-contact-email="email" md-require-match="true" md-highlight-flags="i" filter-selected="filterSelected"></md-contact-chips>
+										</md-content>
+									</md-input-container>
+								</div>
+								<div style="text-align:left" layout-sm="column" layout="row" layout-align="center">
+									<md-input-container flex-sm="100" flex="45">
+										<label>Business Unit</label>
+										<input type="text" ng-blur="validateField($event)" ng-model="projectCharter.BusinessUnit">
+									</md-input-container>
+									<md-input-container flex-sm="100" flex="45">
+										<label>Location</label>
+										<input type="text" ng-blur="validateField($event)" ng-model="projectCharter.Location">
+									</md-input-container>
+								</div>
+							</div>
+							<div class="l6_step" data-step-required="BusinessImpactValue,BusinessImpact">
+								<p class="lead">How is this project going to impact your business?<br/>Will there be any cost savings or cost avoidance?</p>
+								<div layout layout-align="center" style="text-align:left">
+									<md-input-container flex-gt-sm="40" flex="100">
+										<label>Cost Savings/Avoidance ($)</label>
+										<input type="number" ng-blur="validateField($event)" ng-model="projectCharter.BusinessImpactValue" ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/" step="0.01"/>
+									</md-input-container>
+								</div>
+								<div layout layout-align="center" style="text-align:left">
+									<md-input-container flex-gt-sm="80" flex="100">
+										<label>Business Impact</label>
+										<textarea ng-blur="validateField($event)" ng-model="projectCharter.BusinessImpact"></textarea>
+									</md-input-container>
+								</div>
+							</div>
+							<div class="l6_step" data-step-required="ProblemStatement">
+								<p class="lead">What problem are you solving? When, where, and to what extent?</p>
+								<div layout layout-align="center" style="text-align:left">
+									<md-input-container flex-gt-sm="80" flex="100">
+										<label>Problem Statement</label>
+										<textarea ng-blur="validateField($event)" ng-model="projectCharter.ProblemStatement"></textarea>
+									</md-input-container>
+								</div>
+							</div>
+							<div class="l6_step"  data-step-required="Goals">
+								<p class="lead">What are your goals with this project? <br/>List measured improvement objectives &amp; targets. From what to what?</p>
+								<div layout layout-align="center" style="text-align:left">
+									<md-input-container flex-gt-sm="80" flex="100">
+										<label>Project Goals</label>
+										<textarea ng-blur="validateField($event)" ng-model="projectCharter.Goals"></textarea>
+									</md-input-container>
+								</div>
+							</div>
+							<div class="l6_step" data-step-required="Scope">
+								<p class="lead">Almost done! Only a few more questions!<br/><br/>What is the scope of the project? Both in-scope and out-of-scope. What are the metrics?</p>
+								<div layout layout-align="center" style="text-align:left">
+									<md-input-container flex-gt-sm="80" flex="100">
+										<label>Project Scope</label>
+										<textarea ng-blur="validateField($event)" ng-model="projectCharter.Scope"></textarea>
+									</md-input-container>
+								</div>
+							</div>
+							<div class="l6_step" data-step-required="gateReviewDefine.val,gateReviewMeasure.val,gateReviewAnalyze.val,gateReviewImprove.val,gateReviewControl.val">
+								<p class="lead">Now, let's set some dates for your Gate Reviews (Estimated completion date for all phases)</p>
+								<div layout-sm="column" layout="row" layout-align="center" style="text-align:left">
+									<md-input-container flex-sm="100">
+										<label>Define</label>
+										<input type="text" ng-blur="validateField($event)" class="form-control" ng-click="openCalendar('gateReviewDefine')" uib-datepicker-popup="shortDate" ng-model="projectCharter.gateReviewDefine.val" is-open="projectCharter.gateReviewDefine.status.opened" close-text="Close" />
+									</md-input-container>
+									<md-input-container flex-sm="100">
+										<label>Measure</label>
+										<input type="text" ng-blur="validateField($event)" class="form-control" ng-click="openCalendar('gateReviewMeasure')" uib-datepicker-popup="shortDate" ng-model="projectCharter.gateReviewMeasure.val" is-open="projectCharter.gateReviewMeasure.status.opened" close-text="Close" />
+									</md-input-container>
+									<md-input-container flex-sm="100">
+										<label>Analyze</label>
+										<input type="text" ng-blur="validateField($event)" class="form-control" ng-click="openCalendar('gateReviewAnalyze')" uib-datepicker-popup="shortDate" ng-model="projectCharter.gateReviewAnalyze.val" is-open="projectCharter.gateReviewAnalyze.status.opened" close-text="Close" />
+									</md-input-container>
+									<md-input-container flex-sm="100">
+										<label>Improve</label>
+										<input type="text" ng-blur="validateField($event)" class="form-control" ng-click="openCalendar('gateReviewImprove')" uib-datepicker-popup="shortDate" ng-model="projectCharter.gateReviewImprove.val" is-open="projectCharter.gateReviewImprove.status.opened" close-text="Close" />
+									</md-input-container>
+									<md-input-container flex-sm="100">
+										<label>Control</label>
+										<input type="text" ng-blur="validateField($event)" class="form-control" ng-click="openCalendar('gateReviewControl')" uib-datepicker-popup="shortDate" ng-model="projectCharter.gateReviewControl.val" is-open="projectCharter.gateReviewControl.status.opened" close-text="Close" />
+									</md-input-container>
+								</div>
+							</div>
+							<div class="l6_step" data-step-required="CoreTeam,stakeholders">
+								<p class="lead">Last, but surely not least, who is going to be embarking on this project with you?</p>
+								<div layout style="text-align:left;" layout-align="center">
+									<md-input-container md-no-float class="md-block" flex="80">
+										<label>Core Team</label>
+										<md-content class="autocomplete contactChips" layout="column" ng-cloak>
+											<md-contact-chips ng-model="projectCharter.CoreTeam" md-contacts="querySearch($query)" md-contact-name="name" md-contact-image="image" md-contact-email="email" md-require-match="true" md-highlight-flags="i" filter-selected="filterSelected" placeholder=""></md-contact-chips>
+										</md-content>
+									</md-input-container>
+								</div>
+								<div layout style="text-align:left;" layout-align="center">
+									<md-input-container md-no-float class="md-block" flex="80">
+										<label>Stakeholders</label>
+										<md-content class="autocomplete contactChips" layout="column" ng-cloak>
+											<md-contact-chips ng-model="projectCharter.stakeholders" md-contacts="querySearch($query)" md-contact-name="name" md-contact-image="image" md-contact-email="email" md-require-match="true" md-highlight-flags="i" filter-selected="filterSelected" placeholder=""></md-contact-chips>
+										</md-content>
+									</md-input-container>
+								</div>
+								<div class="divider"></div>
+								<div class="pull-right" style="margin-top:30px">
+									<md-button class="md-raised btn-w-md md-warn" go-to="/dashboard" style="margin-right:10px;">Whoops! Cancel That!</md-button>
+									<md-button class="md-raised btn-w-md md-primary" ng-click="buildProject()">All Finished! Build The Project</md-button>
+								</div>
+							</div>
+							<div class="l6_step l6_spacer">
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</div>
+</div>
+</div>
+<div ng-if="userDetails.AccessLevelDetail.indexOf('Create Projects') == -1">
+	You don't have a permission to create projects.
+</div>

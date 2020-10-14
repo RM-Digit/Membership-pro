@@ -1,0 +1,19 @@
+propel:
+    runtime:
+      log:
+        defaultLogger:
+            type: stream
+            path: /var/www/api/v1/propel.log
+            level: 300
+        bookstore:
+            type: stream
+            path: /var/www/api/v1/propel_bookstore.log
+    database:
+        connections:
+            default:
+                adapter: mysql
+                dsn: mysql:host=localhost;port=3306;dbname=l6elite_core
+                user: l6elite_admin
+                password: l6elitejoshallen1
+                settings:
+                    charset: utf8

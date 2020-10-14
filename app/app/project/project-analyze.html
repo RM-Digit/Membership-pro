@@ -1,0 +1,1064 @@
+<div class="page page-project page-project-define" ng-controller="ProjectAnalyzeCtrl">
+	<header class="project-header">
+		<div class="project-header-text">
+			{{currentProject.Name}} - Analyze Phase
+		</div>
+		<div class="project-info">
+			<ul class="list-unstyled list-inline">
+				<li>PROJ{{projectId}}</li>
+				<li><i class="fa fa-check"></i> Tasks <span class="text-muted">({{$root.currentProject.tasksLeft}})</span></li>
+				<li class="pull-right back-to-project"><a href="#/project/{{projectId}}"><i class="zmdi zmdi-arrow-left"></i> Back To Project</a></li>
+			</ul>
+		</div>
+	</header>
+	<div class="row ui-section">
+		<section class="panel panel-default">
+			<div class="panel-body">
+				<div class="row">
+					<div class="col-md-12">
+						<div class="ui-tab-container ui-tab-vertical">
+							<uib-tabset class="ui-tab">
+								<uib-tab ng-click="activateTab(0)" active="activeTab[0]">
+									<uib-tab-heading>
+										<span>Pareto Chart</span>
+										<div class="ui-ribbon-container ui-ribbon-success">
+											<div class="ui-ribbon-wrapper" ng-show="phaseDetail.Pareto_Chart.Status != 'working'">
+												<div class="ui-ribbon">
+													<i class="fa fa-fw fa-check"></i>
+												</div>
+											</div>
+										</div>
+									</uib-tab-heading>
+									<div class="row subphase-header">
+										<div class="col-sm-12">
+											<md-menu md-position-mode="target-right target" class="pull-right">
+												<md-button aria-label="Open Menu" class="md-icon-button subphase-menu-button" ng-click="generateParetoChartExport();generateParetoDataExport();$mdOpenMenu($event)">
+													<md-icon md-menu-origin><span class="fa fa-info-circle"></span></md-icon>
+												</md-button>
+												<md-menu-content width="2">
+													<md-menu-item ng-show="!walkthroughs.pareto"><md-button ng-click="showWalkthrough('pareto', paretoWalkthroughData)"> <span md-menu-align-target>Show Walkthrough</span></md-button></md-menu-item>
+													<md-menu-item ng-show="walkthroughs.pareto"><md-button ng-click="hideWalkthrough('pareto')"> <span md-menu-align-target>Skip Walkthrough</span></md-button></md-menu-item>
+													<md-menu-item ng-show="!walkthroughs.pareto"><a download="Pareto_Chart.xlsx" href="{{exportParetoBlobLink}}" md-menu-align-target class="md-button md-ink-ripple">Export Data</a></md-menu-item>
+													<md-menu-item ng-show="!walkthroughs.pareto"><a download="Pareto_Chart.png" href="{{exportParetoChartLink}}" md-menu-align-target class="md-button md-ink-ripple">Export Chart</a></md-menu-item>
+												</md-menu-content>
+											</md-menu>
+										</div>
+									</div>
+									<div class="row" ng-show="walkthroughs.pareto">
+										<div class="col-sm-12" data-phase-component="pareto" style="text-align:center">
+											<p style="font-weight:100; font-size:2em; margin-bottom:20px">Let’s develop your Pareto Chart!</p>
+											<div class="l6_step" data-step-required="NumberOfCategories">
+												<p class="lead">How many categories will you have?</p>
+												<div layout layout-align="center" style="text-align:left">
+													<md-input-container flex-gt-sm="50" flex="100">
+														<label>Enter the number of categories</label>
+														<input type="number" ng-blur="validateField($event, paretoWalkthroughData)" ng-model="paretoWalkthroughData.NumberOfCategories">
+													</md-input-container>
+												</div>
+											</div>
+											<div class="l6_step">
+												<p class="lead">Please enter the title of your categories below...</p>
+												<div layout layout-align="center" style="text-align:left">
+													<div ng-repeat="(di, d) in paretoWalkthroughData.Categories track by $index">
+														<md-input-container flex-gt-sm="100" flex="100">
+															<input type="text" ng-click="validateField($event, paretoWalkthroughData.Categories[di])" ng-keypress="validateField($event, paretoWalkthroughData.Categories[di])" ng-blur="validateField($event, paretoWalkthroughData.Categories[di])" ng-model="paretoWalkthroughData.Categories[di]">
+														</md-input-container>
+													</div>
+												</div>
+											</div>
+											<div class="l6_step">
+												<p class="lead">Now let’s list the independent variables...</p>
+												<div layout layout-align="center" style="text-align:left">
+													<div ng-repeat="(di, d) in paretoWalkthroughData.A track by $index">
+														<md-input-container flex-gt-sm="50" flex="100">
+															<input type="number" ng-click="validateField($event, paretoWalkthroughData.A[di])" ng-keypress="validateField($event, paretoWalkthroughData.A[di])" ng-blur="validateField($event, paretoWalkthroughData.A[di])" ng-model="paretoWalkthroughData.A[di]">
+														</md-input-container>
+													</div>
+												</div>
+											</div>
+											<div class="l6_step">
+												<p class="lead">Next we need your dependent variables...</p>
+												<div layout layout-align="center" style="text-align:left">
+													<div ng-repeat="(di, d) in paretoWalkthroughData.B track by $index">
+														<md-input-container flex-gt-sm="50" flex="100">
+															<input type="number" ng-click="validateField($event, paretoWalkthroughData.B[di])" ng-keypress="validateField($event, paretoWalkthroughData.B[di])" ng-blur="validateField($event, paretoWalkthroughData.B[di])" ng-model="paretoWalkthroughData.B[di]">
+														</md-input-container>
+													</div>
+												</div>
+											</div>
+											<div class="l6_step_submit" ng-if="walkthroughShouldShowSubmit()">
+												<md-button class="md-raised btn-w-md md-primary" ng-click="completeParetoWalkthrough()">Submit</md-button>
+											</div>
+											<div class="l6_step_next" ng-if="walkthroughShouldShowNext()">
+												<md-button class="btn-next-step md-raised md-accent btn-w-md" ng-click="goToNextStep()">Next Step <i class="fa fa-fw fa-angle-right"></i></md-button>
+											</div>
+										</div>
+									</div>
+									<div class="row" ng-show="!walkthroughs.pareto">
+										<div class="col-xs-12">
+											<div class="table-responsive">
+												<table class="table table-condensed table-striped">
+													<thead>
+														<tr>
+															<th style="width:75%;">Category</th>
+															<th>Frequency/Quantity</th>
+															<th>Cumalitive %</th>
+															<th></th>
+														</tr>
+													</thead>
+													<tbody>
+														<tr ng-repeat="(rowIndex, row) in paretoRows">
+															<td><md-input-container style="width: 100%;"><input type="text" ng-model="row.Category"></md-input-container></td>
+															<td><md-input-container><input type="number" ng-model="row.A"></md-input-container></td>
+															<td><md-input-container><input type="number" ng-model="row.B"></md-input-container></td>
+															<td>
+					                      <md-button class="md-raised md-fab md-mini md-warn btn-w-md md-button md-ink-ripple" ng-transclude="" ng-click="removeParetoRow(rowIndex)">
+					                      	<span class="ng-scope"><i class="zmdi zmdi-minus"></i></span>
+					                      	<div class="md-ripple-container"></div>
+					                      </md-button>
+															</td>
+														</tr>
+													</tbody>
+													<tfoot>
+														<tr>
+															<td colspan="3">
+					                      <md-button class="md-raised md-fab md-mini md-primary btn-w-md md-button md-ink-ripple" ng-transclude="" ng-click="addParetoRow()">
+					                      	<span class="ng-scope"><i class="zmdi zmdi-plus"></i></span>
+					                      	<div class="md-ripple-container"></div>
+					                      </md-button>
+															</td>
+														</tr>
+													</tfoot>
+												</table>
+											</div>
+										</div>
+										<div ng-show="paretoData">
+											<div class="col-sm-12">
+												<div id="pareto-flot-container" style="padding: 20px 10px;background: #fff;">
+													<div ng-if="paretoData && paretoData.data" data-flot-chart id="pareto-flot" data-data="paretoData.data" data-options="paretoData.options" style="width: 100%; height: 400px;"></div>
+												</div>
+											</div>
+										</div>
+										<div>
+											<div class="col-sm-12" style="margin-top:30px">
+												<md-button class="md-raised md-primary btn-w-md md-button md-ink-ripple pull-right" style="margin-right:10px;" ng-transclude="" ng-click="savePareto()"><span class="ng-scope">Save Changes</span><div class="md-ripple-container"></div></md-button>
+												<md-button class="md-raised md-accent btn-w-md md-button md-ink-ripple pull-right" style="margin-right:10px;" ng-transclude="" ng-click="completePhaseComponent('Analyze','Pareto Chart')"><span class="ng-scope">{{(phaseDetail.Pareto_Chart.Status != 'working') ? 'Mark Incomplete' : 'Mark Complete'}}</span><div class="md-ripple-container"></div></md-button>
+											</div>
+										</div>
+									</div>
+								</uib-tab>
+								<uib-tab ng-click="activateTab(1)" active="activeTab[1]">
+									<uib-tab-heading>
+										<span>C&amp;E Matrix</span>
+										<div class="ui-ribbon-container ui-ribbon-success">
+											<div class="ui-ribbon-wrapper" ng-show="phaseDetail.CnE_Matrix.Status != 'working'">
+												<div class="ui-ribbon">
+													<i class="fa fa-fw fa-check"></i>
+												</div>
+											</div>
+										</div>
+									</uib-tab-heading>
+									<div class="row subphase-header">
+										<div class="col-sm-12">
+											<md-menu md-position-mode="target-right target" class="pull-right">
+												<md-button aria-label="Open Menu" class="md-icon-button subphase-menu-button" ng-click="generateCnEMatrixExportData();$mdOpenMenu($event)">
+													<md-icon md-menu-origin><span class="fa fa-info-circle"></span></md-icon>
+												</md-button>
+												<md-menu-content width="2">
+													<md-menu-item ng-show="!walkthroughs.cne_matrix"><md-button ng-click="showCNEWalkthrough()"> <span md-menu-align-target>Show Walkthrough</span></md-button></md-menu-item>
+													<md-menu-item ng-show="walkthroughs.cne_matrix"><md-button ng-click="hideWalkthrough('cne_matrix')"> <span md-menu-align-target>Skip Walkthrough</span></md-button></md-menu-item>
+													<md-menu-item ng-show="!walkthroughs.cne_matrix">
+														<a download="C&E_Matrix.xlsx" href="{{exportCnEMatrixBlobLink}}" md-menu-align-target class="md-button md-ink-ripple">Export Data</a>
+													</md-menu-item>
+												</md-menu-content>
+											</md-menu>
+										</div>
+									</div>
+									<div class="row" ng-show="walkthroughs.cne_matrix">
+										<div class="col-sm-12" data-phase-component="cne_matrix" style="text-align:center">
+											<p style="font-weight:100; font-size:2em; margin-bottom:20px">Let's look at some Cause and Effect!</p>
+											<div class="l6_step" data-step-required="ProcessStep,ProcessInput">
+												<p class="lead">What is the process step and input under investigation? (e.g. Sanitation)</p>
+												<div layout layout-align="center" style="text-align:left">
+													<md-input-container flex-gt-sm="50" flex="100">
+														<label>Process Step</label>
+														<input type="text" ng-blur="validateField($event, ceMatrixRowData[ceMatrixRowData.length - 1])" ng-model="ceMatrixRowData[ceMatrixRowData.length - 1].ProcessStep">
+													</md-input-container>
+												</div>
+												<div layout layout-align="center" style="text-align:left">
+													<md-input-container flex-gt-sm="50" flex="100">
+														<label>Process Input</label>
+														<input type="text" ng-blur="validateField($event, ceMatrixRowData[ceMatrixRowData.length - 1])" ng-model="ceMatrixRowData[ceMatrixRowData.length - 1].ProcessInput">
+													</md-input-container>
+												</div>
+											</div>
+											<div class="l6_step" data-step-required="ProcessOutput">
+												<p class="lead">What is one of your (or your customer's) key requirements?</p>
+												<div layout layout-align="center" style="text-align:left">
+													<md-input-container flex-gt-sm="80" flex="100">
+														<label>Process Output</label>
+														<textarea ng-blur="validateField($event, ceMatrixOutputData[ceMatrixOutputData.length - 1])" ng-model="ceMatrixOutputData[ceMatrixOutputData.length - 1].ProcessOutput"></textarea>
+													</md-input-container>
+												</div>
+											</div>
+											<div class="l6_step" data-step-required="Importance">
+												<p class="lead">Now, on a scale of 1 - 10, rank the importance of this requirement.<br/>(1 = Low Impact, 10 = High Impact)</p>
+												<div layout layout-align="center" style="text-align:left">
+													<md-input-container flex-gt-sm="80" flex="100">
+														<md-slider flex ng-blur="validateField($event, ceMatrixOutputData[ceMatrixOutputData.length - 1])" md-discrete ng-model="ceMatrixOutputData[ceMatrixOutputData.length - 1].Importance" step="1" min="1" max="10" aria-label="importance"></md-slider>
+													</md-input-container>
+												</div>
+											</div>
+											<div class="l6_step" data-step-required="Correlation">
+												<p class="lead">Lastly, how would you define the correlation between the Process Input and the Output?</p>
+												<div layout layout-align="center" style="text-align:left">
+													<md-input-container flex-gt-sm="40" flex="100">
+														<label>Correlation</label>
+														<md-select ng-blur="validateField($event, ceMatrixRowData[ceMatrixRowData.length - 1].colData[ceMatrixRowData[ceMatrixRowData.length - 1].colData.length - 1])" ng-model="ceMatrixRowData[ceMatrixRowData.length - 1].colData[ceMatrixRowData[ceMatrixRowData.length - 1].colData.length - 1].Correlation" aria-label="correlation">
+															<md-option ng-repeat="c in [{val:'0',txt:'0 - No Correlation'},{val:'1',txt:'1 - Low Correlation'},{val:'3',txt:'3 - Medium Correlation'},{val:'9',txt:'9 - High Correlation'}]" value="{{c.val}}"> {{c.txt}} </md-option>
+														</md-select>
+													</md-input-container>
+												</div>
+											</div>
+											<div class="l6_step_submit" ng-if="walkthroughShouldShowSubmit()">
+												<md-button class="md-raised btn-w-md md-primary" ng-click="hideWalkthrough('cne_matrix')">Submit</md-button>
+											</div>
+											<div class="l6_step_next" ng-if="walkthroughShouldShowNext()">
+												<md-button class="btn-next-step md-raised md-accent btn-w-md" ng-click="goToNextStep()">Next Step <i class="fa fa-fw fa-angle-right"></i></md-button>
+											</div>
+										</div>
+									</div>
+									<div class="row" ng-show="!walkthroughs.cne_matrix">
+										<div class="col-sm-12">
+											<div class="row">
+												<div class="col-sm-12">
+													<div class="table-responsive">
+														<table class="table table-striped table-bordered no-margin" id="cne-matrix-table">
+															<thead class="table-header-rotated">
+																<tr>
+																	<th colspan="3"></th>
+																	<th style="text-align:center; width: 45px" ng-repeat="c in ceMatrixOutputData" ng-show="!c.isDeleted"><md-button class="md-fab md-warn md-fab-xxs" aria-label="delete" ng-click="deleteCEColumn($index)"><span class="zmdi zmdi-close"></span></md-button></th>
+																</tr>
+																<tr>
+																	<th colspan="3" rowspan="2"></th>
+																	<th class="vertical-text rotate" ng-repeat="c in ceMatrixOutputData" ng-show="!c.isDeleted"><div><span contentEditable="true" ng-model="ceMatrixOutputData[$index].ProcessOutput" ng-bind-html="c.ProcessOutput"></span></div></th>
+																	<th style="width:40px"><button ui-wave type="button" class="btn btn-warning ui-wave" ng-click="addCEMatrixColumn()"><span class="ink wave-animate"></span>+</button></th>
+																	<th>&lt;&lt;&lt; Process Outputs</th>
+																</tr>
+																<tr>
+																	<th ng-repeat="matrixOP in ceMatrixOutputData" contentEditable="true" ng-model="ceMatrixOutputData[$index].Importance" ng-bind-html="matrixOP.Importance" ng-show="!matrixOP.isDeleted" ng-controller="ProjectAnalyzeCEItemCtrl"></th>
+																	<th></th>
+																	<th>&lt;&lt;&lt; Importance</th>
+																</tr>
+																<tr>
+																	<th></th>
+																	<th>Process Step</th>
+																	<th>Process Input</th>
+																	<th colspan="{{ceMatrixOutputData.length}}">Correlation of Input to Output</th>
+																	<th>Total</th>
+																</tr>
+															</thead>
+															<tbody>
+																<tr ng-repeat="c in ceMatrixRowData" ng-show="!c.isDeleted">
+																	<td style="text-align:center; width: 45px"><md-button class="md-fab md-warn md-fab-xxs" aria-label="delete" ng-click="deleteCERow($index)"><span class="zmdi zmdi-close"></span></md-button></td>
+																	<td contentEditable="true" ng-model="c.ProcessStep" ng-bind-html="c.ProcessStep"></td>
+																	<td contentEditable="true" ng-model="c.ProcessInput" ng-bind-html="c.ProcessInput"></td>
+																	<td ng-repeat="cd in c.colData" contentEditable="true" ng-model="cd.Correlation" ng-bind-html="cd.Correlation" ng-show="!cd.isDeleted" ng-controller="ProjectAnalyzeCEItemCtrl"></td>
+																	<td>{{c.rowTotal}}</td>
+																</tr>
+																<tr><td colspan="{{ceMatrixOutputData.length + 3}}"><div layout="column"><button ui-wave type="button" class="btn btn-warning btn-w-md ui-wave" ng-click="addCEMatrixRow()"><span class="ink wave-animate"></span>Add Row</button></div></td></tr>
+															</tbody>
+														</table>
+													</div>
+												</div>
+											</div>
+											<div class="row">
+												<div class="col-sm-12" style="margin-top:10px">
+													<md-button class="md-raised md-primary btn-w-md md-button md-ink-ripple pull-right" ng-transclude="" ng-click="submitCEMatrix()"><span class="ng-scope">Save Changes</span><div class="md-ripple-container"></div></md-button>
+													<md-button class="md-raised md-accent btn-w-md md-button md-ink-ripple pull-right" style="margin-right:10px;" ng-transclude="" ng-click="completePhaseComponent('Analyze','C&E Matrix')"><span class="ng-scope">{{(phaseDetail.CnE_Matrix.Status != 'working') ? 'Mark Incomplete' : 'Mark Complete'}}</span><div class="md-ripple-container"></div></md-button>
+												</div>
+											</div>
+										</div>
+									</div>
+								</uib-tab>
+								<uib-tab ng-click="activateTab(2)" active="activeTab[2]">
+									<uib-tab-heading>
+										<span>FMEA</span>
+										<div class="ui-ribbon-container ui-ribbon-success">
+											<div class="ui-ribbon-wrapper" ng-show="phaseDetail.FMEA.Status != 'working'">
+												<div class="ui-ribbon">
+													<i class="fa fa-fw fa-check"></i>
+												</div>
+											</div>
+										</div>
+									</uib-tab-heading>
+									<div class="row subphase-header">
+										<div class="col-sm-12">
+											<md-menu md-position-mode="target-right target" class="pull-right">
+												<md-button aria-label="Open Menu" class="md-icon-button subphase-menu-button" ng-click="generateFmeaExportData();$mdOpenMenu($event);">
+													<md-icon md-menu-origin><span class="fa fa-info-circle"></span></md-icon>
+												</md-button>
+												<md-menu-content width="2">
+													<md-menu-item ng-show="!walkthroughs.fmea"><md-button ng-click="showWalkthrough('fmea', fmeaData)"> <span md-menu-align-target>Show Walkthrough</span></md-button></md-menu-item>
+													<md-menu-item ng-show="walkthroughs.fmea"><md-button ng-click="hideWalkthrough('fmea')"> <span md-menu-align-target>Skip Walkthrough</span></md-button></md-menu-item>
+													<md-menu-item ng-show="!walkthroughs.fmea"><a download="FMEA.xlsx" href="{{fmeaExportBlobLink}}" md-menu-align-target class="md-button md-ink-ripple">Export Data</a></md-menu-item>
+												</md-menu-content>
+											</md-menu>
+										</div>
+									</div>
+									<div class="row" ng-show="walkthroughs.fmea">
+										<div class="col-sm-12" data-phase-component="fmea" style="text-align:center">
+											<p style="font-weight:100; font-size:2em; margin-bottom:20px">Time to analyze failure mode effects!...</p>
+											<div class="l6_step" data-step-required="Input">
+												<p class="lead">What is the process step and input under investigation? (e.g. Sanitation)</p>
+												<div layout layout-align="center" style="text-align:left">
+													<md-input-container flex-gt-sm="50" flex="100">
+														<label>Process Step/Input</label>
+														<input type="text" ng-blur="validateField($event, fmeaData[fmeaData.length - 1])" ng-model="fmeaData[fmeaData.length - 1].Input">
+													</md-input-container>
+												</div>
+											</div>
+											<div class="l6_step" data-step-required="FailureMode">
+												<p class="lead">In what way(s) does the key input go wrong?</p>
+												<div layout layout-align="center" style="text-align:left">
+													<md-input-container flex-gt-sm="80" flex="100">
+														<label>Potential Failure Mode</label>
+														<textarea ng-blur="validateField($event, fmeaData[fmeaData.length - 1])" ng-model="fmeaData[fmeaData.length - 1].FailureMode"></textarea>
+													</md-input-container>
+												</div>
+											</div>
+											<div class="l6_step" data-step-required="FailureEffects">
+												<p class="lead">What is the impact on the Key Output Variables (Customer Requirements)?</p>
+												<div layout layout-align="center" style="text-align:left">
+													<md-input-container flex-gt-sm="80" flex="100">
+														<label>Failure Effects</label>
+														<textarea ng-blur="validateField($event, fmeaData[fmeaData.length - 1])" ng-model="fmeaData[fmeaData.length - 1].FailureEffects"></textarea>
+													</md-input-container>
+												</div>
+											</div>
+											<div class="l6_step" data-step-required="Severity">
+												<p class="lead">On a scale of 1 - 10, rank the severity of the worst-case scenario adverse effect.<br/>(1 = Low Impact, 10 = High Impact)</p>
+												<div layout layout-align="center" style="text-align:left">
+													<md-input-container flex-gt-sm="80" flex="100">
+														<md-slider flex ng-blur="validateField($event, fmeaData[fmeaData.length - 1])" md-discrete ng-model="fmeaData[fmeaData.length - 1].Severity" step="1" min="1" max="10" aria-label="severity"></md-slider>
+													</md-input-container>
+												</div>
+											</div>
+											<div class="l6_step" data-step-required="Causes">
+												<p class="lead">What causes the Key Input to go wrong?</p>
+												<div layout layout-align="center" style="text-align:left">
+													<md-input-container flex-gt-sm="80" flex="100">
+														<label>Causes</label>
+														<textarea ng-blur="validateField($event, fmeaData[fmeaData.length - 1])" ng-model="fmeaData[fmeaData.length - 1].Causes"></textarea>
+													</md-input-container>
+												</div>
+											</div>
+											<div class="l6_step" data-step-required="Likelihood">
+												<p class="lead">On a scale of 1 - 10, rank the likelihood of experiencing a failure.<br/>(1 = Not Likely, 10 = Inevitable)</p>
+												<div layout layout-align="center" style="text-align:left">
+													<md-input-container flex-gt-sm="80" flex="100">
+														<md-slider flex ng-blur="validateField($event, fmeaData[fmeaData.length - 1])" md-discrete ng-model="fmeaData[fmeaData.length - 1].Likelihood" step="1" min="1" max="10" aria-label="likelihood"></md-slider>
+													</md-input-container>
+												</div>
+											</div>
+											<div class="l6_step" data-step-required="CurrentControls">
+												<p class="lead">What are the existing controls and procedures (inspection and test) that prevent the Failure Mode?</p>
+												<div layout layout-align="center" style="text-align:left">
+													<md-input-container flex-gt-sm="80" flex="100">
+														<label>Existing Controls/Procedures</label>
+														<textarea ng-blur="validateField($event, fmeaData[fmeaData.length - 1])" ng-model="fmeaData[fmeaData.length - 1].CurrentControls"></textarea>
+													</md-input-container>
+												</div>
+											</div>
+											<div class="l6_step" data-step-required="Detection">
+												<p class="lead">On a scale of 1 - 10, rank the probability of problem being detected and acted upon before it has happened.<br/>(1 = Very Likely, 10 = Not Likely)</p>
+												<div layout layout-align="center" style="text-align:left">
+													<md-input-container flex-gt-sm="80" flex="100">
+														<md-slider flex ng-blur="validateField($event, fmeaData[fmeaData.length - 1])" md-discrete ng-model="fmeaData[fmeaData.length - 1].Detection" step="1" min="1" max="10" aria-label="detection"></md-slider>
+													</md-input-container>
+												</div>
+											</div>
+											<div class="l6_step" data-step-required="ActionsRecommended">
+												<div class="l6_spacer">
+													<p class="lead">The priority number for this risk is: {{fmeaData[fmeaData.length - 1].Severity * fmeaData[fmeaData.length - 1].Likelihood * fmeaData[fmeaData.length - 1].Detection}}</p>
+												</div>
+												<p style="font-weight:100; font-size:2em; margin-bottom:20px">Now let's focus on the action plan for this process step/input.</p>
+												<p class="lead">What actions would you recommend for improving detection, reducing severity, and/or reducing likelihood?</p>
+												<div layout layout-align="center" style="text-align:left">
+													<md-input-container flex-gt-sm="80" flex="100">
+														<label>Actions Recommended</label>
+														<textarea ng-blur="validateField($event, fmeaData[fmeaData.length - 1])" ng-model="fmeaData[fmeaData.length - 1].ActionsRecommended"></textarea>
+													</md-input-container>
+												</div>
+											</div>
+											<div class="l6_step" data-step-required="ActionsTaken">
+												<p class="lead">What are the completed actions taken?</p>
+												<div layout layout-align="center" style="text-align:left">
+													<md-input-container flex-gt-sm="80" flex="100">
+														<label>Actions Taken</label>
+														<textarea ng-blur="validateField($event, fmeaData[fmeaData.length - 1])" ng-model="fmeaData[fmeaData.length - 1].ActionsTaken"></textarea>
+													</md-input-container>
+												</div>
+											</div>
+											<div class="l6_step" data-step-required="Resp">
+												<p class="lead">How many individuals/resources are responsible for this action?</p>
+												<div layout layout-align="center" style="text-align:left">
+													<md-input-container flex-gt-sm="50" flex="100">
+														<label># Responsible</label>
+														<input type="text" ng-blur="validateField($event, fmeaData[fmeaData.length - 1])" ng-model="fmeaData[fmeaData.length - 1].Resp">
+													</md-input-container>
+												</div>
+											</div>
+											<div class="l6_step" data-step-required="ActionPlanSeverity,ActionPlanLikelihood,ActionPlanDetection">
+												<p class="lead">On a scale of 1 - 10, rank the severity of the action. (1 = Low Impact, 10 = High Impact)</p>
+												<div layout layout-align="center" style="text-align:left">
+													<md-input-container flex-gt-sm="80" flex="100">
+														<md-slider flex ng-blur="validateField($event, fmeaData[fmeaData.length - 1])" md-discrete ng-model="fmeaData[fmeaData.length - 1].ActionPlanSeverity" step="1" min="1" max="10" aria-label="likelihood"></md-slider>
+													</md-input-container>
+												</div>
+												<p class="lead" style="margin-top:15px">On a scale of 1 - 10, rank the likelihood of the action.<br/>(1 = Not Likely, 10 = Inevitable)</p>
+												<div layout layout-align="center" style="text-align:left">
+													<md-input-container flex-gt-sm="80" flex="100">
+														<md-slider flex ng-blur="validateField($event, fmeaData[fmeaData.length - 1])" md-discrete ng-model="fmeaData[fmeaData.length - 1].ActionPlanLikelihood" step="1" min="1" max="10" aria-label="likelihood"></md-slider>
+													</md-input-container>
+												</div>
+												<p class="lead" style="margin-top:15px">On a scale of 1 - 10, rank the detection of this action.<br/>(1 = Very Likely, 10 = Not Likely)</p>
+												<div layout layout-align="center" style="text-align:left">
+													<md-input-container flex-gt-sm="80" flex="100">
+														<md-slider flex ng-blur="validateField($event, fmeaData[fmeaData.length - 1])" md-discrete ng-model="fmeaData[fmeaData.length - 1].ActionPlanDetection" step="1" min="1" max="10" aria-label="likelihood"></md-slider>
+													</md-input-container>
+												</div>
+											</div>
+											<div ng-if="fmeaData[fmeaData.length - 1].ActionPlanDetection">
+												<p class="lead">The priority number for this action is: {{fmeaData[fmeaData.length - 1].ActionPlanSeverity * fmeaData[fmeaData.length - 1].ActionPlanLikelihood * fmeaData[fmeaData.length - 1].ActionPlanDetection}}</p>
+											</div>
+											<div class="l6_step_submit" ng-if="walkthroughShouldShowSubmit()">
+												<md-button class="md-raised btn-w-md md-primary" ng-click="hideWalkthrough('fmea')">Submit</md-button>
+											</div>
+											<div class="l6_step_next" ng-if="walkthroughShouldShowNext()">
+												<md-button class="btn-next-step md-raised md-accent btn-w-md" ng-click="goToNextStep()">Next Step <i class="fa fa-fw fa-angle-right"></i></md-button>
+											</div>
+										</div>
+									</div>
+									<div class="row" ng-show="!walkthroughs.fmea">
+										<div class="col-sm-12">
+											<div class="row">
+												<div class="col-sm-12">
+													<div class="table-responsive">
+														<table class="table table-striped table-bordered no-margin" id="fmea-table">
+															<thead>
+																<tr>
+																	<th colspan="10"></th>
+																	<th colspan="7">Action Plans</th>
+																</tr>
+																<tr>
+																	<th></th>
+																	<th>Process Step/Input</th>
+																	<th>Potential Failure Mode</th>
+																	<th>Potential Failure Effects</th>
+																	<th>Severity</th>
+																	<th>Potential Causes</th>
+																	<th>Likelihood</th>
+																	<th>Current Controls</th>
+																	<th>Detection</th>
+																	<th>RPN</th>
+																	<th>Actions Recommended</th>
+																	<th>Resp.</th>
+																	<th>Actions Taken</th>
+																	<th>Severity</th>
+																	<th>Likelihood</th>
+																	<th>Detection</th>
+																	<th>RPN</th>
+																</tr>
+															</thead>
+															<tbody>
+																<tr ng-repeat="d in fmeaData" ng-show="!d.isDeleted">
+																	<td style="text-align:center; width: 45px"><md-button class="md-fab md-warn md-fab-xxs" aria-label="delete" ng-click="deleteRow(fmeaData,$index)"><span class="zmdi zmdi-close"></span></md-button></td>
+																	<td contentEditable="true" ng-model="d.Input" ng-bind-html="d.Input"></td>
+																	<td contentEditable="true" ng-model="d.FailureMode" ng-bind-html="d.FailureMode"></td>
+																	<td contentEditable="true" ng-model="d.FailureEffects" ng-bind-html="d.FailureEffects"></td>
+																	<td contentEditable="true" ng-model="d.Severity" ng-bind-html="d.Severity"></td>
+																	<td contentEditable="true" ng-model="d.Causes" ng-bind-html="d.Causes"></td>
+																	<td contentEditable="true" ng-model="d.Likelihood" ng-bind-html="d.Likelihood"></td>
+																	<td contentEditable="true" ng-model="d.CurrentControls" ng-bind-html="d.CurrentControls"></td>
+																	<td contentEditable="true" ng-model="d.Detection" ng-bind-html="d.Detection"></td>
+																	<td>{{d.Severity * d.Likelihood * d.Detection}}</td>
+																	<td contentEditable="true" ng-model="d.ActionsRecommended" ng-bind-html="d.ActionsRecommended"></td>
+																	<td contentEditable="true" ng-model="d.Resp" ng-bind-html="d.Resp"></td>
+																	<td contentEditable="true" ng-model="d.ActionsTaken" ng-bind-html="d.ActionsTaken"></td>
+																	<td contentEditable="true" ng-model="d.ActionPlanSeverity" ng-bind-html="d.ActionPlanSeverity"></td>
+																	<td contentEditable="true" ng-model="d.ActionPlanLikelihood" ng-bind-html="d.ActionPlanLikelihood"></td>
+																	<td contentEditable="true" ng-model="d.ActionPlanDetection" ng-bind-html="d.ActionPlanDetection"></td>
+																	<td>{{d.ActionPlanSeverity * d.ActionPlanLikelihood * d.ActionPlanDetection}}</td>
+																</tr>
+																<tr><td colspan="17"><div layout="column"><button ui-wave type="button" class="btn btn-warning btn-w-md ui-wave" ng-click="addRow(fmeaData,'fmea')"><span class="ink wave-animate"></span>Add Row</button></div></td></tr>
+															</tbody>
+														</table>
+													</div>
+												</div>
+											</div>
+											<div class="row">
+												<div class="col-sm-12" style="margin-top:10px">
+													<md-button class="md-raised md-primary btn-w-md md-button md-ink-ripple pull-right" ng-transclude="" ng-click="submitFmea()"><span class="ng-scope">Save Changes</span><div class="md-ripple-container"></div></md-button>
+													<md-button class="md-raised md-accent btn-w-md md-button md-ink-ripple pull-right" style="margin-right:10px;" ng-transclude="" ng-click="completePhaseComponent('Analyze','FMEA')"><span class="ng-scope">{{(phaseDetail.FMEA.Status != 'working') ? 'Mark Incomplete' : 'Mark Complete'}}</span><div class="md-ripple-container"></div></md-button>
+												</div>
+											</div>
+										</div>
+									</div>
+								</uib-tab>
+								<uib-tab ng-show="HypothesisMap.hasHypothesisMap" ng-click="activateTab(3)" active="activeTab[3]">
+									<uib-tab-heading>
+										<span>Hypothesis Map</span>
+										<div class="ui-ribbon-container ui-ribbon-success">
+											<div class="ui-ribbon-wrapper" ng-show="phaseDetail.Hypothesis_Map.Status != 'working'">
+												<div class="ui-ribbon">
+													<i class="fa fa-fw fa-check"></i>
+												</div>
+											</div>
+										</div>
+									</uib-tab-heading>
+									<div class="row">
+										<div class="col-sm-12">
+											<div class="img-full" ng-bind-html="analyzeHypothesisMap"></div>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-sm-12">
+											<!-- <md-button class="md-raised md-primary btn-w-md md-button md-ink-ripple pull-right" ng-transclude="" go-to="/svg_editor/analyze_hypothesismap/{{projectId}}"><span class="ng-scope">Edit</span><div class="md-ripple-container"></div></md-button> -->
+											<md-button class="md-raised md-primary btn-w-md md-button md-ink-ripple pull-right" ng-transclude="" ng-click="goToSvgEditor()"><span class="ng-scope">Edit</span><div class="md-ripple-container"></div></md-button>
+											<md-button class="md-raised md-accent btn-w-md md-button md-ink-ripple pull-right" style="margin-right:10px;" ng-transclude="" ng-click="completePhaseComponent('Analyze','Hypothesis Map')"><span class="ng-scope">{{(phaseDetail.Hypothesis_Map.Status != 'working') ? 'Mark Incomplete' : 'Mark Complete'}}</span><div class="md-ripple-container"></div></md-button>
+										</div>
+									</div>
+								</uib-tab>
+								<uib-tab heading="Hypothesis Map" ng-click="goToSvgEditor()" ng-show="!HypothesisMap.hasHypothesisMap"></uib-tab>
+                <uib-tab ng-click="activateTab(5)" active="activeTab[5]">
+									<uib-tab-heading>
+										<span>Regression</span>
+										<div class="ui-ribbon-container ui-ribbon-success">
+											<div class="ui-ribbon-wrapper" ng-show="phaseDetail.Regression.Status != 'working'">
+												<div class="ui-ribbon">
+													<i class="fa fa-fw fa-check"></i>
+												</div>
+											</div>
+										</div>
+									</uib-tab-heading>
+									<div class="row subphase-header">
+										<div class="col-sm-12">
+											<md-menu md-position-mode="target-right target" class="pull-right">
+												<md-button aria-label="Open Menu" class="md-icon-button subphase-menu-button" ng-click="generateRegressionExport();$mdOpenMenu($event)">
+													<md-icon md-menu-origin><span class="fa fa-info-circle"></span></md-icon>
+												</md-button>
+												<md-menu-content width="2">
+													<md-menu-item ng-show="!walkthroughs.regression"><md-button ng-click="showWalkthrough('regression', regressionWalkthroughData)"> <span md-menu-align-target>Show Walkthrough</span></md-button></md-menu-item>
+													<md-menu-item ng-show="walkthroughs.regression"><md-button ng-click="hideWalkthrough('regression')"> <span md-menu-align-target>Skip Walkthrough</span></md-button></md-menu-item>
+													<md-menu-item ng-show="!walkthroughs.regression"><a download="Regression.xlsx" href="{{exportRegressionBlobLink}}" md-menu-align-target class="md-button md-ink-ripple">Export Data</a></md-menu-item>
+												</md-menu-content>
+											</md-menu>
+										</div>
+									</div>
+									<div class="row" ng-show="walkthroughs.regression">
+										<div class="col-sm-12" data-phase-component="regression" style="text-align:center">
+											<p style="font-weight:100; font-size:2em; margin-bottom:20px">Let’s Calculate your Regression Analysis!</p>
+											<div class="l6_step" data-step-required="NumberOfVars">
+												<p class="lead">How many X variables will you have?</p>
+												<div layout layout-align="center" style="text-align:left">
+													<md-input-container flex-gt-sm="50" flex="100">
+														<label>Enter the number of X variables</label>
+														<input type="number" ng-keypress="validateField($event, regressionWalkthroughData)" ng-click="validateField($event, regressionWalkthroughData)" ng-blur="validateField($event, regressionWalkthroughData)" ng-model="regressionWalkthroughData.NumberOfVars">
+													</md-input-container>
+												</div>
+											</div>
+											<div class="l6_step">
+												<p class="lead">What will be your numerical variables?</p>
+												<div layout layout-align="center" class="regression_tables" style="text-align:left" ng-if="regressions.length">
+													<div flex-gt-sm="50" flex="100">
+													  <table class="table table-striped table-condensed no-margin">
+													    <thead class="text-center">
+													      <tr>
+													        <th>No</th>
+													        <th>X</th>
+													        <th>Y</th>
+													      </tr>
+													    </thead>
+													    <tbody id="regression_inputs">
+													      <tr ng-repeat="(inputIndex, inputRow) in regressionWalkthroughData.Input">
+													        <td>{{ inputIndex + 1 }}</td>
+													        <td>
+													        	<md-input-container>
+													        		<input type="number" ng-model="inputRow.x" ng-keypress="validateField($event, regressionWalkthroughData)" ng-click="validateField($event, regressionWalkthroughData)" ng-blur="validateField($event, regressionWalkthroughData)">
+													        	</md-input-container>
+													        </td>
+													        <td style="border-right:0;">
+													        	<md-input-container>
+													        		<input type="number" ng-model="inputRow.y" ng-keypress="validateField($event, regressionWalkthroughData)" ng-click="validateField($event, regressionWalkthroughData)" ng-blur="validateField($event, regressionWalkthroughData)">
+													        	</md-input-container>
+													        </td>
+													      </tr>
+													    </tbody>
+													  </table>
+													</div>
+												</div>
+											</div>
+											<div class="l6_step_submit" ng-if="walkthroughShouldShowSubmit()">
+												<md-button class="md-raised btn-w-md md-primary" ng-click="completeRegressionWalkthrough()">Submit</md-button>
+											</div>
+											<div class="l6_step_next" ng-if="walkthroughShouldShowNext()">
+												<md-button class="btn-next-step md-raised md-accent btn-w-md" ng-click="goToNextStep()">Next Step <i class="fa fa-fw fa-angle-right"></i></md-button>
+											</div>
+										</div>
+									</div>
+                  <div class="row regression_tables" ng-if="!walkthroughs.regression">
+                  	<div class="col-sm-12" style="margin-bottom:30px">
+                      <md-button class="md-raised md-primary btn-w-md md-button md-ink-ripple" ng-transclude="" ng-click="addRegression()">
+                      	<span class="ng-scope">Add Regression</span>
+                      	<div class="md-ripple-container"></div>
+                      </md-button>
+                    </div>
+                  	<div class="col-xs-12">
+											<uib-accordion close-others="oneAtATime" ng-repeat="(regressionIndex, regressionForm) in regressions">
+										    <div uib-accordion-group class="panel-default panel-regression" heading="Regression #{{regressionIndex+1}}">
+													<div class="col-sm-12" style="text-align: center">
+													  <h3>INPUT</h3>
+													  <table class="table table-striped table-condensed no-margin">
+													    <thead class="text-center">
+													      <tr>
+													        <th>No</th>
+													        <th>X</th>
+													        <th style="border-right:0;">Y</th>
+													        <th style="border-left:0;"></th>
+													      </tr>
+													    </thead>
+													    <tbody id="regression_inputs">
+													      <tr ng-repeat="(inputIndex, inputRow) in regressionForm.input">
+													        <td>{{ inputIndex + 1 }}</td>
+													        <td>
+													        	<md-input-container><input type="number" ng-model="inputRow.x"></md-input-container>
+													        </td>
+													        <td style="border-right:0;">
+													        	<md-input-container><input type="number" ng-model="inputRow.y"></md-input-container>
+													        </td>
+													        <td style="border-left:0;">
+							                      <md-button class="md-raised md-fab md-mini md-warn btn-w-md md-button md-ink-ripple" ng-transclude="" ng-click="regressionForm.removeInputRow(inputIndex)">
+							                      	<span class="ng-scope"><i class="zmdi zmdi-minus"></i></span>
+							                      	<div class="md-ripple-container"></div>
+							                      </md-button>
+													        </td>
+													      </tr>
+													    </tbody>
+													    <tfoot>
+													      <tr>
+													        <td>*</td>
+													        <td style="border-right:0;">
+							                      <md-button class="md-raised md-fab md-mini md-primary btn-w-md md-button md-ink-ripple" ng-transclude="" ng-click="regressionForm.addInputRow()">
+							                      	<span class="ng-scope"><i class="zmdi zmdi-plus"></i></span>
+							                      	<div class="md-ripple-container"></div>
+							                      </md-button>
+													        </td>
+													        <td colspan="2" style="border-left:0;"></td>
+													      </tr>
+													    </tfoot>
+													  </table>
+													</div>
+													<div class="col-sm-12" style="text-align: center">
+													  <h3>OUTPUT</h3>
+													  <p>Regression Statistics</p>
+													  <table class="table table-striped table-condensed">
+													    <tr>
+													      <th>Multiple R</th>
+													      <td>{{ regressionForm.output.multipleR }}</td>
+													    </tr>
+													    <tr>
+													      <th>R Square</th>
+													      <td>{{ regressionForm.output.rSquare }}</td>
+													    </tr>
+													    <tr>
+													      <th>Adjusted R Square</th>
+													      <td>{{ regressionForm.output.adjRSquare }}</td>
+													    </tr>
+													    <tr>
+													      <th>Standard Error</th>
+													      <td>{{ regressionForm.output.stdErr }}</td>
+													    </tr>
+													    <tr>
+													      <th>Observations</th>
+													      <td>{{ regressionForm.output.observ }}</td>
+													    </tr>
+													  </table>
+													  <p>ANOVA</p>
+													  <table class="table table-striped table-condensed">
+													    <tr>
+													      <th></th>
+													      <th>df</th>
+													      <th>SS</th>
+													      <th>MS</th>
+													      <th>F</th>
+													      <th>Significance of F</th>
+													    </tr>
+													    <tr>
+													      <th>Regression</th>
+													      <td>{{ regressionForm.output.anovaRegressionDf }}</td>
+													      <td>{{ regressionForm.output.anovaRegressionSS }}</td>
+													      <td>{{ regressionForm.output.anovaRegressionMS }}</td>
+													      <td>{{ regressionForm.output.anovaRegressionF }}</td>
+													      <td>{{ regressionForm.output.anovaRegressionFSign }}</td>
+													    </tr>
+													    <tr>
+													      <th>Residual</th>
+													      <td>{{ regressionForm.output.anovaResidualDf }}</td>
+													      <td>{{ regressionForm.output.anovaResidualSS }}</td>
+													      <td>{{ regressionForm.output.anovaResidualMS }}</td>
+													      <td></td>
+													      <td></td>
+													    </tr>
+													    <tr>
+													      <th>Total</th>
+													      <td>{{ regressionForm.output.anovaTotalDf }}</td>
+													      <td>{{ regressionForm.output.anovaTotalSS }}</td>
+													      <td></td>
+													      <td></td>
+													      <td></td>
+													    </tr>
+													  </table>
+													  <table class="table table-striped table-condensed">
+													    <tr>
+													      <th></th>
+													      <th>Coefficients</th>
+													      <th>Standard Error</th>
+													      <th>t Stat</th>
+													      <th>P-Value</th>
+													      <th>Lower 95%</th>
+													      <th>Upper 95%</th>
+													    </tr>
+													    <tr>
+													      <th>Intercept</th>
+													      <td>{{ regressionForm.output.interceptCoeff }}</td>
+													      <td>{{ regressionForm.output.interceptStdErr }}</td>
+													      <td>{{ regressionForm.output.interceptTStat }}</td>
+													      <td>{{ regressionForm.output.interceptPValue}}</td>
+													      <td>{{ regressionForm.output.interceptLower95 }}</td>
+													      <td>{{ regressionForm.output.interceptUpper95 }}</td>
+													    </tr>
+													    <tr>
+													      <th>hh size</th>
+													      <td>{{ regressionForm.output.hhCoeff }}</td>
+													      <td>{{ regressionForm.output.hhStdErr }}</td>
+													      <td>{{ regressionForm.output.hhTStat }}</td>
+													      <td>{{ regressionForm.output.hhPValue }}</td>
+													      <td>{{ regressionForm.output.hhLower95 }}</td>
+													      <td>{{ regressionForm.output.hhUpper95 }}</td>
+													    </tr>
+													  </table>
+													</div>
+			                    <div class="col-xs-12">
+			                      <md-button class="md-raised md-warn btn-w-md md-button md-ink-ripple" ng-transclude="" ng-click="removeRegression(regressionIndex)">
+			                      	<span class="ng-scope">Remove Regression</span>
+			                      	<div class="md-ripple-container"></div>
+			                      </md-button>
+			                    </div>
+										    </div>
+										  </uib-accordion>
+                  	</div>
+                  	<div class="col-sm-12" style="margin-top:10px">
+                      <md-button class="md-raised md-primary btn-w-md md-button md-ink-ripple" ng-transclude="" ng-click="addRegression()">
+                      	<span class="ng-scope">Add Regression</span>
+                      	<div class="md-ripple-container"></div>
+                      </md-button>
+                    </div>
+	                  <div class="col-sm-12" style="margin-top:10px">
+	                      <md-button class="md-raised md-primary btn-w-md md-button md-ink-ripple pull-right" ng-transclude="" ng-click="saveRegression()"><span class="ng-scope">Save Changes</span><div class="md-ripple-container"></div></md-button>
+	                      <md-button class="md-raised md-accent btn-w-md md-button md-ink-ripple pull-right" style="margin-right:10px;" ng-transclude="" ng-click="completePhaseComponent('Analyze','Regression')"><span class="ng-scope">{{(phaseDetail.Regression.Status != 'working') ? 'Mark Incomplete' : 'Mark Complete'}}</span><div class="md-ripple-container"></div></md-button>
+	                    </div>
+                  </div>
+                </uib-tab>
+								<uib-tab ng-click="activateTab(6)" active="activeTab[6]">
+									<uib-tab-heading>
+										<span>Critical X</span>
+										<div class="ui-ribbon-container ui-ribbon-success">
+											<div class="ui-ribbon-wrapper" ng-show="phaseDetail.Critical_X.Status != 'working'">
+												<div class="ui-ribbon">
+													<i class="fa fa-fw fa-check"></i>
+												</div>
+											</div>
+										</div>
+									</uib-tab-heading>
+									<div class="row subphase-header">
+										<div class="col-sm-12">
+											<md-menu md-position-mode="target-right target" class="pull-right">
+												<md-button aria-label="Open Menu" class="md-icon-button subphase-menu-button" ng-click="generateCriticalXExportData();$mdOpenMenu($event)">
+													<md-icon md-menu-origin><span class="fa fa-info-circle"></span></md-icon>
+												</md-button>
+												<md-menu-content width="2">
+													<md-menu-item ng-show="!walkthroughs.critx"><md-button ng-click="showWalkthrough('critx', critXData)"> <span md-menu-align-target>Show Walkthrough</span></md-button></md-menu-item>
+													<md-menu-item ng-show="walkthroughs.critx"><md-button ng-click="hideWalkthrough('critx')"> <span md-menu-align-target>Skip Walkthrough</span></md-button></md-menu-item>
+													<md-menu-item ng-show="!walkthroughs.critx"><a download="CriticalX.xlsx" href="{{exportCriticalXBlobLink}}" md-menu-align-target class="md-button md-ink-ripple">Export Data</a></md-menu-item>
+												</md-menu-content>
+											</md-menu>
+										</div>
+									</div>
+									<div class="row" ng-show="walkthroughs.critx">
+										<div class="col-sm-12" data-phase-component="critx" style="text-align:center">
+											<p style="font-weight:100; font-size:2em; margin-bottom:20px">Time To Get Critical!...</p>
+											<div class="l6_step" data-step-required="Input">
+												<p class="lead">First we need to define the X input.</p>
+												<p>This "X" is theorized to impact the "Y" of interest relative to the Fishbone, VOC, XY Matrix or pFMEA. It can be either a single X or a family of variations such as shift, operator, supplier, method, etc. </p>
+												<div layout layout-align="center" style="text-align:left">
+													<md-input-container flex-gt-sm="50" flex="100">
+														<label>X Input</label>
+														<input type="text" ng-blur="validateField($event, critXData[critXData.length - 1])" ng-model="critXData[critXData.length - 1].Input">
+													</md-input-container>
+												</div>
+											</div>
+											<div class="l6_step" data-step-required="PracticalTheory">
+												<p class="lead">How is this X theorized to influence the Y?</p><p>This should be in the form of a business question which will drive the statistical question.</p>
+												<div layout layout-align="center" style="text-align:left">
+													<md-input-container flex-gt-sm="80" flex="100">
+														<label>Practical Theory</label>
+														<textarea ng-blur="validateField($event, critXData[critXData.length - 1])" ng-model="critXData[critXData.length - 1].PracticalTheory"></textarea>
+													</md-input-container>
+												</div>
+											</div>
+											<div class="l6_step" data-step-required="XMeasurement">
+												<p class="lead">What tool or method will be used to measure the X? </p>
+												<div layout layout-align="center" style="text-align:left">
+													<md-input-container flex-gt-sm="50" flex="100">
+														<label>Practical Theory</label>
+														<input type="text" ng-blur="validateField($event, critXData[critXData.length - 1])" ng-model="critXData[critXData.length - 1].XMeasurement">
+													</md-input-container>
+												</div>
+											</div>
+											<div class="l6_step" data-step-required="StatTested,ToolUsed">
+												<p class="lead">What statistic will be tested and what statistical tool will be used to prove or disprove the business question?</p><p>Are we testing the Mean, Median or Variance? Maybe we are testing for correlation, doing a regression, etc.</p>
+												<div layout layout-align="center" style="text-align:left">
+													<md-input-container flex-gt-sm="50" flex="100">
+														<label>Statistic</label>
+														<input type="text" ng-blur="validateField($event, critXData[critXData.length - 1])" ng-model="critXData[critXData.length - 1].StatTested">
+													</md-input-container>
+													<md-input-container flex-gt-sm="50" flex="100">
+														<label>Statistical Tool</label>
+														<input type="text" ng-blur="validateField($event, critXData[critXData.length - 1])" ng-model="critXData[critXData.length - 1].ToolUsed">
+													</md-input-container>
+												</div>
+											</div>
+											<div class="l6_step" data-step-required="Ho">
+												<p class="lead">State the Null Hypothesis.</p><p>Typically shows there is no difference between the sample sets tested or that there is no relationship seen.</p>
+												<div layout layout-align="center" style="text-align:left">
+													<md-input-container flex-gt-sm="50" flex="100">
+														<label>H<span style="font-size:.7em">o</span></label>
+														<input type="text" ng-blur="validateField($event, critXData[critXData.length - 1])" ng-model="critXData[critXData.length - 1].Ho">
+													</md-input-container>
+												</div>
+											</div>
+											<div class="l6_step" data-step-required="Ha">
+												<p class="lead">State the Alternate Hypothesis.</p><p>Typically shows there is a difference between the sample sets tested or that there is a relationship seen.</p>
+												<div layout layout-align="center" style="text-align:left">
+													<md-input-container flex-gt-sm="50" flex="100">
+														<label>H<span style="font-size:.7em">a</span></label>
+														<input type="text" ng-blur="validateField($event, critXData[critXData.length - 1])" ng-model="critXData[critXData.length - 1].Ha">
+													</md-input-container>
+												</div>
+											</div>
+											<div class="l6_step" data-step-required="Results">
+												<p class="lead">What is the statistical result?</p><p>State the P- Value and/or other related pertinent stats.</p>
+												<div layout layout-align="center" style="text-align:left">
+													<md-input-container flex-gt-sm="50" flex="100">
+														<label>Statistical Result</label>
+														<input type="text" ng-blur="validateField($event, critXData[critXData.length - 1])" ng-model="critXData[critXData.length - 1].Results">
+													</md-input-container>
+												</div>
+											</div>
+											<div class="l6_step" data-step-required="PracticalConclusions">
+												<p class="lead">What are the practical conclusions derived from doing this test?</p>
+												<div layout layout-align="center" style="text-align:left">
+													<md-input-container flex-gt-sm="80" flex="100">
+														<label>Practical Conclusions</label>
+														<textarea ng-blur="validateField($event, critXData[critXData.length - 1])" ng-model="critXData[critXData.length - 1].PracticalConclusions"></textarea>
+													</md-input-container>
+												</div>
+											</div>
+											<div class="l6_step" data-step-required="NextSteps">
+												<p class="lead">What actions will you now take as a result of the findings? Do you plan on implementing a solution from this analysis? If not, say so.</p>
+												<div layout layout-align="center" style="text-align:left">
+													<md-input-container flex-gt-sm="80" flex="100">
+														<label>Next Steps</label>
+														<textarea ng-blur="validateField($event, critXData[critXData.length - 1])" ng-model="critXData[critXData.length - 1].NextSteps"></textarea>
+													</md-input-container>
+												</div>
+											</div>
+											<div class="l6_step_submit" ng-if="walkthroughShouldShowSubmit()">
+												<md-button class="md-raised btn-w-md md-primary" ng-click="hideWalkthrough('critx')">Submit</md-button>
+											</div>
+											<div class="l6_step_next" ng-if="walkthroughShouldShowNext()">
+												<md-button class="btn-next-step md-raised md-accent btn-w-md" ng-click="goToNextStep()">Next Step <i class="fa fa-fw fa-angle-right"></i></md-button>
+											</div>
+										</div>
+									</div>
+									<div class="row" ng-show="!walkthroughs.critx">
+										<div class="col-sm-12">
+											<div class="row">
+												<div class="col-sm-12">
+													<div class="table-responsive">
+														<table class="table table-striped table-bordered no-margin" id="critx-table">
+															<thead>
+																<tr>
+																	<th></th>
+																	<th>Input</th>
+																	<th>Practical Theory</th>
+																	<th>X Measurement Tool</th>
+																	<th>Statistic Tested</th>
+																	<th>Tool To Test Stat</th>
+																	<th>H<span style="font-size:.7em">o</span></th>
+																	<th>H<span style="font-size:.7em">a</span></th>
+																	<th>Results</th>
+																	<th>Practical Conclusions</th>
+																	<th>Next Steps</th>
+																</tr>
+															</thead>
+															<tbody>
+																<tr ng-repeat="d in critXData" ng-show="!d.isDeleted">
+																	<td style="text-align:center; width: 45px"><md-button class="md-fab md-warn md-fab-xxs" aria-label="delete" ng-click="deleteRow(critXData,$index)"><span class="zmdi zmdi-close"></span></md-button></td>
+																	<td contentEditable="true" ng-model="d.Input" ng-bind-html="d.Input"></td>
+																	<td contentEditable="true" ng-model="d.PracticalTheory" ng-bind-html="d.PracticalTheory"></td>
+																	<td contentEditable="true" ng-model="d.XMeasurement" ng-bind-html="d.XMeasurement"></td>
+																	<td contentEditable="true" ng-model="d.StatTested" ng-bind-html="d.StatTested"></td>
+																	<td contentEditable="true" ng-model="d.ToolUsed" ng-bind-html="d.ToolUsed"></td>
+																	<td contentEditable="true" ng-model="d.Ho" ng-bind-html="d.Ho"></td>
+																	<td contentEditable="true" ng-model="d.Ha" ng-bind-html="d.Ha"></td>
+																	<td contentEditable="true" ng-model="d.Results" ng-bind-html="d.Results"></td>
+																	<td contentEditable="true" ng-model="d.PracticalConclusions" ng-bind-html="d.PracticalConclusions"></td>
+																	<td contentEditable="true" ng-model="d.NextSteps" ng-bind-html="d.NextSteps"></td>
+																</tr>
+																<tr><td colspan="11"><div layout="column"><button ui-wave type="button" class="btn btn-warning btn-w-md ui-wave" ng-click="addRow(critXData,'critx')"><span class="ink wave-animate"></span>Add Row</button></div></td></tr>
+															</tbody>
+														</table>
+													</div>
+												</div>
+											</div>
+											<div class="row">
+												<div class="col-sm-12" style="margin-top:10px">
+													<md-button class="md-raised md-primary btn-w-md md-button md-ink-ripple pull-right" ng-transclude="" ng-click="submitCritX()"><span class="ng-scope">Save Changes</span><div class="md-ripple-container"></div></md-button>
+													<md-button class="md-raised md-accent btn-w-md md-button md-ink-ripple pull-right" style="margin-right:10px;" ng-transclude="" ng-click="completePhaseComponent('Analyze','Critical X')"><span class="ng-scope">{{(phaseDetail.Critical_X.Status != 'working') ? 'Mark Incomplete' : 'Mark Complete'}}</span><div class="md-ripple-container"></div></md-button>
+												</div>
+											</div>
+										</div>
+									</div>
+								</uib-tab>
+								<uib-tab ng-click="activateTab(7)" active="activeTab[7]">
+									<uib-tab-heading>
+										<span>Gate Review</span>
+										<div class="ui-ribbon-container ui-ribbon-success">
+											<div class="ui-ribbon-wrapper" ng-show="phaseDetail.Gate_Review.Status != 'working'">
+												<div class="ui-ribbon">
+													<i class="fa fa-fw fa-check"></i>
+												</div>
+											</div>
+										</div>
+									</uib-tab-heading>
+									<div class="row subphase-header">
+										<div class="col-sm-12">
+											<md-menu md-position-mode="target-right target" class="pull-right">
+												<md-button aria-label="Open Menu" class="md-icon-button subphase-menu-button" ng-click="generateGateReviewExportData();$mdOpenMenu($event)">
+													<md-icon md-menu-origin><span class="fa fa-info-circle"></span></md-icon>
+												</md-button>
+												<md-menu-content width="2">
+													<md-menu-item>
+														<a download="Gate_Review.xlsx" href="{{exportGateReviewBlobLink}}" md-menu-align-target class="md-button md-ink-ripple">Export Data</a>
+													</md-menu-item>
+												</md-menu-content>
+											</md-menu>
+										</div>
+									</div>
+									<div class="row" id="gate-review-tables">
+										<div class="col-sm-12">
+											<div layout="row" style="min-height:200px">
+												<div layout="column" style="border: 1px solid #777; padding:3px" flex>
+													<div class="row">
+														<div class="col-sm-12">
+															<p style="text-align:center">Project Summary/Objective</p>
+															<div class="table-responsive">
+																<table class="table table-striped table-bordered no-margin">
+																	<tbody>
+																		<tr ng-repeat="s in gateReviewData | filter: {Quadrant : 1}" ng-show="!s.isDeleted">
+																			<td style="text-align:center; width: 45px"><md-button class="md-fab md-warn md-fab-xxs" aria-label="delete" ng-click="deleteRow(gateReviewData,s.arrayId)"><span class="zmdi zmdi-close"></span></md-button></td>
+																			<td contentEditable="true" ng-model="gateReviewData[s.arrayId].Detail" ng-bind-html="gateReviewData[s.arrayId].Detail"></td>
+																		</tr>
+																		<tr><td colspan="2"><div layout="column"><button ui-wave type="button" class="btn btn-warning btn-w-md ui-wave" ng-click="gateReviewAddRow(1)"><span class="ink wave-animate"></span>Add Row</button></div></td></tr>
+																	</tbody>
+																</table>
+															</div>
+														</div>
+													</div>
+												</div>
+												<div layout="column" style="border: 1px solid #777; padding:3px" flex>
+													<div class="row">
+														<div class="col-sm-12">
+															<p style="text-align:center">Technology/Products</p>
+															<div class="table-responsive">
+																<table class="table table-striped table-bordered no-margin">
+																	<tbody>
+																		<tr ng-repeat="s in gateReviewData | filter: {Quadrant : 2}" ng-show="!s.isDeleted">
+																			<td style="text-align:center; width: 45px"><md-button class="md-fab md-warn md-fab-xxs" aria-label="delete" ng-click="deleteRow(gateReviewData,s.arrayId)"><span class="zmdi zmdi-close"></span></md-button></td>
+																			<td contentEditable="true" ng-model="gateReviewData[s.arrayId].Detail" ng-bind-html="gateReviewData[s.arrayId].Detail"></td>
+																		</tr>
+																		<tr><td colspan="2"><div layout="column"><button ui-wave type="button" class="btn btn-warning btn-w-md ui-wave" ng-click="gateReviewAddRow(2)"><span class="ink wave-animate"></span>Add Row</button></div></td></tr>
+																	</tbody>
+																</table>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+											<div layout="row" style="min-height:200px">
+												<div layout="column" style="border: 1px solid #777; padding:3px" flex>
+													<div class="row">
+														<div class="col-sm-12">
+															<p style="text-align:center">Schedule/Budget</p>
+															<div class="table-responsive">
+																<table class="table table-striped table-bordered no-margin">
+																	<tbody>
+																		<tr ng-repeat="s in gateReviewData | filter: {Quadrant : 3}" ng-show="!s.isDeleted">
+																			<td style="text-align:center; width: 45px"><md-button class="md-fab md-warn md-fab-xxs" aria-label="delete" ng-click="deleteRow(gateReviewData,s.arrayId)"><span class="zmdi zmdi-close"></span></md-button></td>
+																			<td contentEditable="true" ng-model="gateReviewData[s.arrayId].Detail" ng-bind-html="gateReviewData[s.arrayId].Detail"></td>
+																		</tr>
+																		<tr><td colspan="2"><div layout="column"><button ui-wave type="button" class="btn btn-warning btn-w-md ui-wave" ng-click="gateReviewAddRow(3)"><span class="ink wave-animate"></span>Add Row</button></div></td></tr>
+																	</tbody>
+																</table>
+															</div>
+														</div>
+													</div>
+												</div>
+												<div layout="column" style="border: 1px solid #777; padding:3px" flex>
+													<div class="row">
+														<div class="col-sm-12">
+															<p style="text-align:center">Graphic/OV-1</p>
+															<div class="table-responsive">
+																<table class="table table-striped table-bordered no-margin">
+																	<tbody>
+																		<tr ng-repeat="s in gateReviewData | filter: {Quadrant : 4}" ng-show="!s.isDeleted">
+																			<td style="text-align:center; width: 45px"><md-button class="md-fab md-warn md-fab-xxs" aria-label="delete" ng-click="deleteRow(gateReviewData,s.arrayId)"><span class="zmdi zmdi-close"></span></md-button></td>
+																			<td contentEditable="true" ng-model="gateReviewData[s.arrayId].Detail" ng-bind-html="gateReviewData[s.arrayId].Detail"></td>
+																		</tr>
+																		<tr><td colspan="2"><div layout="column"><button ui-wave type="button" class="btn btn-warning btn-w-md ui-wave" ng-click="gateReviewAddRow(4)"><span class="ink wave-animate"></span>Add Row</button></div></td></tr>
+																	</tbody>
+																</table>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-sm-12" style="margin-top:10px">
+											<md-button class="md-raised md-primary btn-w-md md-button md-ink-ripple pull-right" ng-transclude="" ng-click="submitGateReview()"><span class="ng-scope">Save Changes</span><div class="md-ripple-container"></div></md-button>
+											<md-button class="md-raised md-accent btn-w-md md-button md-ink-ripple pull-right" style="margin-right:10px;" ng-transclude="" ng-click="completePhaseComponent('Analyze','Gate Review')"><span class="ng-scope">{{(phaseDetail.Gate_Review.Status != 'working') ? 'Mark Incomplete' : 'Mark Complete'}}</span><div class="md-ripple-container"></div></md-button>
+										</div>
+									</div>
+								</uib-tab>
+							</uib-tabset>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</div>
+</div>

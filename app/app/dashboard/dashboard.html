@@ -1,0 +1,117 @@
+<div class="page page-dashboard" ng-controller="dashboardCtrl">
+<div ng-if="userDetails.AccessLevelDetail.indexOf('View Dashboard') > -1">
+	<div class="row">
+	   <!-- Stats -->
+		<div class="col-lg-4 col-xsm-6">
+			<div class="panel panel-box">
+				<div class="panel-top">
+					<span class="zmdi zmdi-device-hub color-success"></span>
+				</div>
+				<div class="panel-info">
+					<span data-translate="SCOPE"></span>
+				</div>
+				<div class="panel-bottom bg-light">
+					<span class="size-h3">{{scopeChange}}</span>
+				</div>
+			</div>
+		</div>
+		<div class="col-lg-4 col-xsm-6">
+			<div class="panel panel-box">
+				<div class="panel-top">
+					<i class="zmdi zmdi-money color-warning"></i>
+				</div>
+				<div class="panel-info">
+					<span data-translate="COST SAVINGS/AVOIDANCE"></span>
+				</div>
+				<div class="panel-bottom bg-light">
+					<span>{{costAvoidance}} <span class="size-h4">{{costAvoidanceChar}}</span></span>
+				</div>
+			</div>
+		</div>
+		<div class="col-lg-4 col-xsm-6">
+			<div class="panel panel-box">
+				<div class="panel-top">
+					<i class="zmdi zmdi-time color-info"></i>
+				</div>
+				<div class="panel-info">
+					<span data-translate="TIME"></span>
+				</div>
+				<div class="panel-bottom bg-light">
+					<span class="size-h3">{{timeTracking}}</span>
+				</div>
+			</div>
+		</div>
+		<!-- end stats -->
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			<div class="panel panel-default">
+				<div class="panel-body padding-lg">
+					<div class="row">
+						<div class="col-lg-12">
+							<div class="panel" ng-cloak>
+								<div class="panel-heading text-center">
+									<span>Project Overview</span>
+									<md-menu md-position-mode="target-right target" class="pull-right">
+										<md-button style="margin:0px; margin-top:-10px; line-height:0px" aria-label="Open Menu" class="md-icon-button subphase-menu-button" ng-click="$mdOpenMenu($event)">
+											<md-icon md-menu-origin><span class="fa fa-info-circle"></span></md-icon>
+										</md-button>
+										<md-menu-content width="2">
+											<md-menu-item><md-button go-to="/projecthistory"> <span md-menu-align-target>View Project History</span></md-button></md-menu-item>
+										</md-menu-content>
+									</md-menu>
+								</div>
+								<div class="divider divider-lg"></div>
+								<div class="panel-body">
+									<div class="row">
+										<div class="col-sm-12 text-center" ng-show="activeProjects.length < 1">
+											<div ng-if="userDetails.AccessLevelDetail.indexOf('Create Projects') == -1">
+												<span>No Projects</span>
+											</div>
+											<div ng-if="userDetails.AccessLevelDetail.indexOf('Create Projects') > -1">
+												<a href="#/newproject"><h3>No Projects? Click Here To Get One Started!</h3></a>
+											</div>
+										</div>
+										<div class="col-md-3 text-center dash-project" ng-repeat="project in activeProjects" go-to="/project/{{project.Id}}">
+											<div easypiechart options="project.chart.options" percent="project.chart.percent" class="easypiechart easypiechart-sm">
+												<span class="pie-percent {{project.Id}}" ng-bind="project.chart.percent"></span>
+											</div>
+											<p class="text-center text-muted">{{project.Name}}</p>
+											<p class="text-center text-muted">(PROJ{{project.Id}})</p>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row" ng-show="projectTimeline.length > 0">
+		<h2 class="section-header text-center">Project Overview Timeline</h2>
+		<div class="ui-timline-container">
+		    <section class="ui-timeline">
+		        <article ng-repeat="event in projectTimeline" ng-class="{'tl-item': true , 'alt': event.isAlt && !event.NewDay}">
+		            <div class="tl-body">
+		                <div class="tl-entry">
+		                    <div class="tl-caption" ng-if="event.NewDay">
+		                        <a href="javascript:;" class="btn {{event.BadgeColor}} btn-block">{{event.NewDay}}</a>
+		                    </div>
+		                    <div class="tl-time" ng-if="!event.NewDay">{{event.DateTime}}</div>
+		                    <div class="tl-icon btn-icon-round btn-icon btn-icon-thin {{event.BadgeColor}}"  when-visible="animateElementIn" when-not-visible="animateElementOut" ng-if="!event.NewDay"><i class="{{event.Icon}}"></i></div>
+		                    <div class="tl-content" ng-if="!event.NewDay" when-visible="animateElementIn" when-not-visible="animateElementOut">
+		                        <h4 class="tl-tile {{event.HeaderColor}}">PROJ{{event.ProjectId}}</h4>
+		                        <p>{{event.Caption}}</p>
+		                    </div>
+		                </div>
+		            </div>
+		        </article>
+		    </section>
+		</div>
+	</div>
+</div>
+<div ng-if="userDetails.AccessLevelDetail.indexOf('View Dashboard') == -1">
+	You don't have a permission to view the dashboard.
+</div>
+</div>

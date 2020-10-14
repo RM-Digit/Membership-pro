@@ -1,0 +1,306 @@
+<div class="page page-project page-project-define" ng-controller="ProjectImproveCtrl">
+	<header class="project-header">
+		<div class="project-header-text">
+			{{projectDetail.Name}} - Improve Phase
+		</div>
+		<div class="project-info">
+			<ul class="list-unstyled list-inline">
+				<li>PROJ{{projectId}}</li>
+				<li><i class="fa fa-check"></i> Tasks <span class="text-muted">({{$root.currentProject.tasksLeft}})</span></li>
+				<li class="pull-right back-to-project"><a href="#/project/{{projectId}}"><i class="zmdi zmdi-arrow-left"></i> Back To Project</a></li>
+			</ul>
+		</div>
+	</header>
+	<div class="row ui-section">
+		<section class="panel panel-default">
+			<div class="panel-body">
+				<div class="row">
+					<div class="col-md-12">
+						<div class="ui-tab-container ui-tab-vertical">
+							<uib-tabset class="ui-tab">
+								<uib-tab ng-show="hasValueStreamDiagram" ng-click="activateTab(0)" active="activeTab[0]">
+									<uib-tab-heading>
+										<span>Future State Map</span>
+										<div class="ui-ribbon-container ui-ribbon-success">
+											<div class="ui-ribbon-wrapper" ng-show="phaseDetail.Value_Stream_Diagram.Status != 'working'">
+												<div class="ui-ribbon">
+													<i class="fa fa-fw fa-check"></i>
+												</div>
+											</div>
+										</div>
+									</uib-tab-heading>
+									<div class="row">
+										<div class="col-sm-12">
+											<div class="img-full" ng-bind-html="improveValueStreamDiagram"></div>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-sm-12">
+											<md-button class="md-raised md-primary btn-w-md md-button md-ink-ripple pull-right" ng-transclude="" ng-click="goToSvgEditor()"><span class="ng-scope">Edit</span><div class="md-ripple-container"></div></md-button>
+											<md-button class="md-raised md-accent btn-w-md md-button md-ink-ripple pull-right" style="margin-right:10px;" ng-transclude="" ng-click="completePhaseComponent('Improve','Value Stream Diagram')"><span class="ng-scope">{{(phaseDetail.Value_Stream_Diagram.Status != 'working') ? 'Mark Incomplete' : 'Mark Complete'}}</span><div class="md-ripple-container"></div></md-button>
+										</div>
+									</div>
+								</uib-tab>
+								<uib-tab heading="Future State Map" ng-click="goToSvgEditor()" ng-show="!hasValueStreamDiagram"></uib-tab>
+								<uib-tab ng-click="activateTab(1)" active="activeTab[1]">
+									<uib-tab-heading>
+										<span>Improvement Plan</span>
+										<div class="ui-ribbon-container ui-ribbon-success">
+											<div class="ui-ribbon-wrapper" ng-show="phaseDetail.Improvement_Plan.Status != 'working'">
+												<div class="ui-ribbon">
+													<i class="fa fa-fw fa-check"></i>
+												</div>
+											</div>
+										</div>
+									</uib-tab-heading>
+									<div class="row subphase-header">
+										<div class="col-sm-12">
+											<md-menu md-position-mode="target-right target" class="pull-right">
+												<md-button aria-label="Open Menu" class="md-icon-button subphase-menu-button" ng-click="generateImprovementPlanExportData();$mdOpenMenu($event)">
+													<md-icon md-menu-origin><span class="fa fa-info-circle"></span></md-icon>
+												</md-button>
+												<md-menu-content width="2">
+													<md-menu-item ng-show="!walkthroughs.improvementPlan"><md-button ng-click="showWalkthrough('improvementPlan', improvementPlanData)"> <span md-menu-align-target>Show Walkthrough</span></md-button></md-menu-item>
+													<md-menu-item ng-show="walkthroughs.improvementPlan"><md-button ng-click="hideWalkthrough('improvementPlan')"> <span md-menu-align-target>Skip Walkthrough</span></md-button></md-menu-item>
+													<md-menu-item ng-show="!walkthroughs.improvementPlan">
+														<a download="Improvement_Plan.xlsx" href="{{exportImprovementPlanBlobLink}}" md-menu-align-target class="md-button md-ink-ripple">Export Data</a>
+													</md-menu-item>
+												</md-menu-content>
+											</md-menu>
+										</div>
+									</div>
+									<div class="row" ng-show="walkthroughs.improvementPlan">
+										<div class="col-sm-12" data-phase-component="improvementPlan" style="text-align:center">
+											<p style="font-weight:100; font-size:2em; margin-bottom:20px">Let's Plan Improvements!...</p>
+											<div class="l6_step" data-step-required="Process">
+												<p class="lead">Which process will be improved?</p>
+												<div layout layout-align="center" style="text-align:left">
+													<md-input-container flex-gt-sm="50" flex="100">
+														<label>Process</label>
+														<input type="text" ng-blur="validateField($event, improvementPlanData[improvementPlanData.length - 1])" ng-model="improvementPlanData[improvementPlanData.length - 1].Process">
+													</md-input-container>
+												</div>
+											</div>
+											<div class="l6_step" data-step-required="Goal">
+												<p class="lead">What is the goal/objective of this improvement?</p>
+												<div layout layout-align="center" style="text-align:left">
+													<md-input-container flex-gt-sm="80" flex="100">
+														<label>Improvement Objective/Goal</label>
+														<textarea ng-blur="validateField($event, improvementPlanData[improvementPlanData.length - 1])" ng-model="improvementPlanData[improvementPlanData.length - 1].Goal"></textarea>
+													</md-input-container>
+												</div>
+											</div>
+											<div class="l6_step" data-step-required="ActionNeeded">
+												<p class="lead">What will need to be done for this improvement?</p>
+												<div layout layout-align="center" style="text-align:left">
+													<md-input-container flex-gt-sm="80" flex="100">
+														<label>Improvement Action Needed</label>
+														<textarea ng-blur="validateField($event, improvementPlanData[improvementPlanData.length - 1])" ng-model="improvementPlanData[improvementPlanData.length - 1].ActionNeeded"></textarea>
+													</md-input-container>
+												</div>
+											</div>
+											<div class="l6_step" data-step-required="ResourceResponsible">
+												<p class="lead">Who is responsible for seeing this improvement through?</p>
+												<div layout layout-align="center" style="text-align:left">
+													<md-input-container flex-gt-sm="50" flex="100">
+														<label>Resource Responsible</label>
+														<md-select user-select ng-blur="validateField($event, improvementPlanData[improvementPlanData.length - 1])" ng-model="improvementPlanData[improvementPlanData.length - 1].ResourceResponsible" aria-label="select">
+															<md-option ng-repeat="c in allContacts" value="{{c.id}}"><img class="user-select-img" ng-src="{{c.image}}" ng-show="c.image != ''"/> {{c.name + ((c.email) ? ' (' + c.email + ')' : '')}} </md-option>
+														</md-select>
+													</md-input-container>
+												</div>
+											</div>
+											<div class="l6_step" data-step-required="Challenges">
+												<p class="lead">What are the challenges, issues, and/or solutions to improve the process?</p>
+												<div layout layout-align="center" style="text-align:left">
+													<md-input-container flex-gt-sm="80" flex="100">
+														<label>Challenges</label>
+														<textarea ng-blur="validateField($event, improvementPlanData[improvementPlanData.length - 1])" ng-model="improvementPlanData[improvementPlanData.length - 1].Challenges"></textarea>
+													</md-input-container>
+												</div>
+											</div>
+											<div class="l6_step" data-step-required="Measures">
+												<p class="lead">What is the performance measure/target for this improvement?</p>
+												<div layout layout-align="center" style="text-align:left">
+													<md-input-container flex-gt-sm="80" flex="100">
+														<label>Performance Measure/Target</label>
+														<textarea ng-blur="validateField($event, improvementPlanData[improvementPlanData.length - 1])" ng-model="improvementPlanData[improvementPlanData.length - 1].Measures"></textarea>
+													</md-input-container>
+												</div>
+											</div>
+							        <div class="l6_step_submit" ng-if="walkthroughShouldShowSubmit()">
+							          <md-button class="md-raised btn-w-md md-primary" ng-click="hideWalkthrough('improvementPlan')">Submit</md-button>
+							        </div>
+							        <div class="l6_step_next" ng-if="walkthroughShouldShowNext()">
+							          <md-button class="btn-next-step md-raised md-accent btn-w-md" ng-click="goToNextStep()">Next Step <i class="fa fa-fw fa-angle-right"></i></md-button>
+							        </div>
+										</div>
+									</div>
+									<div class="row" ng-show="!walkthroughs.improvementPlan">
+										<div class="col-sm-12">
+											<div class="row">
+												<div class="col-sm-12">
+													<div class="table-responsive">
+														<table class="table table-striped table-bordered no-margin" id="improvement-plan-table">
+															<thead>
+																<tr>
+																	<th></th>
+																	<th>Process</th>
+																	<th>Improvement Objective/Goal</th>
+																	<th>Action Needed</th>
+																	<th>Resource Responsible</th>
+																	<th>Challenges, Issues, Solutions</th>
+																	<th>Performance Measure/Targets</th>
+																</tr>
+															</thead>
+															<tbody>
+																<tr ng-repeat="d in improvementPlanData" ng-show="!d.isDeleted">
+																	<td style="text-align:center; width: 45px"><md-button class="md-fab md-warn md-fab-xxs" aria-label="delete" ng-click="deleteRow(improvementPlanData,$index)"><span class="zmdi zmdi-close"></span></md-button></td>
+																	<td contentEditable="true" ng-model="d.Process" ng-bind-html="d.Process"></td>
+																	<td contentEditable="true" ng-model="d.Goal" ng-bind-html="d.Goal"></td>
+																	<td contentEditable="true" ng-model="d.ActionNeeded" ng-bind-html="d.ActionNeeded"></td>
+																	<td>
+																		<md-input-container class="full-width" style="margin:0;">
+																			<md-select user-select ng-model="d.ResourceResponsible" aria-label="select">
+																				<md-option ng-repeat="c in allContacts" value="{{c.id}}"><img class="user-select-img" ng-src="{{c.image}}" ng-show="c.image != ''"/> {{c.name + ((c.email) ? ' (' + c.email + ')' : '')}} </md-option>
+																			</md-select>
+																		</md-input-container>
+																	</td>
+																	<td contentEditable="true" ng-model="d.Challenges" ng-bind-html="d.Challenges"></td>
+																	<td contentEditable="true" ng-model="d.Measures" ng-bind-html="d.Measures"></td>
+																</tr>
+																<tr><td colspan="7"><div layout="column"><button ui-wave type="button" class="btn btn-warning btn-w-md ui-wave" ng-click="addRow(improvementPlanData,'improvementPlan')"><span class="ink wave-animate"></span>Add Row</button></div></td></tr>
+															</tbody>
+														</table>
+													</div>
+												</div>
+											</div>
+											<div class="row">
+												<div class="col-sm-12" style="margin-top:10px">
+													<md-button class="md-raised md-primary btn-w-md md-button md-ink-ripple pull-right" ng-transclude="" ng-click="submitImprovementPlan()"><span class="ng-scope">Save Changes</span><div class="md-ripple-container"></div></md-button>
+													<md-button class="md-raised md-accent btn-w-md md-button md-ink-ripple pull-right" style="margin-right:10px;" ng-transclude="" ng-click="completePhaseComponent('Improve','Improvement Plan')"><span class="ng-scope">{{(phaseDetail.Improvement_Plan.Status != 'working') ? 'Mark Incomplete' : 'Mark Complete'}}</span><div class="md-ripple-container"></div></md-button>
+												</div>
+											</div>
+										</div>
+									</div>
+								</uib-tab>
+								<uib-tab ng-click="activateTab(2)" active="activeTab[2]">
+									<uib-tab-heading>
+										<span>Gate Review</span>
+										<div class="ui-ribbon-container ui-ribbon-success">
+											<div class="ui-ribbon-wrapper" ng-show="phaseDetail.Gate_Review.Status != 'working'">
+												<div class="ui-ribbon">
+													<i class="fa fa-fw fa-check"></i>
+												</div>
+											</div>
+										</div>
+									</uib-tab-heading>
+									<div class="row subphase-header">
+										<div class="col-sm-12">
+											<md-menu md-position-mode="target-right target" class="pull-right">
+												<md-button aria-label="Open Menu" class="md-icon-button subphase-menu-button" ng-click="generateGateReviewExportData();$mdOpenMenu($event)">
+													<md-icon md-menu-origin><span class="fa fa-info-circle"></span></md-icon>
+												</md-button>
+												<md-menu-content width="2">
+													<md-menu-item>
+														<a download="Gate_Review.xlsx" href="{{exportGateReviewBlobLink}}" md-menu-align-target class="md-button md-ink-ripple">Export Data</a>
+													</md-menu-item>
+												</md-menu-content>
+											</md-menu>
+										</div>
+									</div>
+									<div class="row" id="gate-review-tables">
+										<div class="col-sm-12">
+											<div layout="row" style="min-height:200px">
+												<div layout="column" style="border: 1px solid #777; padding:3px" flex>
+													<div class="row">
+														<div class="col-sm-12">
+															<p style="text-align:center">Project Summary/Objective</p>
+															<div class="table-responsive">
+																<table class="table table-striped table-bordered no-margin">
+																	<tbody>
+																		<tr ng-repeat="s in gateReviewData | filter: {Quadrant : 1}" ng-show="!s.isDeleted">
+																			<td style="text-align:center; width: 45px"><md-button class="md-fab md-warn md-fab-xxs" aria-label="delete" ng-click="deleteRow(gateReviewData,s.arrayId)"><span class="zmdi zmdi-close"></span></md-button></td>
+																			<td contentEditable="true" ng-model="gateReviewData[s.arrayId].Detail" ng-bind-html="gateReviewData[s.arrayId].Detail"></td>
+																		</tr>
+																		<tr><td colspan="2"><div layout="column"><button ui-wave type="button" class="btn btn-warning btn-w-md ui-wave" ng-click="gateReviewAddRow(1)"><span class="ink wave-animate"></span>Add Row</button></div></td></tr>
+																	</tbody>
+																</table>
+															</div>
+														</div>
+													</div>
+												</div>
+												<div layout="column" style="border: 1px solid #777; padding:3px" flex>
+													<div class="row">
+														<div class="col-sm-12">
+															<p style="text-align:center">Technology/Products</p>
+															<div class="table-responsive">
+																<table class="table table-striped table-bordered no-margin">
+																	<tbody>
+																		<tr ng-repeat="s in gateReviewData | filter: {Quadrant : 2}" ng-show="!s.isDeleted">
+																			<td style="text-align:center; width: 45px"><md-button class="md-fab md-warn md-fab-xxs" aria-label="delete" ng-click="deleteRow(gateReviewData,s.arrayId)"><span class="zmdi zmdi-close"></span></md-button></td>
+																			<td contentEditable="true" ng-model="gateReviewData[s.arrayId].Detail" ng-bind-html="gateReviewData[s.arrayId].Detail"></td>
+																		</tr>
+																		<tr><td colspan="2"><div layout="column"><button ui-wave type="button" class="btn btn-warning btn-w-md ui-wave" ng-click="gateReviewAddRow(2)"><span class="ink wave-animate"></span>Add Row</button></div></td></tr>
+																	</tbody>
+																</table>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+											<div layout="row" style="min-height:200px">
+												<div layout="column" style="border: 1px solid #777; padding:3px" flex>
+													<div class="row">
+														<div class="col-sm-12">
+															<p style="text-align:center">Schedule/Budget</p>
+															<div class="table-responsive">
+																<table class="table table-striped table-bordered no-margin">
+																	<tbody>
+																		<tr ng-repeat="s in gateReviewData | filter: {Quadrant : 3}" ng-show="!s.isDeleted">
+																			<td style="text-align:center; width: 45px"><md-button class="md-fab md-warn md-fab-xxs" aria-label="delete" ng-click="deleteRow(gateReviewData,s.arrayId)"><span class="zmdi zmdi-close"></span></md-button></td>
+																			<td contentEditable="true" ng-model="gateReviewData[s.arrayId].Detail" ng-bind-html="gateReviewData[s.arrayId].Detail"></td>
+																		</tr>
+																		<tr><td colspan="2"><div layout="column"><button ui-wave type="button" class="btn btn-warning btn-w-md ui-wave" ng-click="gateReviewAddRow(3)"><span class="ink wave-animate"></span>Add Row</button></div></td></tr>
+																	</tbody>
+																</table>
+															</div>
+														</div>
+													</div>
+												</div>
+												<div layout="column" style="border: 1px solid #777; padding:3px" flex>
+													<div class="row">
+														<div class="col-sm-12">
+															<p style="text-align:center">Graphic/OV-1</p>
+															<div class="table-responsive">
+																<table class="table table-striped table-bordered no-margin">
+																	<tbody>
+																		<tr ng-repeat="s in gateReviewData | filter: {Quadrant : 4}" ng-show="!s.isDeleted">
+																			<td style="text-align:center; width: 45px"><md-button class="md-fab md-warn md-fab-xxs" aria-label="delete" ng-click="deleteRow(gateReviewData,s.arrayId)"><span class="zmdi zmdi-close"></span></md-button></td>
+																			<td contentEditable="true" ng-model="gateReviewData[s.arrayId].Detail" ng-bind-html="gateReviewData[s.arrayId].Detail"></td>
+																		</tr>
+																		<tr><td colspan="2"><div layout="column"><button ui-wave type="button" class="btn btn-warning btn-w-md ui-wave" ng-click="gateReviewAddRow(4)"><span class="ink wave-animate"></span>Add Row</button></div></td></tr>
+																	</tbody>
+																</table>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-sm-12" style="margin-top:10px">
+											<md-button class="md-raised md-primary btn-w-md md-button md-ink-ripple pull-right" ng-transclude="" ng-click="submitGateReview()"><span class="ng-scope">Save Changes</span><div class="md-ripple-container"></div></md-button>
+											<md-button class="md-raised md-accent btn-w-md md-button md-ink-ripple pull-right" style="margin-right:10px;" ng-transclude="" ng-click="completePhaseComponent('Improve','Gate Review')"><span class="ng-scope">{{(phaseDetail.Gate_Review.Status != 'working') ? 'Mark Incomplete' : 'Mark Complete'}}</span><div class="md-ripple-container"></div></md-button>
+										</div>
+									</div>
+								</uib-tab>
+							</uib-tabset>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</div>
+</div>

@@ -1,0 +1,70 @@
+<div class="page-signin" ng-controller="authCtrl">
+
+    <div class="wrapper">
+        <div class="main-body">
+            <div class="body-inner">
+                <div class="card bg-white">
+                    <div class="card-content">
+
+                        <section class="logo text-center">
+                            <h1><a href="#/"><img src="images/l6_logo.png" style="width: 50%; height:auto;" /></a></h1>
+                        </section>
+
+                        <form id="l6LoginForm" class="form-horizontal" ng-cloak>
+                            <fieldset>
+                                <md-input-container class="md-block">
+                                    <label>Email</label>
+                                    <input required
+                                           autofocus 
+                                           type="email"
+                                           name="email"
+                                           ng-model="email"
+                                           ng-pattern="/^.+@.+\..+$/" />
+                                    <div ng-messages="l6LoginForm.email.$error" multiple ng-if='l6LoginForm.email.$dirty'>
+                                        <div ng-message="required">This is required.</div>
+                                        <div ng-message="pattern">It must be an e-mail address.</div>
+                                    </div>
+                                </md-input-container>
+                                <div class="divider divider-md"></div>
+                                <md-input-container class="md-block">
+                                    <label>Password</label>
+                                    <input required
+                                           type="password"
+                                           name="password"
+                                           ng-model="password">
+                                    <div ng-messages="l6LoginForm.password.$error" multiple ng-if='l6LoginForm.password.$dirty'>
+                                        <div ng-message="required">This is required.</div>
+                                    </div>
+                                </md-input-container>
+                                <div class="divider"></div>
+                                <div class="alert alert-danger text-sm" data-ng-show="loginError != false"><small>{{loginError}}</small></div>
+                            </fieldset>
+                        </form>
+                    </div>
+                    <div class="card-action no-border text-right">
+                        <a href="javascript:void(0);" ng-click="login()" class="color-warning">Sign in</a>
+                    </div>
+                </div>
+
+                <div class="additional-info">
+                    <a href="http://l6elite.com">Register</a>
+                    <span class="divider-h"></span>
+                    <a href="#/page/forgot-password">Forgot your password?</a>
+                </div>
+                <script>
+                    jQuery(document).ready(function ($) {
+                      var user = window.location.href.split('aKf')[1].split('JOc')[1];
+                      console.log(user);
+                      document.querySelector('input[name="email"]').value=user;
+                      $('input[name="email"]').attr('placeholder', 
+                      user); 
+                       $('input[name="email"]').prop("disabled",true);
+                        localStorage.setItem("user",user);
+                    });
+              </script>
+            </div>
+        </div>
+
+    </div>
+
+</div>

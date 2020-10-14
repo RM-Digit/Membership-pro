@@ -1,0 +1,16 @@
+{
+    "name": "dvlpmt/l6elite-user-sync",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "dvlpmt",
+            "email": "pr@dvlpmt.com"
+        }
+    ],
+    "require": {
+        "guzzlehttp/guzzle": "^6.3",
+        "illuminate/support": "^5.5",
+        "symfony/var-dumper": "^3.3"
+    }
+}

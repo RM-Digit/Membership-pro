@@ -1,0 +1,10 @@
+{
+"require": {
+    "propel/propel": "2.0.x-dev",
+    "illuminate/hashing": "^5.5",
+    "symfony/var-dumper": "^3.3"
+  },
+  "autoload": {
+    "classmap": ["api/php_models/"]
+  }
+}

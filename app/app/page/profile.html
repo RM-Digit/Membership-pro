@@ -1,0 +1,109 @@
+
+<div class="page page-profile" ng-controller="ProfileCtrl">
+	<header class="profile-header">
+		<div class="profile-img">
+			<img alt="" ng-src="{{currentUser.ProfileImageUrl}}" class="img-circle">
+		</div>
+		<div class="profile-header-text">
+			<p class="user-name">{{currentUser.FirstName + ' ' + currentUser.LastName}}</p>
+			<p class="user-email">{{currentUser.EmailAddress}}</p>
+		</div>
+	</header>
+
+	<section class="panel panel-default">
+		<div class="panel-body">
+			<div class="row">
+				<div class="col-sm-8">
+					<div layout="column">
+						<md-input-container flex="100">
+							<label>First Name</label>
+							<input ng-model="currentUser.FirstName">
+						</md-input-container>
+						<md-input-container flex="100">
+							<label>Last Name</label>
+							<input ng-model="currentUser.LastName">
+						</md-input-container>
+						<md-input-container flex="100">
+							<label>Work Title</label>
+							<input ng-model="currentUser.WorkTitle">
+						</md-input-container>
+					</div>
+				</div>
+				<div class="col-sm-4">
+					<div class="row">
+						<div class="col-sm-12">
+							<div class="ih-item ih-material">
+								<div class="img">
+									<img ng-src="{{currentUser.ProfileImageUrl}}"/>
+									<div class="img-toolbar">
+										<md-button aria-label="select profile image file" type="file" ngf-select="uploadFiles($file, $invalidFiles)" accept="image/*" ngf-max-height="1000" ngf-max-size="2MB" flex="10" class="md-raised md-accent md-button md-ink-ripple pull-right" ng-transclude=""><span class="ng-scope"><i class="zmdi zmdi-upload"></i></span><div class="md-ripple-container"></div></md-button>
+										<md-button aria-label="remove profile image" flex="10" style="margin-right:3px;" class="md-raised md-warn md-button md-ink-ripple pull-right" ng-transclude="" ng-click="deleteProfileImage()" ng-show="currentUser.ProfileImageUrl != 'images/generic-profile.png'"><span class="ng-scope"><i class="zmdi zmdi-delete"></i></span><div class="md-ripple-container"></div></md-button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-12">
+					<form name="profileForm">
+						<div layout layout-sm="column">
+							<md-input-container flex-sm="100" flex="66">
+								<label>Email Address (Changing Will Require Logging In Again After Saving)</label>
+								<input type="email" name="EmailAddress" ng-model="currentUser.EmailAddress" required="required">
+							</md-input-container>
+							<md-input-container flex-sm="100" flex="33">
+								<label>Phone Number</label>
+								<input type="text" ng-model="currentUser.Phone" ui-mask="{{(currentUser.Phone.length > 10) ? '9 (999) 999-9999?9' : '(999) 999-9999?9?9'}}" ui-mask-placeholder ui-mask-placeholder-char=" ">
+							</md-input-container>
+						</div>
+						<div layout layout-sm="column">
+							<md-input-container flex-sm="100" flex="50">
+								<label>City</label>
+								<input type="text" ng-model="currentUser.City">
+							</md-input-container>
+							<md-input-container flex-sm="100" flex="25">
+								<label>State</label>
+								<input type="text" ng-model="currentUser.State">
+							</md-input-container>
+							<md-input-container flex-sm="100" flex="25">
+								<label>Zip/Postal Code</label>
+								<input type="text" ng-model="currentUser.Zip">
+							</md-input-container>
+						</div>
+					</form>
+					<md-button class="md-raised md-primary btn-w-md md-button md-ink-ripple pull-right" aria-label="save profile" style="margin-right:10px;" ng-transclude="" ng-click="saveUserProfile()" type="button"><span class="ng-scope">Save Profile</span><div class="md-ripple-container"></div></md-button>
+					<md-button class="md-raised md-warning btn-w-md md-button md-ink-ripple pull-right" aria-label="change password" style="margin-right:10px;" ng-transclude="" ng-click="changePassword()" type="button"><span class="ng-scope">Change Password</span><div class="md-ripple-container"></div></md-button>
+				</div>
+			</div>
+		</div>
+	</section>
+	<script type="text/ng-template" id="passwordeditor.html">
+		<div class="modal-header">
+			<h3 class="modal-title">Change Password</h3>
+		</div>
+		<div class="modal-body">
+			<div class="row">
+				<div class="col-sm-12">
+					<md-input-container class="full-width">
+						<label>Current Password</label>
+						<input type="password" ng-model="passwordChange.currentPassword">
+					</md-input-container>
+					<md-input-container class="full-width">
+						<label>New Password</label>
+						<input type="password" ng-model="passwordChange.newPassword">
+					</md-input-container>
+					<md-input-container class="full-width">
+						<label>Confirm New Password</label>
+						<input type="password" ng-model="passwordChange.confirmNewPassword">
+					</md-input-container>
+				</div>
+			</div>
+		</div>
+		<div class="modal-footer">
+			<md-button class="md-raised md-primary btn-w-md md-button md-ink-ripple pull-right" aria-label="submit change" ng-transclude="" ng-click="submitPasswordChange()" ><span class="ng-scope">Save Changes</span><div class="md-ripple-container"></div></md-button>
+			<md-button class="md-raised md-accent btn-w-md md-button md-ink-ripple pull-right" aria-label="cancel" style="margin-right:10px;" ng-transclude="" ng-click="closeModal()"><span class="ng-scope">Cancel</span><div class="md-ripple-container"></div></md-button>
+		</div>
+	</script>
+</div>

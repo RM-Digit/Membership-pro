@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<svg width="640" height="480" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg" xmlns:se="http://svg-edit.googlecode.com">
+ <!-- Created with SVG-edit - http://svg-edit.googlecode.com/ -->
+ <g display="inline">
+  <title>Layer 1</title>
+  <polyline se:connector="svg_10 svg_24" id="svg_28" points="383.51776123046875,264 423.5870056152344,264 463.65625,264" stroke="#000000" stroke-width="5" fill="none"/>
+  <polyline se:connector="svg_10 svg_8" id="svg_16" points="302,314.51776123046875 302,326.0088806152344 302,337.5" stroke="#000000" stroke-width="5" fill="none"/>
+  <polyline se:connector="svg_4 svg_10" id="svg_15" points="301.40789794921875,196.5 301.48236083984375,204.99111938476562 301.5568542480469,213.4822235107422" stroke="#000000" stroke-width="5" fill="none"/>
+  <polyline se:connector="svg_4 svg_7" id="svg_14" points="384.5,150.4371795654297 396.5,150.5 408.5,150.5628204345703" stroke="#000000" stroke-width="5" fill="none"/>
+  <polyline se:connector="svg_3 svg_4" id="svg_13" points="193.5,150 205.5,150 217.5,150" stroke="#000000" stroke-width="5" fill="none"/>
+  <rect fill="#bfbfbf" stroke="#000000" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" x="27" y="104" width="166" height="92" id="svg_3"/>
+  <rect fill="#bfbfbf" stroke="#000000" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" x="218" y="104" width="166" height="92" id="svg_4"/>
+  <rect fill="#bfbfbf" stroke="#000000" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" x="409" y="105" width="166" height="92" id="svg_7"/>
+  <rect fill="#bfbfbf" stroke="#000000" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" x="219" y="338" width="166" height="92" id="svg_8"/>
+  <polygon id="svg_9" fill="#bfbfbf"/>
+  <polygon id="svg_10" fill="#ffff00" points="383.01776123046875,264 302,314.01776123046875 220.9822235107422,264 302,213.9822235107422 383.01776123046875,264 " stroke="#000000"/>
+  <polygon id="svg_11" fill="#bfbfbf"/>
+  <polygon id="svg_12" fill="#bfbfbf"/>
+  <text fill="#000000" stroke="#000000" stroke-width="0" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" x="106" y="158" id="svg_17" font-size="24" font-family="serif" text-anchor="middle" xml:space="preserve">Start</text>
+  <text fill="#000000" stroke="#000000" stroke-width="0" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" x="299" y="159" font-size="24" font-family="serif" text-anchor="middle" xml:space="preserve" id="svg_18">Step 1</text>
+  <text fill="#000000" stroke="#000000" stroke-width="0" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" x="498" y="159" font-size="24" font-family="serif" text-anchor="middle" xml:space="preserve" id="svg_19">Step 2</text>
+  <text fill="#000000" stroke="#000000" stroke-width="0" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" x="301" y="270" font-size="24" font-family="serif" text-anchor="middle" xml:space="preserve" id="svg_20">???</text>
+  <text fill="#000000" stroke="#000000" stroke-width="0" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" x="301" y="396" font-size="24" font-family="serif" text-anchor="middle" xml:space="preserve" id="svg_21">Step 3</text>
+  <rect fill="#bfbfbf" stroke="#000000" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" x="409" y="220" width="166" height="92" id="svg_22"/>
+  <text fill="#000000" stroke="#000000" stroke-width="0" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" x="494" y="272" font-size="24" font-family="serif" text-anchor="middle" xml:space="preserve" id="svg_24">Step 3</text>
+  <text fill="#000000" stroke="#000000" stroke-width="0" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" x="330" y="325" id="svg_25" font-size="24" font-family="serif" text-anchor="middle" xml:space="preserve">No</text>
+  <text fill="#000000" stroke="#000000" stroke-width="0" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" x="377" y="241" font-size="24" font-family="serif" text-anchor="middle" xml:space="preserve" id="svg_26">Yes</text>
+ </g>
+ <g display="inline">
+  <title>Layer 2</title>
+ </g>
+</svg>

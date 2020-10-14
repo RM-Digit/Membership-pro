@@ -1,0 +1,1391 @@
+<?xml version="1.0" encoding="utf-8"?>
+<database name="default" identifierQuoting="true"  defaultIdMethod="native" defaultPhpNamingMethod="underscore">
+  <table name="access_level_details" idMethod="native" phpName="AccessLevelDetails">
+    <column name="id" phpName="Id" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
+    <column name="access_level_id" phpName="AccessLevelId" type="INTEGER" required="true"/>
+    <column name="access_level_option_id" phpName="AccessLevelOptionId" type="INTEGER" required="true"/>
+    <column name="date_time_created" phpName="DateTimeCreated" type="TIMESTAMP"/>
+    <column name="last_updated" phpName="LastUpdated" type="TIMESTAMP" required="true" defaultExpr="CURRENT_TIMESTAMP"/>
+    <foreign-key foreignTable="access_levels" name="access_level_details_ibfk_1" onDelete="CASCADE">
+      <reference local="access_level_id" foreign="id"/>
+    </foreign-key>
+    <foreign-key foreignTable="access_level_options" name="access_level_details_ibfk_2" onDelete="CASCADE">
+      <reference local="access_level_option_id" foreign="id"/>
+    </foreign-key>
+    <index name="access_level_id">
+      <index-column name="access_level_id"/>
+    </index>
+    <index name="access_level_option_id">
+      <index-column name="access_level_option_id"/>
+    </index>
+    <vendor type="mysql">
+      <parameter name="Engine" value="InnoDB"/>
+    </vendor>
+  </table>
+  <table name="access_level_options" idMethod="native" phpName="AccessLevelOptions">
+    <column name="id" phpName="Id" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
+    <column name="name" phpName="Name" type="VARCHAR" size="50" required="true"/>
+    <column name="package" phpName="Package" type="VARCHAR" size="50" required="true"/>
+    <column name="date_time_created" phpName="DateTimeCreated" type="TIMESTAMP"/>
+    <column name="last_updated" phpName="LastUpdated" type="TIMESTAMP" required="true" defaultExpr="CURRENT_TIMESTAMP"/>
+    <column name="client_id" phpName="ClientId" type="INTEGER"/>
+    <foreign-key foreignTable="clients" name="access_level_options_ibfk_1" onDelete="CASCADE">
+      <reference local="client_id" foreign="id"/>
+    </foreign-key>
+    <index name="client_id">
+      <index-column name="client_id"/>
+    </index>
+    <vendor type="mysql">
+      <parameter name="Engine" value="InnoDB"/>
+    </vendor>
+  </table>
+  <table name="access_levels" idMethod="native" phpName="AccessLevels">
+    <column name="id" phpName="Id" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
+    <column name="client_id" phpName="ClientId" type="INTEGER"/>
+    <column name="name" phpName="Name" type="VARCHAR" size="125" required="true"/>
+    <column name="date_time_created" phpName="DateTimeCreated" type="TIMESTAMP"/>
+    <column name="last_updated" phpName="LastUpdated" type="TIMESTAMP" required="true" defaultExpr="CURRENT_TIMESTAMP"/>
+    <foreign-key foreignTable="clients" name="access_levels_ibfk_1" onDelete="CASCADE">
+      <reference local="client_id" foreign="id"/>
+    </foreign-key>
+    <index name="client_id">
+      <index-column name="client_id"/>
+    </index>
+    <vendor type="mysql">
+      <parameter name="Engine" value="InnoDB"/>
+    </vendor>
+  </table>
+  <table name="action_tracking" idMethod="native" phpName="ActionTracking">
+    <column name="id" phpName="Id" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
+    <column name="client_id" phpName="ClientId" type="INTEGER" required="true"/>
+    <column name="project_id" phpName="ProjectId" type="INTEGER" required="true"/>
+    <column name="table_modified" phpName="TableModified" type="VARCHAR" size="25" required="true"/>
+    <column name="record_id" phpName="RecordId" type="INTEGER" required="true"/>
+    <column name="field_label" phpName="FieldLabel" type="VARCHAR" size="255"/>
+    <column name="old_value" phpName="OldValue" type="CLOB"/>
+    <column name="new_value" phpName="NewValue" type="CLOB"/>
+    <column name="caption" phpName="Caption" type="VARCHAR" size="255"/>
+    <column name="icon" phpName="Icon" type="VARCHAR" size="25"/>
+    <column name="date_time_created" phpName="DateTimeCreated" type="TIMESTAMP" required="true" defaultExpr="CURRENT_TIMESTAMP"/>
+    <column name="user_id" phpName="UserId" type="INTEGER" required="true"/>
+    <foreign-key foreignTable="users" name="action_tracking_ibfk_1" onDelete="CASCADE">
+      <reference local="user_id" foreign="id"/>
+    </foreign-key>
+    <foreign-key foreignTable="projects" name="action_tracking_ibfk_2" onDelete="CASCADE">
+      <reference local="project_id" foreign="id"/>
+    </foreign-key>
+    <foreign-key foreignTable="clients" name="action_tracking_ibfk_3" onDelete="CASCADE">
+      <reference local="client_id" foreign="id"/>
+    </foreign-key>
+    <index name="user_id">
+      <index-column name="user_id"/>
+    </index>
+    <index name="project_id">
+      <index-column name="project_id"/>
+    </index>
+    <index name="client_id">
+      <index-column name="client_id"/>
+    </index>
+    <vendor type="mysql">
+      <parameter name="Engine" value="InnoDB"/>
+    </vendor>
+  </table>
+  <table name="analyze_ce_matrix" idMethod="native" phpName="AnalyzeCeMatrix">
+    <column name="id" phpName="Id" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
+    <column name="project_id" phpName="ProjectId" type="INTEGER" required="true"/>
+    <column name="phase_id" phpName="PhaseId" type="INTEGER" required="true"/>
+    <column name="phase_component_id" phpName="PhaseComponentId" type="INTEGER" required="true"/>
+    <column name="process_step" phpName="ProcessStep" type="VARCHAR" size="255" required="true"/>
+    <column name="process_input" phpName="ProcessInput" type="VARCHAR" size="255" required="true"/>
+    <column name="date_time_created" phpName="DateTimeCreated" type="TIMESTAMP"/>
+    <column name="last_updated" phpName="LastUpdated" type="TIMESTAMP" required="true" defaultExpr="CURRENT_TIMESTAMP"/>
+    <foreign-key foreignTable="projects" name="analyze_ce_matrix_ibfk_1" onDelete="CASCADE">
+      <reference local="project_id" foreign="id"/>
+    </foreign-key>
+    <foreign-key foreignTable="project_phases" name="analyze_ce_matrix_ibfk_2" onDelete="CASCADE">
+      <reference local="phase_id" foreign="id"/>
+    </foreign-key>
+    <foreign-key foreignTable="phase_components" name="analyze_ce_matrix_ibfk_3" onDelete="CASCADE">
+      <reference local="phase_component_id" foreign="id"/>
+    </foreign-key>
+    <index name="phase_id">
+      <index-column name="phase_id"/>
+    </index>
+    <index name="phase_component_id">
+      <index-column name="phase_component_id"/>
+    </index>
+    <index name="project_id">
+      <index-column name="project_id"/>
+    </index>
+    <vendor type="mysql">
+      <parameter name="Engine" value="InnoDB"/>
+    </vendor>
+  </table>
+  <table name="analyze_ce_matrix_data" idMethod="native" phpName="AnalyzeCeMatrixData">
+    <column name="id" phpName="Id" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
+    <column name="matrix_id" phpName="MatrixId" type="INTEGER" required="true"/>
+    <column name="matrix_output_id" phpName="MatrixOutputId" type="INTEGER"/>
+    <column name="correlation" phpName="Correlation" type="VARCHAR" size="255" required="true"/>
+    <column name="date_time_created" phpName="DateTimeCreated" type="TIMESTAMP"/>
+    <column name="last_updated" phpName="LastUpdated" type="TIMESTAMP" required="true" defaultExpr="CURRENT_TIMESTAMP"/>
+    <foreign-key foreignTable="analyze_ce_matrix" name="analyze_ce_matrix_data_ibfk_1" onDelete="CASCADE">
+      <reference local="matrix_id" foreign="id"/>
+    </foreign-key>
+    <foreign-key foreignTable="analyze_ce_matrix_outputs" name="analyze_ce_matrix_data_ibfk_2" onDelete="CASCADE">
+      <reference local="matrix_output_id" foreign="id"/>
+    </foreign-key>
+    <index name="matrix_id">
+      <index-column name="matrix_id"/>
+    </index>
+    <index name="matrix_output_id">
+      <index-column name="matrix_output_id"/>
+    </index>
+    <vendor type="mysql">
+      <parameter name="Engine" value="InnoDB"/>
+    </vendor>
+  </table>
+  <table name="analyze_ce_matrix_outputs" idMethod="native" phpName="AnalyzeCeMatrixOutputs">
+    <column name="id" phpName="Id" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
+    <column name="project_id" phpName="ProjectId" type="INTEGER" required="true"/>
+    <column name="phase_id" phpName="PhaseId" type="INTEGER" required="true"/>
+    <column name="phase_component_id" phpName="PhaseComponentId" type="INTEGER" required="true"/>
+    <column name="process_output" phpName="ProcessOutput" type="VARCHAR" size="255" required="true"/>
+    <column name="importance" phpName="Importance" type="INTEGER" required="true"/>
+    <column name="date_time_created" phpName="DateTimeCreated" type="TIMESTAMP"/>
+    <column name="last_updated" phpName="LastUpdated" type="TIMESTAMP" required="true" defaultExpr="CURRENT_TIMESTAMP"/>
+    <foreign-key foreignTable="projects" name="analyze_ce_matrix_outputs_ibfk_2" onDelete="CASCADE">
+      <reference local="project_id" foreign="id"/>
+    </foreign-key>
+    <foreign-key foreignTable="project_phases" name="analyze_ce_matrix_outputs_ibfk_3">
+      <reference local="phase_id" foreign="id"/>
+    </foreign-key>
+    <foreign-key foreignTable="phase_components" name="analyze_ce_matrix_outputs_ibfk_4">
+      <reference local="phase_component_id" foreign="id"/>
+    </foreign-key>
+    <index name="project_id">
+      <index-column name="project_id"/>
+    </index>
+    <index name="phase_id">
+      <index-column name="phase_id"/>
+    </index>
+    <index name="phase_component_id">
+      <index-column name="phase_component_id"/>
+    </index>
+    <vendor type="mysql">
+      <parameter name="Engine" value="InnoDB"/>
+    </vendor>
+  </table>
+  <table name="analyze_critical_x" idMethod="native" phpName="AnalyzeCriticalX">
+    <column name="id" phpName="Id" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
+    <column name="project_id" phpName="ProjectId" type="INTEGER" required="true"/>
+    <column name="phase_id" phpName="PhaseId" type="INTEGER" required="true"/>
+    <column name="phase_component_id" phpName="PhaseComponentId" type="INTEGER" required="true"/>
+    <column name="input" phpName="Input" type="VARCHAR" size="255" required="true"/>
+    <column name="practical_theory" phpName="PracticalTheory" type="VARCHAR" size="255" required="true"/>
+    <column name="x_measurement" phpName="XMeasurement" type="VARCHAR" size="255" required="true"/>
+    <column name="stat_tested" phpName="StatTested" type="VARCHAR" size="255" required="true"/>
+    <column name="tool_used" phpName="ToolUsed" type="VARCHAR" size="255" required="true"/>
+    <column name="ho" phpName="Ho" type="VARCHAR" size="255" required="true"/>
+    <column name="ha" phpName="Ha" type="VARCHAR" size="255" required="true"/>
+    <column name="results" phpName="Results" type="VARCHAR" size="255" required="true"/>
+    <column name="practical_conclusions" phpName="PracticalConclusions" type="VARCHAR" size="255" required="true"/>
+    <column name="next_steps" phpName="NextSteps" type="VARCHAR" size="255" required="true"/>
+    <column name="date_time_created" phpName="DateTimeCreated" type="TIMESTAMP"/>
+    <column name="last_updated" phpName="LastUpdated" type="TIMESTAMP" required="true" defaultExpr="CURRENT_TIMESTAMP"/>
+    <foreign-key foreignTable="projects" name="analyze_critical_x_ibfk_1" onDelete="CASCADE">
+      <reference local="project_id" foreign="id"/>
+    </foreign-key>
+    <foreign-key foreignTable="project_phases" name="analyze_critical_x_ibfk_2" onDelete="CASCADE">
+      <reference local="phase_id" foreign="id"/>
+    </foreign-key>
+    <foreign-key foreignTable="phase_components" name="analyze_critical_x_ibfk_3" onDelete="CASCADE">
+      <reference local="phase_component_id" foreign="id"/>
+    </foreign-key>
+    <index name="phase_id">
+      <index-column name="phase_id"/>
+    </index>
+    <index name="phase_component_id">
+      <index-column name="phase_component_id"/>
+    </index>
+    <index name="project_id">
+      <index-column name="project_id"/>
+    </index>
+    <vendor type="mysql">
+      <parameter name="Engine" value="InnoDB"/>
+    </vendor>
+  </table>
+  <table name="analyze_fmea" idMethod="native" phpName="AnalyzeFmea">
+    <column name="id" phpName="Id" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
+    <column name="project_id" phpName="ProjectId" type="INTEGER" required="true"/>
+    <column name="phase_id" phpName="PhaseId" type="INTEGER" required="true"/>
+    <column name="phase_component_id" phpName="PhaseComponentId" type="INTEGER" required="true"/>
+    <column name="input" phpName="Input" type="VARCHAR" size="255" required="true"/>
+    <column name="failure_mode" phpName="FailureMode" type="VARCHAR" size="255" required="true"/>
+    <column name="failure_effects" phpName="FailureEffects" type="VARCHAR" size="255" required="true"/>
+    <column name="severity" phpName="Severity" type="VARCHAR" size="255" required="true"/>
+    <column name="causes" phpName="Causes" type="VARCHAR" size="255" required="true"/>
+    <column name="likelihood" phpName="Likelihood" type="VARCHAR" size="255" required="true"/>
+    <column name="current_controls" phpName="CurrentControls" type="VARCHAR" size="255" required="true"/>
+    <column name="detection" phpName="Detection" type="VARCHAR" size="255" required="true"/>
+    <column name="rpn" phpName="Rpn" type="VARCHAR" size="255" required="true"/>
+    <column name="actions_recommended" phpName="ActionsRecommended" type="VARCHAR" size="255" required="true"/>
+    <column name="resp" phpName="Resp" type="VARCHAR" size="255" required="true"/>
+    <column name="actions_taken" phpName="ActionsTaken" type="VARCHAR" size="255" required="true"/>
+    <column name="action_plan_severity" phpName="ActionPlanSeverity" type="VARCHAR" size="255" required="true"/>
+    <column name="action_plan_likelihood" phpName="ActionPlanLikelihood" type="VARCHAR" size="255" required="true"/>
+    <column name="action_plan_detection" phpName="ActionPlanDetection" type="VARCHAR" size="255" required="true"/>
+    <column name="action_plan_rpn" phpName="ActionPlanRpn" type="VARCHAR" size="255" required="true"/>
+    <column name="date_time_created" phpName="DateTimeCreated" type="TIMESTAMP"/>
+    <column name="last_updated" phpName="LastUpdated" type="TIMESTAMP" required="true" defaultExpr="CURRENT_TIMESTAMP"/>
+    <foreign-key foreignTable="projects" name="analyze_fmea_ibfk_1" onDelete="CASCADE">
+      <reference local="project_id" foreign="id"/>
+    </foreign-key>
+    <foreign-key foreignTable="project_phases" name="analyze_fmea_ibfk_2" onDelete="CASCADE">
+      <reference local="phase_id" foreign="id"/>
+    </foreign-key>
+    <foreign-key foreignTable="phase_components" name="analyze_fmea_ibfk_3" onDelete="CASCADE">
+      <reference local="phase_component_id" foreign="id"/>
+    </foreign-key>
+    <index name="project_id">
+      <index-column name="project_id"/>
+    </index>
+    <index name="phase_id">
+      <index-column name="phase_id"/>
+    </index>
+    <index name="phase_component_id">
+      <index-column name="phase_component_id"/>
+    </index>
+    <vendor type="mysql">
+      <parameter name="Engine" value="InnoDB"/>
+    </vendor>
+  </table>
+  <table name="analyze_gate_review" idMethod="native" phpName="AnalyzeGateReview">
+    <column name="id" phpName="Id" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
+    <column name="project_id" phpName="ProjectId" type="INTEGER" required="true"/>
+    <column name="phase_id" phpName="PhaseId" type="INTEGER" required="true"/>
+    <column name="phase_component_id" phpName="PhaseComponentId" type="INTEGER" required="true"/>
+    <column name="quadrant" phpName="Quadrant" type="INTEGER" required="true"/>
+    <column name="detail" phpName="Detail" type="VARCHAR" size="255" required="true"/>
+    <column name="date_time_created" phpName="DateTimeCreated" type="TIMESTAMP"/>
+    <column name="last_updated" phpName="LastUpdated" type="TIMESTAMP" required="true" defaultExpr="CURRENT_TIMESTAMP"/>
+    <foreign-key foreignTable="projects" name="analyze_gate_review_ibfk_1" onDelete="CASCADE">
+      <reference local="project_id" foreign="id"/>
+    </foreign-key>
+    <foreign-key foreignTable="project_phases" name="analyze_gate_review_ibfk_2" onDelete="CASCADE">
+      <reference local="phase_id" foreign="id"/>
+    </foreign-key>
+    <foreign-key foreignTable="phase_components" name="analyze_gate_review_ibfk_3" onDelete="CASCADE">
+      <reference local="phase_component_id" foreign="id"/>
+    </foreign-key>
+    <index name="project_id">
+      <index-column name="project_id"/>
+    </index>
+    <index name="phase_id">
+      <index-column name="phase_id"/>
+    </index>
+    <index name="phase_component_id">
+      <index-column name="phase_component_id"/>
+    </index>
+    <vendor type="mysql">
+      <parameter name="Engine" value="InnoDB"/>
+    </vendor>
+  </table>
+  <table name="analyze_hypothesis_map" idMethod="native" phpName="AnalyzeHypothesisMap">
+    <column name="id" phpName="Id" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
+    <column name="project_id" phpName="ProjectId" type="INTEGER" required="true"/>
+    <column name="phase_id" phpName="PhaseId" type="INTEGER" required="true"/>
+    <column name="phase_component_id" phpName="PhaseComponentId" type="INTEGER" required="true"/>
+    <column name="svg" phpName="Svg" type="CLOB" required="true"/>
+    <column name="date_time_created" phpName="DateTimeCreated" type="TIMESTAMP"/>
+    <column name="last_updated" phpName="LastUpdated" type="TIMESTAMP" required="true" defaultExpr="CURRENT_TIMESTAMP"/>
+    <foreign-key foreignTable="projects" name="analyze_hypothesis_map_ibfk_1" onDelete="CASCADE">
+      <reference local="project_id" foreign="id"/>
+    </foreign-key>
+    <foreign-key foreignTable="project_phases" name="analyze_hypothesis_map_ibfk_2" onDelete="CASCADE">
+      <reference local="phase_id" foreign="id"/>
+    </foreign-key>
+    <foreign-key foreignTable="phase_components" name="analyze_hypothesis_map_ibfk_3" onDelete="CASCADE">
+      <reference local="phase_component_id" foreign="id"/>
+    </foreign-key>
+    <index name="phase_component_id">
+      <index-column name="phase_component_id"/>
+    </index>
+    <index name="phase_id">
+      <index-column name="phase_id"/>
+    </index>
+    <index name="project_id">
+      <index-column name="project_id"/>
+    </index>
+    <vendor type="mysql">
+      <parameter name="Engine" value="InnoDB"/>
+    </vendor>
+  </table>
+  <table name="analyze_pareto_chart" idMethod="native" phpName="AnalyzeParetoChart">
+    <column name="id" phpName="Id" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
+    <column name="project_id" phpName="ProjectId" type="INTEGER" required="true"/>
+    <column name="phase_id" phpName="PhaseId" type="INTEGER" required="true"/>
+    <column name="phase_component_id" phpName="PhaseComponentId" type="INTEGER" required="true"/>
+    <column name="data" phpName="Data" type="LONGVARCHAR"/>
+    <column name="date_time_created" phpName="DateTimeCreated" type="TIMESTAMP"/>
+    <column name="last_updated" phpName="LastUpdated" type="TIMESTAMP"/>
+    <index name="project_id">
+      <index-column name="project_id"/>
+    </index>
+    <index name="phase_id">
+      <index-column name="phase_id"/>
+    </index>
+    <index name="phase_component_id">
+      <index-column name="phase_component_id"/>
+    </index>
+    <vendor type="mysql">
+      <parameter name="Engine" value="InnoDB"/>
+    </vendor>
+  </table>
+  <table name="analyze_regression" idMethod="native" phpName="AnalyzeRegression">
+    <column name="id" phpName="Id" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
+    <column name="project_id" phpName="ProjectId" type="INTEGER" required="true"/>
+    <column name="phase_id" phpName="PhaseId" type="INTEGER" required="true"/>
+    <column name="phase_component_id" phpName="PhaseComponentId" type="INTEGER" required="true"/>
+    <column name="input" phpName="Input" type="LONGVARCHAR"/>
+    <column name="multiple_r" phpName="MultipleR" type="DOUBLE"/>
+    <column name="r_square" phpName="RSquare" type="DOUBLE"/>
+    <column name="adjusted_r_square" phpName="AdjustedRSquare" type="DOUBLE"/>
+    <column name="standard_error" phpName="StandardError" type="DOUBLE"/>
+    <column name="observations" phpName="Observations" type="INTEGER"/>
+    <column name="regression_df" phpName="RegressionDf" type="DOUBLE"/>
+    <column name="regression_ss" phpName="RegressionSs" type="DOUBLE"/>
+    <column name="regression_ms" phpName="RegressionMs" type="DOUBLE"/>
+    <column name="regression_f" phpName="RegressionF" type="DOUBLE"/>
+    <column name="regression_f_significance" phpName="RegressionFSignificance" type="DOUBLE"/>
+    <column name="residual_df" phpName="ResidualDf" type="DOUBLE"/>
+    <column name="residual_ss" phpName="ResidualSs" type="DOUBLE"/>
+    <column name="residual_ms" phpName="ResidualMs" type="DOUBLE"/>
+    <column name="total_df" phpName="TotalDf" type="DOUBLE"/>
+    <column name="total_ss" phpName="TotalSs" type="DOUBLE"/>
+    <column name="intercept_coefficients" phpName="InterceptCoefficients" type="DOUBLE"/>
+    <column name="intercept_standard_error" phpName="InterceptStandardError" type="DOUBLE"/>
+    <column name="intercept_t_stat" phpName="InterceptTStat" type="DOUBLE"/>
+    <column name="intercept_p_value" phpName="InterceptPValue" type="DOUBLE"/>
+    <column name="intercept_lower" phpName="InterceptLower" type="DOUBLE"/>
+    <column name="intercept_upper" phpName="InterceptUpper" type="DOUBLE"/>
+    <column name="hh_size_coefficients" phpName="HhSizeCoefficients" type="DOUBLE"/>
+    <column name="hh_size_standard_error" phpName="HhSizeStandardError" type="DOUBLE"/>
+    <column name="hh_size_t_stat" phpName="HhSizeTStat" type="DOUBLE"/>
+    <column name="hh_size_p_value" phpName="HhSizePValue" type="DOUBLE"/>
+    <column name="hh_size_lower" phpName="HhSizeLower" type="DOUBLE"/>
+    <column name="hh_size_upper" phpName="HhSizeUpper" type="DOUBLE"/>
+    <column name="date_time_created" phpName="DateTimeCreated" type="TIMESTAMP"/>
+    <column name="last_updated" phpName="LastUpdated" type="TIMESTAMP"/>
+    <index name="project_id">
+      <index-column name="project_id"/>
+    </index>
+    <index name="phase_id">
+      <index-column name="phase_id"/>
+    </index>
+    <index name="phase_component_id">
+      <index-column name="phase_component_id"/>
+    </index>
+    <vendor type="mysql">
+      <parameter name="Engine" value="InnoDB"/>
+    </vendor>
+  </table>
+  <table name="chart_excel_data" idMethod="native" phpName="ChartExcelData">
+    <column name="id" phpName="Id" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
+    <column name="project_id" phpName="ProjectId" type="INTEGER" required="true"/>
+    <column name="phase_id" phpName="PhaseId" type="INTEGER" required="true"/>
+    <column name="phase_component_id" phpName="PhaseComponentId" type="INTEGER" required="true"/>
+    <column name="data_url" phpName="DataUrl" type="VARCHAR" size="255" required="true"/>
+    <column name="date_time_created" phpName="DateTimeCreated" type="TIMESTAMP"/>
+    <column name="last_updated" phpName="LastUpdated" type="TIMESTAMP" required="true" defaultExpr="CURRENT_TIMESTAMP"/>
+    <foreign-key foreignTable="projects" name="chart_excel_data_ibfk_1" onDelete="CASCADE">
+      <reference local="project_id" foreign="id"/>
+    </foreign-key>
+    <foreign-key foreignTable="project_phases" name="chart_excel_data_ibfk_2" onDelete="CASCADE">
+      <reference local="phase_id" foreign="id"/>
+    </foreign-key>
+    <foreign-key foreignTable="phase_components" name="chart_excel_data_ibfk_3" onDelete="CASCADE">
+      <reference local="phase_component_id" foreign="id"/>
+    </foreign-key>
+    <index name="phase_component_id">
+      <index-column name="phase_component_id"/>
+    </index>
+    <index name="phase_id">
+      <index-column name="phase_id"/>
+    </index>
+    <index name="project_id">
+      <index-column name="project_id"/>
+    </index>
+    <vendor type="mysql">
+      <parameter name="Engine" value="InnoDB"/>
+    </vendor>
+  </table>
+  <table name="clients" idMethod="native" phpName="Clients">
+    <column name="id" phpName="Id" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
+    <column name="name" phpName="Name" type="VARCHAR" size="255" required="true"/>
+    <column name="email_address" phpName="EmailAddress" type="VARCHAR" size="255" required="true"/>
+    <column name="phone" phpName="Phone" type="VARCHAR" size="255" required="true"/>
+    <column name="primary_contact" phpName="PrimaryContact" type="VARCHAR" size="255" required="true"/>
+    <column name="street" phpName="Street" type="VARCHAR" size="255" required="true"/>
+    <column name="city" phpName="City" type="VARCHAR" size="255" required="true"/>
+    <column name="state" phpName="State" type="VARCHAR" size="255" required="true"/>
+    <column name="zip" phpName="Zip" type="VARCHAR" size="255" required="true"/>
+    <column name="country" phpName="Country" type="VARCHAR" size="255" required="true"/>
+    <column name="province" phpName="Province" type="VARCHAR" size="255" required="true"/>
+    <column name="date_time_created" phpName="DateTimeCreated" type="TIMESTAMP"/>
+    <column name="last_updated" phpName="LastUpdated" type="TIMESTAMP" required="true" defaultExpr="CURRENT_TIMESTAMP"/>
+    <column name="user_id" phpName="UserId" type="INTEGER" size="10" sqlType="int(10) unsigned"/>
+    <column name="wordpress_id" phpName="WordpressId" type="INTEGER"/>
+    <index name="user_id">
+      <index-column name="user_id"/>
+    </index>
+    <vendor type="mysql">
+      <parameter name="Engine" value="InnoDB"/>
+    </vendor>
+  </table>
+  <table name="control_control_plan" idMethod="native" phpName="ControlControlPlan">
+    <column name="id" phpName="Id" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
+    <column name="project_id" phpName="ProjectId" type="INTEGER" required="true"/>
+    <column name="phase_id" phpName="PhaseId" type="INTEGER" required="true"/>
+    <column name="phase_component_id" phpName="PhaseComponentId" type="INTEGER" required="true"/>
+    <column name="process_steps" phpName="ProcessSteps" type="VARCHAR" size="255" required="true"/>
+    <column name="ctq" phpName="Ctq" type="VARCHAR" size="255" required="true"/>
+    <column name="specification_characteristic" phpName="SpecificationCharacteristic" type="VARCHAR" size="255" required="true"/>
+    <column name="lsl" phpName="Lsl" type="VARCHAR" size="255" required="true"/>
+    <column name="usl" phpName="Usl" type="VARCHAR" size="255" required="true"/>
+    <column name="unit_of_measure" phpName="UnitOfMeasure" type="VARCHAR" size="255" required="true"/>
+    <column name="data_description" phpName="DataDescription" type="VARCHAR" size="255" required="true"/>
+    <column name="measurement_method" phpName="MeasurementMethod" type="VARCHAR" size="255" required="true"/>
+    <column name="sample_size" phpName="SampleSize" type="INTEGER" required="true"/>
+    <column name="measurement_frequency" phpName="MeasurementFrequency" type="VARCHAR" size="255" required="true"/>
+    <column name="who_measures" phpName="WhoMeasures" type="INTEGER"/>
+    <column name="where_recorded" phpName="WhereRecorded" type="VARCHAR" size="255" required="true"/>
+    <column name="corrective_action" phpName="CorrectiveAction" type="VARCHAR" size="255" required="true"/>
+    <column name="applicable_sop" phpName="ApplicableSop" type="LONGVARCHAR" required="true"/>
+    <column name="date_time_created" phpName="DateTimeCreated" type="TIMESTAMP"/>
+    <column name="last_updated" phpName="LastUpdated" type="TIMESTAMP" required="true" defaultExpr="CURRENT_TIMESTAMP"/>
+    <foreign-key foreignTable="projects" name="control_control_plan_ibfk_1" onDelete="CASCADE">
+      <reference local="project_id" foreign="id"/>
+    </foreign-key>
+    <foreign-key foreignTable="project_phases" name="control_control_plan_ibfk_2" onDelete="CASCADE">
+      <reference local="phase_id" foreign="id"/>
+    </foreign-key>
+    <foreign-key foreignTable="phase_components" name="control_control_plan_ibfk_3" onDelete="CASCADE">
+      <reference local="phase_component_id" foreign="id"/>
+    </foreign-key>
+    <foreign-key foreignTable="users" name="control_control_plan_ibfk_4" onDelete="SET NULL">
+      <reference local="who_measures" foreign="id"/>
+    </foreign-key>
+    <index name="who_measures">
+      <index-column name="who_measures"/>
+    </index>
+    <index name="project_id">
+      <index-column name="project_id"/>
+    </index>
+    <index name="phase_component_id">
+      <index-column name="phase_component_id"/>
+    </index>
+    <index name="phase_id">
+      <index-column name="phase_id"/>
+    </index>
+    <vendor type="mysql">
+      <parameter name="Engine" value="InnoDB"/>
+    </vendor>
+  </table>
+  <table name="control_gate_review" idMethod="native" phpName="ControlGateReview">
+    <column name="id" phpName="Id" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
+    <column name="project_id" phpName="ProjectId" type="INTEGER" required="true"/>
+    <column name="phase_id" phpName="PhaseId" type="INTEGER" required="true"/>
+    <column name="phase_component_id" phpName="PhaseComponentId" type="INTEGER" required="true"/>
+    <column name="quadrant" phpName="Quadrant" type="INTEGER" required="true"/>
+    <column name="detail" phpName="Detail" type="VARCHAR" size="255" required="true"/>
+    <column name="date_time_created" phpName="DateTimeCreated" type="TIMESTAMP"/>
+    <column name="last_updated" phpName="LastUpdated" type="TIMESTAMP" required="true" defaultExpr="CURRENT_TIMESTAMP"/>
+    <foreign-key foreignTable="projects" name="control_gate_review_ibfk_1" onDelete="CASCADE">
+      <reference local="project_id" foreign="id"/>
+    </foreign-key>
+    <foreign-key foreignTable="project_phases" name="control_gate_review_ibfk_2" onDelete="CASCADE">
+      <reference local="phase_id" foreign="id"/>
+    </foreign-key>
+    <foreign-key foreignTable="phase_components" name="control_gate_review_ibfk_3" onDelete="CASCADE">
+      <reference local="phase_component_id" foreign="id"/>
+    </foreign-key>
+    <index name="project_id">
+      <index-column name="project_id"/>
+    </index>
+    <index name="phase_id">
+      <index-column name="phase_id"/>
+    </index>
+    <index name="phase_component_id">
+      <index-column name="phase_component_id"/>
+    </index>
+    <vendor type="mysql">
+      <parameter name="Engine" value="InnoDB"/>
+    </vendor>
+  </table>
+  <table name="control_spc_chart" idMethod="native" phpName="ControlSpcChart">
+    <column name="id" phpName="Id" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
+    <column name="project_id" phpName="ProjectId" type="INTEGER" required="true"/>
+    <column name="phase_id" phpName="PhaseId" type="INTEGER" required="true"/>
+    <column name="phase_component_id" phpName="PhaseComponentId" type="INTEGER" required="true"/>
+    <column name="input" phpName="Input" type="CLOB"/>
+    <column name="date_time_created" phpName="DateTimeCreated" type="TIMESTAMP" defaultExpr="CURRENT_TIMESTAMP"/>
+    <column name="last_updated" phpName="LastUpdated" type="TIMESTAMP" required="true" defaultExpr="CURRENT_TIMESTAMP"/>
+    <index name="project_id">
+      <index-column name="project_id"/>
+    </index>
+    <index name="phase_id">
+      <index-column name="phase_id"/>
+    </index>
+    <index name="phase_component_id">
+      <index-column name="phase_component_id"/>
+    </index>
+    <vendor type="mysql">
+      <parameter name="Engine" value="InnoDB"/>
+    </vendor>
+  </table>
+  <table name="control_test_plan" idMethod="native" phpName="ControlTestPlan">
+    <column name="id" phpName="Id" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
+    <column name="project_id" phpName="ProjectId" type="INTEGER" required="true"/>
+    <column name="phase_id" phpName="PhaseId" type="INTEGER" required="true"/>
+    <column name="phase_component_id" phpName="PhaseComponentId" type="INTEGER" required="true"/>
+    <column name="subject" phpName="Subject" type="CHAR" sqlType="enum('process','trainer','employees','')" required="true"/>
+    <column name="area" phpName="Area" type="VARCHAR" size="255" required="true"/>
+    <column name="description" phpName="Description" type="VARCHAR" size="255" required="true"/>
+    <column name="details" phpName="Details" type="VARCHAR" size="255" required="true"/>
+    <column name="expected_benefits" phpName="ExpectedBenefits" type="VARCHAR" size="255" required="true"/>
+    <column name="responsible_party" phpName="ResponsibleParty" type="INTEGER"/>
+    <column name="estimated_cost" phpName="EstimatedCost" type="VARCHAR" size="25" required="true"/>
+    <column name="timing" phpName="Timing" type="VARCHAR" size="255" required="true"/>
+    <column name="status" phpName="Status" type="VARCHAR" size="255"/>
+    <column name="comments" phpName="Comments" type="LONGVARCHAR"/>
+    <column name="date_time_created" phpName="DateTimeCreated" type="TIMESTAMP"/>
+    <column name="last_updated" phpName="LastUpdated" type="TIMESTAMP" required="true" defaultExpr="CURRENT_TIMESTAMP"/>
+    <foreign-key foreignTable="projects" name="control_test_plan_ibfk_1" onDelete="CASCADE">
+      <reference local="project_id" foreign="id"/>
+    </foreign-key>
+    <foreign-key foreignTable="project_phases" name="control_test_plan_ibfk_2" onDelete="CASCADE">
+      <reference local="phase_id" foreign="id"/>
+    </foreign-key>
+    <foreign-key foreignTable="phase_components" name="control_test_plan_ibfk_3" onDelete="CASCADE">
+      <reference local="phase_component_id" foreign="id"/>
+    </foreign-key>
+    <foreign-key foreignTable="users" name="control_test_plan_ibfk_4" onDelete="SET NULL">
+      <reference local="responsible_party" foreign="id"/>
+    </foreign-key>
+    <index name="project_id">
+      <index-column name="project_id"/>
+    </index>
+    <index name="phase_component_id">
+      <index-column name="phase_component_id"/>
+    </index>
+    <index name="phase_id">
+      <index-column name="phase_id"/>
+    </index>
+    <index name="responsible_party">
+      <index-column name="responsible_party"/>
+    </index>
+    <vendor type="mysql">
+      <parameter name="Engine" value="InnoDB"/>
+    </vendor>
+  </table>
+  <table name="define_communication" idMethod="native" phpName="DefineCommunication">
+    <column name="id" phpName="Id" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
+    <column name="project_id" phpName="ProjectId" type="INTEGER" required="true"/>
+    <column name="phase_id" phpName="PhaseId" type="INTEGER" required="true"/>
+    <column name="phase_component_id" phpName="PhaseComponentId" type="INTEGER" required="true"/>
+    <column name="media" phpName="Media" type="LONGVARCHAR" required="true"/>
+    <column name="purpose" phpName="Purpose" type="LONGVARCHAR" required="true"/>
+    <column name="owner" phpName="Owner" type="INTEGER"/>
+    <column name="frequency" phpName="Frequency" type="VARCHAR" size="255" required="true"/>
+    <column name="day_time" phpName="DayTime" type="VARCHAR" size="255" required="true"/>
+    <column name="length" phpName="Length" type="VARCHAR" size="255" required="true"/>
+    <column name="date_time_created" phpName="DateTimeCreated" type="TIMESTAMP"/>
+    <column name="last_updated" phpName="LastUpdated" type="TIMESTAMP" required="true" defaultExpr="CURRENT_TIMESTAMP"/>
+    <foreign-key foreignTable="projects" name="define_communication_ibfk_1" onDelete="CASCADE">
+      <reference local="project_id" foreign="id"/>
+    </foreign-key>
+    <foreign-key foreignTable="project_phases" name="define_communication_ibfk_2" onDelete="CASCADE">
+      <reference local="phase_id" foreign="id"/>
+    </foreign-key>
+    <foreign-key foreignTable="phase_components" name="define_communication_ibfk_3" onDelete="CASCADE">
+      <reference local="phase_component_id" foreign="id"/>
+    </foreign-key>
+    <foreign-key foreignTable="users" name="define_communication_ibfk_4" onDelete="SET NULL">
+      <reference local="owner" foreign="id"/>
+    </foreign-key>
+    <index name="project_id">
+      <index-column name="project_id"/>
+    </index>
+    <index name="owner">
+      <index-column name="owner"/>
+    </index>
+    <index name="phase_component_id">
+      <index-column name="phase_component_id"/>
+    </index>
+    <index name="phase_id">
+      <index-column name="phase_id"/>
+    </index>
+    <vendor type="mysql">
+      <parameter name="Engine" value="InnoDB"/>
+    </vendor>
+  </table>
+  <table name="define_gate_review" idMethod="native" phpName="DefineGateReview">
+    <column name="id" phpName="Id" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
+    <column name="project_id" phpName="ProjectId" type="INTEGER" required="true"/>
+    <column name="phase_id" phpName="PhaseId" type="INTEGER" required="true"/>
+    <column name="phase_component_id" phpName="PhaseComponentId" type="INTEGER" required="true"/>
+    <column name="quadrant" phpName="Quadrant" type="INTEGER" required="true"/>
+    <column name="detail" phpName="Detail" type="VARCHAR" size="255" required="true"/>
+    <column name="date_time_created" phpName="DateTimeCreated" type="TIMESTAMP"/>
+    <column name="last_updated" phpName="LastUpdated" type="TIMESTAMP" required="true" defaultExpr="CURRENT_TIMESTAMP"/>
+    <foreign-key foreignTable="projects" name="define_gate_review_ibfk_1" onDelete="CASCADE">
+      <reference local="project_id" foreign="id"/>
+    </foreign-key>
+    <foreign-key foreignTable="project_phases" name="define_gate_review_ibfk_2" onDelete="CASCADE">
+      <reference local="phase_id" foreign="id"/>
+    </foreign-key>
+    <foreign-key foreignTable="phase_components" name="define_gate_review_ibfk_3" onDelete="CASCADE">
+      <reference local="phase_component_id" foreign="id"/>
+    </foreign-key>
+    <index name="project_id">
+      <index-column name="project_id"/>
+    </index>
+    <index name="phase_id">
+      <index-column name="phase_id"/>
+    </index>
+    <index name="phase_component_id">
+      <index-column name="phase_component_id"/>
+    </index>
+    <vendor type="mysql">
+      <parameter name="Engine" value="InnoDB"/>
+    </vendor>
+  </table>
+  <table name="define_raci" idMethod="native" phpName="DefineRaci">
+    <column name="id" phpName="Id" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
+    <column name="project_id" phpName="ProjectId" type="INTEGER" required="true"/>
+    <column name="phase_id" phpName="PhaseId" type="INTEGER" required="true"/>
+    <column name="phase_component_id" phpName="PhaseComponentId" type="INTEGER" required="true"/>
+    <column name="activity" phpName="Activity" type="VARCHAR" size="255" required="true"/>
+    <column name="raci" phpName="Raci" type="LONGVARCHAR" required="true"/>
+    <column name="owners" phpName="Owners" type="LONGVARCHAR" required="true"/>
+    <column name="date_time_created" phpName="DateTimeCreated" type="TIMESTAMP"/>
+    <column name="last_updated" phpName="LastUpdated" type="TIMESTAMP" required="true" defaultExpr="CURRENT_TIMESTAMP"/>
+    <foreign-key foreignTable="projects" name="define_raci_ibfk_1" onDelete="CASCADE">
+      <reference local="project_id" foreign="id"/>
+    </foreign-key>
+    <foreign-key foreignTable="project_phases" name="define_raci_ibfk_2" onDelete="CASCADE">
+      <reference local="phase_id" foreign="id"/>
+    </foreign-key>
+    <foreign-key foreignTable="phase_components" name="define_raci_ibfk_3" onDelete="CASCADE">
+      <reference local="phase_component_id" foreign="id"/>
+    </foreign-key>
+    <index name="project_id">
+      <index-column name="project_id"/>
+    </index>
+    <index name="phase_component_id">
+      <index-column name="phase_component_id"/>
+    </index>
+    <index name="phase_id">
+      <index-column name="phase_id"/>
+    </index>
+    <vendor type="mysql">
+      <parameter name="Engine" value="InnoDB"/>
+    </vendor>
+  </table>
+  <table name="define_risk_management" idMethod="native" phpName="DefineRiskManagement">
+    <column name="id" phpName="Id" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
+    <column name="project_id" phpName="ProjectId" type="INTEGER" required="true"/>
+    <column name="phase_id" phpName="PhaseId" type="INTEGER" required="true"/>
+    <column name="phase_component_id" phpName="PhaseComponentId" type="INTEGER" required="true"/>
+    <column name="date_entered" phpName="DateEntered" type="TIMESTAMP"/>
+    <column name="category_area" phpName="CategoryArea" type="VARCHAR" size="255" required="true"/>
+    <column name="specific_risk" phpName="SpecificRisk" type="VARCHAR" size="255" required="true"/>
+    <column name="severity" phpName="Severity" type="INTEGER" required="true"/>
+    <column name="likelihood" phpName="Likelihood" type="INTEGER" required="true"/>
+    <column name="detectibility" phpName="Detectibility" type="INTEGER" required="true"/>
+    <column name="risk_priority" phpName="RiskPriority" type="VARCHAR" size="255" required="true"/>
+    <column name="mitigation_steps" phpName="MitigationSteps" type="VARCHAR" size="255" required="true"/>
+    <column name="person_accountable" phpName="PersonAccountable" type="INTEGER"/>
+    <column name="due_date" phpName="DueDate" type="DATE" required="true"/>
+    <column name="contingency_plan" phpName="ContingencyPlan" type="VARCHAR" size="255" required="true"/>
+    <column name="date_time_created" phpName="DateTimeCreated" type="TIMESTAMP"/>
+    <column name="last_updated" phpName="LastUpdated" type="TIMESTAMP" required="true" defaultExpr="CURRENT_TIMESTAMP"/>
+    <foreign-key foreignTable="projects" name="define_risk_management_ibfk_1" onDelete="CASCADE">
+      <reference local="project_id" foreign="id"/>
+    </foreign-key>
+    <foreign-key foreignTable="project_phases" name="define_risk_management_ibfk_2" onDelete="CASCADE">
+      <reference local="phase_id" foreign="id"/>
+    </foreign-key>
+    <foreign-key foreignTable="phase_components" name="define_risk_management_ibfk_3" onDelete="CASCADE">
+      <reference local="phase_component_id" foreign="id"/>
+    </foreign-key>
+    <foreign-key foreignTable="users" name="define_risk_management_ibfk_4" onDelete="SET NULL">
+      <reference local="person_accountable" foreign="id"/>
+    </foreign-key>
+    <index name="project_id">
+      <index-column name="project_id"/>
+    </index>
+    <index name="phase_component_id">
+      <index-column name="phase_component_id"/>
+    </index>
+    <index name="phase_id">
+      <index-column name="phase_id"/>
+    </index>
+    <index name="person_accountable">
+      <index-column name="person_accountable"/>
+    </index>
+    <vendor type="mysql">
+      <parameter name="Engine" value="InnoDB"/>
+    </vendor>
+  </table>
+  <table name="define_sipoc" idMethod="native" phpName="DefineSipoc">
+    <column name="id" phpName="Id" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
+    <column name="project_id" phpName="ProjectId" type="INTEGER" required="true"/>
+    <column name="phase_id" phpName="PhaseId" type="INTEGER" required="true"/>
+    <column name="phase_component_id" phpName="PhaseComponentId" type="INTEGER" required="true"/>
+    <column name="suppliers" phpName="Suppliers" type="VARCHAR" size="255" required="true"/>
+    <column name="inputs" phpName="Inputs" type="VARCHAR" size="255" required="true"/>
+    <column name="outputs" phpName="Outputs" type="VARCHAR" size="255" required="true"/>
+    <column name="processes" phpName="Processes" type="VARCHAR" size="255" required="true"/>
+    <column name="customers" phpName="Customers" type="VARCHAR" size="255" required="true"/>
+    <column name="process_measures" phpName="ProcessMeasures" type="VARCHAR" size="255" required="true"/>
+    <column name="output_measures" phpName="OutputMeasures" type="VARCHAR" size="255" required="true"/>
+    <column name="date_time_created" phpName="DateTimeCreated" type="TIMESTAMP"/>
+    <column name="last_updated" phpName="LastUpdated" type="TIMESTAMP" required="true" defaultExpr="CURRENT_TIMESTAMP"/>
+    <foreign-key foreignTable="projects" name="define_sipoc_ibfk_1" onDelete="CASCADE">
+      <reference local="project_id" foreign="id"/>
+    </foreign-key>
+    <foreign-key foreignTable="project_phases" name="define_sipoc_ibfk_2" onDelete="CASCADE">
+      <reference local="phase_id" foreign="id"/>
+    </foreign-key>
+    <foreign-key foreignTable="phase_components" name="define_sipoc_ibfk_3" onDelete="CASCADE">
+      <reference local="phase_component_id" foreign="id"/>
+    </foreign-key>
+    <index name="project_id">
+      <index-column name="project_id"/>
+    </index>
+    <index name="phase_component_id">
+      <index-column name="phase_component_id"/>
+    </index>
+    <index name="phase_id">
+      <index-column name="phase_id"/>
+    </index>
+    <vendor type="mysql">
+      <parameter name="Engine" value="InnoDB"/>
+    </vendor>
+  </table>
+  <table name="define_stakeholders" idMethod="native" phpName="DefineStakeholders">
+    <column name="id" phpName="Id" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
+    <column name="project_id" phpName="ProjectId" type="INTEGER" required="true"/>
+    <column name="phase_id" phpName="PhaseId" type="INTEGER" required="true"/>
+    <column name="phase_component_id" phpName="PhaseComponentId" type="INTEGER" required="true"/>
+    <column name="user_id" phpName="UserId" type="INTEGER" required="true"/>
+    <column name="support_category" phpName="SupportCategory" type="VARCHAR" size="255" required="true"/>
+    <column name="resistance_type" phpName="ResistanceType" type="VARCHAR" size="255" required="true"/>
+    <column name="resistance_level" phpName="ResistanceLevel" type="VARCHAR" size="255" required="true"/>
+    <column name="resistance_strategy" phpName="ResistanceStrategy" type="LONGVARCHAR" required="true"/>
+    <column name="date_time_created" phpName="DateTimeCreated" type="TIMESTAMP"/>
+    <column name="last_updated" phpName="LastUpdated" type="TIMESTAMP" required="true" defaultExpr="CURRENT_TIMESTAMP"/>
+    <foreign-key foreignTable="projects" name="define_stakeholders_ibfk_1" onDelete="CASCADE">
+      <reference local="project_id" foreign="id"/>
+    </foreign-key>
+    <foreign-key foreignTable="project_phases" name="define_stakeholders_ibfk_2" onDelete="CASCADE">
+      <reference local="phase_id" foreign="id"/>
+    </foreign-key>
+    <foreign-key foreignTable="phase_components" name="define_stakeholders_ibfk_3" onDelete="CASCADE">
+      <reference local="phase_component_id" foreign="id"/>
+    </foreign-key>
+    <foreign-key foreignTable="users" name="define_stakeholders_ibfk_4" onDelete="CASCADE">
+      <reference local="user_id" foreign="id"/>
+    </foreign-key>
+    <index name="user_id">
+      <index-column name="user_id"/>
+    </index>
+    <index name="project_id">
+      <index-column name="project_id"/>
+    </index>
+    <index name="phase_component_id">
+      <index-column name="phase_component_id"/>
+    </index>
+    <index name="phase_id">
+      <index-column name="phase_id"/>
+    </index>
+    <vendor type="mysql">
+      <parameter name="Engine" value="InnoDB"/>
+    </vendor>
+  </table>
+  <table name="define_value_stream_diagram" idMethod="native" phpName="DefineValueStreamDiagram">
+    <column name="id" phpName="Id" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
+    <column name="project_id" phpName="ProjectId" type="INTEGER" required="true"/>
+    <column name="phase_id" phpName="PhaseId" type="INTEGER" required="true"/>
+    <column name="phase_component_id" phpName="PhaseComponentId" type="INTEGER" required="true"/>
+    <column name="svg" phpName="Svg" type="CLOB" required="true"/>
+    <column name="date_time_created" phpName="DateTimeCreated" type="TIMESTAMP"/>
+    <column name="last_updated" phpName="LastUpdated" type="TIMESTAMP" required="true" defaultExpr="CURRENT_TIMESTAMP"/>
+    <foreign-key foreignTable="projects" name="define_value_stream_diagram_ibfk_1" onDelete="CASCADE">
+      <reference local="project_id" foreign="id"/>
+    </foreign-key>
+    <foreign-key foreignTable="project_phases" name="define_value_stream_diagram_ibfk_2" onDelete="CASCADE">
+      <reference local="phase_id" foreign="id"/>
+    </foreign-key>
+    <foreign-key foreignTable="phase_components" name="define_value_stream_diagram_ibfk_3" onDelete="CASCADE">
+      <reference local="phase_component_id" foreign="id"/>
+    </foreign-key>
+    <index name="project_id">
+      <index-column name="project_id"/>
+    </index>
+    <index name="phase_component_id">
+      <index-column name="phase_component_id"/>
+    </index>
+    <index name="phase_id">
+      <index-column name="phase_id"/>
+    </index>
+    <vendor type="mysql">
+      <parameter name="Engine" value="InnoDB"/>
+    </vendor>
+  </table>
+  <table name="define_voc_ccr" idMethod="native" phpName="DefineVocCcr">
+    <column name="id" phpName="Id" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
+    <column name="project_id" phpName="ProjectId" type="INTEGER" required="true"/>
+    <column name="phase_component_id" phpName="PhaseComponentId" type="INTEGER" required="true"/>
+    <column name="phase_id" phpName="PhaseId" type="INTEGER" required="true"/>
+    <column name="tool" phpName="Tool" type="LONGVARCHAR" required="true"/>
+    <column name="quantity" phpName="Quantity" type="INTEGER" required="true"/>
+    <column name="customer_issues" phpName="CustomerIssues" type="LONGVARCHAR" required="true"/>
+    <column name="customer_requirements" phpName="CustomerRequirements" type="LONGVARCHAR" required="true"/>
+    <column name="date_time_created" phpName="DateTimeCreated" type="TIMESTAMP"/>
+    <column name="last_updated" phpName="LastUpdated" type="TIMESTAMP" required="true" defaultExpr="CURRENT_TIMESTAMP"/>
+    <foreign-key foreignTable="projects" name="define_voc_ccr_ibfk_1" onDelete="CASCADE">
+      <reference local="project_id" foreign="id"/>
+    </foreign-key>
+    <foreign-key foreignTable="project_phases" name="define_voc_ccr_ibfk_2" onDelete="CASCADE">
+      <reference local="phase_id" foreign="id"/>
+    </foreign-key>
+    <foreign-key foreignTable="phase_components" name="define_voc_ccr_ibfk_3" onDelete="CASCADE">
+      <reference local="phase_component_id" foreign="id"/>
+    </foreign-key>
+    <index name="project_id">
+      <index-column name="project_id"/>
+    </index>
+    <index name="phase_component_id">
+      <index-column name="phase_component_id"/>
+    </index>
+    <index name="phase_id">
+      <index-column name="phase_id"/>
+    </index>
+    <vendor type="mysql">
+      <parameter name="Engine" value="InnoDB"/>
+    </vendor>
+  </table>
+  <table name="gate_review" idMethod="native" phpName="GateReview">
+    <column name="id" phpName="Id" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
+    <column name="project_id" phpName="ProjectId" type="INTEGER" required="true"/>
+    <column name="phase_id" phpName="PhaseId" type="INTEGER" required="true"/>
+    <column name="phase_component_id" phpName="PhaseComponentId" type="INTEGER" required="true"/>
+    <column name="quadrant" phpName="Quadrant" type="INTEGER" required="true"/>
+    <column name="detail" phpName="Detail" type="VARCHAR" size="255" required="true"/>
+    <column name="date_time_created" phpName="DateTimeCreated" type="TIMESTAMP"/>
+    <column name="last_updated" phpName="LastUpdated" type="TIMESTAMP" required="true" defaultExpr="CURRENT_TIMESTAMP"/>
+    <index name="project_id">
+      <index-column name="project_id"/>
+    </index>
+    <index name="phase_id">
+      <index-column name="phase_id"/>
+    </index>
+    <index name="phase_component_id">
+      <index-column name="phase_component_id"/>
+    </index>
+    <vendor type="mysql">
+      <parameter name="Engine" value="InnoDB"/>
+    </vendor>
+  </table>
+  <table name="improve_gate_review" idMethod="native" phpName="ImproveGateReview">
+    <column name="id" phpName="Id" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
+    <column name="project_id" phpName="ProjectId" type="INTEGER" required="true"/>
+    <column name="phase_id" phpName="PhaseId" type="INTEGER" required="true"/>
+    <column name="phase_component_id" phpName="PhaseComponentId" type="INTEGER" required="true"/>
+    <column name="quadrant" phpName="Quadrant" type="INTEGER" required="true"/>
+    <column name="detail" phpName="Detail" type="VARCHAR" size="255" required="true"/>
+    <column name="date_time_created" phpName="DateTimeCreated" type="TIMESTAMP"/>
+    <column name="last_updated" phpName="LastUpdated" type="TIMESTAMP" required="true" defaultExpr="CURRENT_TIMESTAMP"/>
+    <foreign-key foreignTable="projects" name="improve_gate_review_ibfk_1" onDelete="CASCADE">
+      <reference local="project_id" foreign="id"/>
+    </foreign-key>
+    <foreign-key foreignTable="project_phases" name="improve_gate_review_ibfk_2" onDelete="CASCADE">
+      <reference local="phase_id" foreign="id"/>
+    </foreign-key>
+    <foreign-key foreignTable="phase_components" name="improve_gate_review_ibfk_3" onDelete="CASCADE">
+      <reference local="phase_component_id" foreign="id"/>
+    </foreign-key>
+    <index name="project_id">
+      <index-column name="project_id"/>
+    </index>
+    <index name="phase_id">
+      <index-column name="phase_id"/>
+    </index>
+    <index name="phase_component_id">
+      <index-column name="phase_component_id"/>
+    </index>
+    <vendor type="mysql">
+      <parameter name="Engine" value="InnoDB"/>
+    </vendor>
+  </table>
+  <table name="improve_improvement_plan" idMethod="native" phpName="ImproveImprovementPlan">
+    <column name="id" phpName="Id" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
+    <column name="project_id" phpName="ProjectId" type="INTEGER" required="true"/>
+    <column name="phase_id" phpName="PhaseId" type="INTEGER" required="true"/>
+    <column name="phase_component_id" phpName="PhaseComponentId" type="INTEGER" required="true"/>
+    <column name="process" phpName="Process" type="VARCHAR" size="255" required="true"/>
+    <column name="goal" phpName="Goal" type="VARCHAR" size="255" required="true"/>
+    <column name="action_needed" phpName="ActionNeeded" type="VARCHAR" size="255" required="true"/>
+    <column name="resource_responsible" phpName="ResourceResponsible" type="VARCHAR" size="255" required="true"/>
+    <column name="challenges" phpName="Challenges" type="VARCHAR" size="255" required="true"/>
+    <column name="measures" phpName="Measures" type="VARCHAR" size="255" required="true"/>
+    <column name="date_time_created" phpName="DateTimeCreated" type="TIMESTAMP"/>
+    <column name="last_updated" phpName="LastUpdated" type="TIMESTAMP" required="true" defaultExpr="CURRENT_TIMESTAMP"/>
+    <foreign-key foreignTable="projects" name="improve_improvement_plan_ibfk_1" onDelete="CASCADE">
+      <reference local="project_id" foreign="id"/>
+    </foreign-key>
+    <foreign-key foreignTable="project_phases" name="improve_improvement_plan_ibfk_2" onDelete="CASCADE">
+      <reference local="phase_id" foreign="id"/>
+    </foreign-key>
+    <foreign-key foreignTable="phase_components" name="improve_improvement_plan_ibfk_3" onDelete="CASCADE">
+      <reference local="phase_component_id" foreign="id"/>
+    </foreign-key>
+    <index name="project_id">
+      <index-column name="project_id"/>
+    </index>
+    <index name="phase_component_id">
+      <index-column name="phase_component_id"/>
+    </index>
+    <index name="phase_id">
+      <index-column name="phase_id"/>
+    </index>
+    <vendor type="mysql">
+      <parameter name="Engine" value="InnoDB"/>
+    </vendor>
+  </table>
+  <table name="improve_value_stream_diagram" idMethod="native" phpName="ImproveValueStreamDiagram">
+    <column name="id" phpName="Id" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
+    <column name="project_id" phpName="ProjectId" type="INTEGER" required="true"/>
+    <column name="phase_id" phpName="PhaseId" type="INTEGER" required="true"/>
+    <column name="phase_component_id" phpName="PhaseComponentId" type="INTEGER" required="true"/>
+    <column name="svg" phpName="Svg" type="CLOB" required="true"/>
+    <column name="date_time_created" phpName="DateTimeCreated" type="TIMESTAMP"/>
+    <column name="last_updated" phpName="LastUpdated" type="TIMESTAMP" required="true" defaultExpr="CURRENT_TIMESTAMP"/>
+    <foreign-key foreignTable="projects" name="improve_value_stream_diagram_ibfk_1" onDelete="CASCADE">
+      <reference local="project_id" foreign="id"/>
+    </foreign-key>
+    <foreign-key foreignTable="project_phases" name="improve_value_stream_diagram_ibfk_2" onDelete="CASCADE">
+      <reference local="phase_id" foreign="id"/>
+    </foreign-key>
+    <foreign-key foreignTable="phase_components" name="improve_value_stream_diagram_ibfk_3" onDelete="CASCADE">
+      <reference local="phase_component_id" foreign="id"/>
+    </foreign-key>
+    <index name="project_id">
+      <index-column name="project_id"/>
+    </index>
+    <index name="phase_component_id">
+      <index-column name="phase_component_id"/>
+    </index>
+    <index name="phase_id">
+      <index-column name="phase_id"/>
+    </index>
+    <vendor type="mysql">
+      <parameter name="Engine" value="InnoDB"/>
+    </vendor>
+  </table>
+  <table name="measure_collection_plan" idMethod="native" phpName="MeasureCollectionPlan">
+    <column name="id" phpName="Id" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
+    <column name="project_id" phpName="ProjectId" type="INTEGER" required="true"/>
+    <column name="phase_id" phpName="PhaseId" type="INTEGER" required="true"/>
+    <column name="phase_component_id" phpName="PhaseComponentId" type="INTEGER" required="true"/>
+    <column name="measure" phpName="Measure" type="VARCHAR" size="255" required="true"/>
+    <column name="measure_type" phpName="MeasureType" type="VARCHAR" size="255" required="true"/>
+    <column name="data_type" phpName="DataType" type="VARCHAR" size="255" required="true"/>
+    <column name="operational_definition" phpName="OperationalDefinition" type="LONGVARCHAR" required="true"/>
+    <column name="specification" phpName="Specification" type="LONGVARCHAR" required="true"/>
+    <column name="target" phpName="Target" type="VARCHAR" size="255" required="true"/>
+    <column name="data_collection_form" phpName="DataCollectionForm" type="VARCHAR" size="255" required="true"/>
+    <column name="sampling" phpName="Sampling" type="VARCHAR" size="255" required="true"/>
+    <column name="baseline_sigma" phpName="BaselineSigma" type="VARCHAR" size="255" required="true"/>
+    <column name="date_time_created" phpName="DateTimeCreated" type="TIMESTAMP"/>
+    <column name="last_updated" phpName="LastUpdated" type="TIMESTAMP" required="true" defaultExpr="CURRENT_TIMESTAMP"/>
+    <foreign-key foreignTable="projects" name="measure_collection_plan_ibfk_1" onDelete="CASCADE">
+      <reference local="project_id" foreign="id"/>
+    </foreign-key>
+    <foreign-key foreignTable="project_phases" name="measure_collection_plan_ibfk_2" onDelete="CASCADE">
+      <reference local="phase_id" foreign="id"/>
+    </foreign-key>
+    <foreign-key foreignTable="phase_components" name="measure_collection_plan_ibfk_3" onDelete="CASCADE">
+      <reference local="phase_component_id" foreign="id"/>
+    </foreign-key>
+    <index name="project_id">
+      <index-column name="project_id"/>
+    </index>
+    <index name="phase_component_id">
+      <index-column name="phase_component_id"/>
+    </index>
+    <index name="phase_id">
+      <index-column name="phase_id"/>
+    </index>
+    <vendor type="mysql">
+      <parameter name="Engine" value="InnoDB"/>
+    </vendor>
+  </table>
+  <table name="measure_control_plan" idMethod="native" phpName="MeasureControlPlan">
+    <column name="id" phpName="Id" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
+    <column name="project_id" phpName="ProjectId" type="INTEGER" required="true"/>
+    <column name="phase_id" phpName="PhaseId" type="INTEGER" required="true"/>
+    <column name="phase_component_id" phpName="PhaseComponentId" type="INTEGER" required="true"/>
+    <column name="process_steps" phpName="ProcessSteps" type="VARCHAR" size="255" required="true"/>
+    <column name="ctq" phpName="Ctq" type="VARCHAR" size="255" required="true"/>
+    <column name="specification_characteristic" phpName="SpecificationCharacteristic" type="VARCHAR" size="255" required="true"/>
+    <column name="lsl" phpName="Lsl" type="VARCHAR" size="255" required="true"/>
+    <column name="usl" phpName="Usl" type="VARCHAR" size="255" required="true"/>
+    <column name="unit_of_measure" phpName="UnitOfMeasure" type="VARCHAR" size="255" required="true"/>
+    <column name="data_description" phpName="DataDescription" type="VARCHAR" size="255" required="true"/>
+    <column name="measurement_method" phpName="MeasurementMethod" type="VARCHAR" size="255" required="true"/>
+    <column name="sample_size" phpName="SampleSize" type="INTEGER" required="true"/>
+    <column name="measurement_frequency" phpName="MeasurementFrequency" type="VARCHAR" size="255" required="true"/>
+    <column name="who_measures" phpName="WhoMeasures" type="INTEGER"/>
+    <column name="where_recorded" phpName="WhereRecorded" type="VARCHAR" size="255" required="true"/>
+    <column name="corrective_action" phpName="CorrectiveAction" type="VARCHAR" size="255" required="true"/>
+    <column name="applicable_sop" phpName="ApplicableSop" type="LONGVARCHAR" required="true"/>
+    <column name="date_time_created" phpName="DateTimeCreated" type="TIMESTAMP"/>
+    <column name="last_updated" phpName="LastUpdated" type="TIMESTAMP" required="true" defaultExpr="CURRENT_TIMESTAMP"/>
+    <foreign-key foreignTable="projects" name="measure_control_plan_ibfk_1" onDelete="CASCADE">
+      <reference local="project_id" foreign="id"/>
+    </foreign-key>
+    <foreign-key foreignTable="project_phases" name="measure_control_plan_ibfk_2" onDelete="CASCADE">
+      <reference local="phase_id" foreign="id"/>
+    </foreign-key>
+    <foreign-key foreignTable="phase_components" name="measure_control_plan_ibfk_3" onDelete="CASCADE">
+      <reference local="phase_component_id" foreign="id"/>
+    </foreign-key>
+    <foreign-key foreignTable="users" name="measure_control_plan_ibfk_4" onDelete="SET NULL">
+      <reference local="who_measures" foreign="id"/>
+    </foreign-key>
+    <index name="who_measures">
+      <index-column name="who_measures"/>
+    </index>
+    <index name="project_id">
+      <index-column name="project_id"/>
+    </index>
+    <index name="phase_component_id">
+      <index-column name="phase_component_id"/>
+    </index>
+    <index name="phase_id">
+      <index-column name="phase_id"/>
+    </index>
+    <vendor type="mysql">
+      <parameter name="Engine" value="InnoDB"/>
+    </vendor>
+  </table>
+  <table name="measure_gate_review" idMethod="native" phpName="MeasureGateReview">
+    <column name="id" phpName="Id" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
+    <column name="project_id" phpName="ProjectId" type="INTEGER" required="true"/>
+    <column name="phase_id" phpName="PhaseId" type="INTEGER" required="true"/>
+    <column name="phase_component_id" phpName="PhaseComponentId" type="INTEGER" required="true"/>
+    <column name="quadrant" phpName="Quadrant" type="INTEGER" required="true"/>
+    <column name="detail" phpName="Detail" type="VARCHAR" size="255" required="true"/>
+    <column name="date_time_created" phpName="DateTimeCreated" type="TIMESTAMP"/>
+    <column name="last_updated" phpName="LastUpdated" type="TIMESTAMP" required="true" defaultExpr="CURRENT_TIMESTAMP"/>
+    <foreign-key foreignTable="projects" name="measure_gate_review_ibfk_1" onDelete="CASCADE">
+      <reference local="project_id" foreign="id"/>
+    </foreign-key>
+    <foreign-key foreignTable="project_phases" name="measure_gate_review_ibfk_2" onDelete="CASCADE">
+      <reference local="phase_id" foreign="id"/>
+    </foreign-key>
+    <foreign-key foreignTable="phase_components" name="measure_gate_review_ibfk_3" onDelete="CASCADE">
+      <reference local="phase_component_id" foreign="id"/>
+    </foreign-key>
+    <index name="project_id">
+      <index-column name="project_id"/>
+    </index>
+    <index name="phase_id">
+      <index-column name="phase_id"/>
+    </index>
+    <index name="phase_component_id">
+      <index-column name="phase_component_id"/>
+    </index>
+    <vendor type="mysql">
+      <parameter name="Engine" value="InnoDB"/>
+    </vendor>
+  </table>
+  <table name="measure_histogram" idMethod="native" phpName="MeasureHistogram">
+    <column name="id" phpName="Id" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
+    <column name="project_id" phpName="ProjectId" type="INTEGER" required="true"/>
+    <column name="phase_id" phpName="PhaseId" type="INTEGER" required="true"/>
+    <column name="phase_component_id" phpName="PhaseComponentId" type="INTEGER" required="true"/>
+    <column name="title" phpName="Title" type="VARCHAR" size="255" required="true"/>
+    <column name="input" phpName="Input" type="LONGVARCHAR"/>
+    <column name="date_time_created" phpName="DateTimeCreated" type="TIMESTAMP"/>
+    <column name="last_updated" phpName="LastUpdated" type="TIMESTAMP" defaultExpr="CURRENT_TIMESTAMP"/>
+    <index name="project_id">
+      <index-column name="project_id"/>
+    </index>
+    <index name="phase_id">
+      <index-column name="phase_id"/>
+    </index>
+    <index name="phase_component_id">
+      <index-column name="phase_component_id"/>
+    </index>
+    <vendor type="mysql">
+      <parameter name="Engine" value="InnoDB"/>
+    </vendor>
+  </table>
+  <table name="measure_nonvalue_analysis" idMethod="native" phpName="MeasureNonvalueAnalysis">
+    <column name="id" phpName="Id" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
+    <column name="project_id" phpName="ProjectId" type="INTEGER" required="true"/>
+    <column name="phase_id" phpName="PhaseId" type="INTEGER" required="true"/>
+    <column name="phase_component_id" phpName="PhaseComponentId" type="INTEGER" required="true"/>
+    <column name="Waste" phpName="Waste" type="VARCHAR" size="255" required="true"/>
+    <column name="Improvements" phpName="Improvements" type="VARCHAR" size="255" required="true"/>
+    <column name="date_time_created" phpName="DateTimeCreated" type="TIMESTAMP"/>
+    <column name="last_updated" phpName="LastUpdated" type="TIMESTAMP" required="true" defaultExpr="CURRENT_TIMESTAMP"/>
+    <foreign-key foreignTable="projects" name="measure_nonvalue_analysis_ibfk_1" onDelete="CASCADE">
+      <reference local="project_id" foreign="id"/>
+    </foreign-key>
+    <foreign-key foreignTable="project_phases" name="measure_nonvalue_analysis_ibfk_2" onDelete="CASCADE">
+      <reference local="phase_id" foreign="id"/>
+    </foreign-key>
+    <foreign-key foreignTable="phase_components" name="measure_nonvalue_analysis_ibfk_3" onDelete="CASCADE">
+      <reference local="phase_component_id" foreign="id"/>
+    </foreign-key>
+    <index name="project_id">
+      <index-column name="project_id"/>
+    </index>
+    <index name="phase_component_id">
+      <index-column name="phase_component_id"/>
+    </index>
+    <index name="phase_id">
+      <index-column name="phase_id"/>
+    </index>
+    <vendor type="mysql">
+      <parameter name="Engine" value="InnoDB"/>
+    </vendor>
+  </table>
+  <table name="measure_value_stream_diagram" idMethod="native" phpName="MeasureValueStreamDiagram">
+    <column name="id" phpName="Id" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
+    <column name="project_id" phpName="ProjectId" type="INTEGER" required="true"/>
+    <column name="phase_id" phpName="PhaseId" type="INTEGER" required="true"/>
+    <column name="phase_component_id" phpName="PhaseComponentId" type="INTEGER" required="true"/>
+    <column name="svg" phpName="Svg" type="CLOB" required="true"/>
+    <column name="date_time_created" phpName="DateTimeCreated" type="TIMESTAMP"/>
+    <column name="last_updated" phpName="LastUpdated" type="TIMESTAMP" required="true" defaultExpr="CURRENT_TIMESTAMP"/>
+    <foreign-key foreignTable="projects" name="measure_value_stream_diagram_ibfk_1" onDelete="CASCADE">
+      <reference local="project_id" foreign="id"/>
+    </foreign-key>
+    <foreign-key foreignTable="project_phases" name="measure_value_stream_diagram_ibfk_2" onDelete="CASCADE">
+      <reference local="phase_id" foreign="id"/>
+    </foreign-key>
+    <foreign-key foreignTable="phase_components" name="measure_value_stream_diagram_ibfk_3" onDelete="CASCADE">
+      <reference local="phase_component_id" foreign="id"/>
+    </foreign-key>
+    <index name="project_id">
+      <index-column name="project_id"/>
+    </index>
+    <index name="phase_component_id">
+      <index-column name="phase_component_id"/>
+    </index>
+    <index name="phase_id">
+      <index-column name="phase_id"/>
+    </index>
+    <vendor type="mysql">
+      <parameter name="Engine" value="InnoDB"/>
+    </vendor>
+  </table>
+  <table name="phase_components" idMethod="native" phpName="PhaseComponents">
+    <column name="id" phpName="Id" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
+    <column name="project_id" phpName="ProjectId" type="INTEGER" required="true"/>
+    <column name="phase_id" phpName="PhaseId" type="INTEGER" required="true"/>
+    <column name="status" phpName="Status" type="CHAR" sqlType="enum('working','complete','graded','')" required="true" defaultValue="working"/>
+    <column name="name" phpName="Name" type="VARCHAR" size="255" required="true"/>
+    <column name="grade" phpName="Grade" type="VARCHAR" size="25" required="true" defaultValue=""/>
+    <column name="date_time_started" phpName="DateTimeStarted" type="TIMESTAMP"/>
+    <column name="date_time_created" phpName="DateTimeCreated" type="TIMESTAMP"/>
+    <column name="last_updated" phpName="LastUpdated" type="TIMESTAMP" required="true" defaultExpr="CURRENT_TIMESTAMP"/>
+    <foreign-key foreignTable="projects" name="phase_components_ibfk_1" onDelete="CASCADE">
+      <reference local="project_id" foreign="id"/>
+    </foreign-key>
+    <foreign-key foreignTable="project_phases" name="phase_components_ibfk_2" onDelete="CASCADE">
+      <reference local="phase_id" foreign="id"/>
+    </foreign-key>
+    <index name="project_id">
+      <index-column name="project_id"/>
+    </index>
+    <index name="phase_id">
+      <index-column name="phase_id"/>
+    </index>
+    <vendor type="mysql">
+      <parameter name="Engine" value="InnoDB"/>
+    </vendor>
+  </table>
+  <table name="project_phases" idMethod="native" phpName="ProjectPhases">
+    <column name="id" phpName="Id" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
+    <column name="project_id" phpName="ProjectId" type="INTEGER" required="true"/>
+    <column name="name" phpName="Name" type="VARCHAR" size="255" required="true"/>
+    <column name="date_time_created" phpName="DateTimeCreated" type="TIMESTAMP"/>
+    <column name="last_updated" phpName="LastUpdated" type="TIMESTAMP" required="true" defaultExpr="CURRENT_TIMESTAMP"/>
+    <foreign-key foreignTable="projects" name="project_phases_ibfk_1" onDelete="CASCADE">
+      <reference local="project_id" foreign="id"/>
+    </foreign-key>
+    <index name="project_id">
+      <index-column name="project_id"/>
+    </index>
+    <vendor type="mysql">
+      <parameter name="Engine" value="InnoDB"/>
+    </vendor>
+  </table>
+  <table name="projects" idMethod="native" phpName="Projects">
+    <column name="id" phpName="Id" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
+    <column name="client_id" phpName="ClientId" type="INTEGER"/>
+    <column name="created_by" phpName="CreatedBy" type="INTEGER"/>
+    <column name="status" phpName="Status" type="CHAR" sqlType="enum('active','inactive','complete')" required="true" defaultValue="active"/>
+    <column name="name" phpName="Name" type="VARCHAR" size="255"/>
+    <column name="type" phpName="Type" type="VARCHAR" size="255"/>
+    <column name="diagram_type" phpName="DiagramType" type="VARCHAR" size="255" required="true" defaultValue="SIPOC"/>
+    <column name="lead" phpName="Lead" type="INTEGER"/>
+    <column name="sponsor" phpName="Sponsor" type="INTEGER"/>
+    <column name="core_team" phpName="CoreTeam" type="VARCHAR" size="255" required="true" defaultValue="[]"/>
+    <column name="business_unit" phpName="BusinessUnit" type="VARCHAR" size="255"/>
+    <column name="location" phpName="Location" type="VARCHAR" size="255"/>
+    <column name="business_impact" phpName="BusinessImpact" type="LONGVARCHAR"/>
+    <column name="business_impact_value" phpName="BusinessImpactValue" type="VARCHAR" size="25"/>
+    <column name="problem_statement" phpName="ProblemStatement" type="LONGVARCHAR"/>
+    <column name="goals" phpName="Goals" type="LONGVARCHAR"/>
+    <column name="scope" phpName="Scope" type="LONGVARCHAR"/>
+    <column name="define_review_date" phpName="DefineReviewDate" type="DATE"/>
+    <column name="measure_review_date" phpName="MeasureReviewDate" type="DATE"/>
+    <column name="analyze_review_date" phpName="AnalyzeReviewDate" type="DATE"/>
+    <column name="improve_review_date" phpName="ImproveReviewDate" type="DATE"/>
+    <column name="control_review_date" phpName="ControlReviewDate" type="DATE"/>
+    <column name="date_time_created" phpName="DateTimeCreated" type="TIMESTAMP" defaultExpr="CURRENT_TIMESTAMP"/>
+    <column name="last_updated" phpName="LastUpdated" type="TIMESTAMP" required="true" defaultExpr="CURRENT_TIMESTAMP"/>
+    <foreign-key foreignTable="clients" name="projects_ibfk_1" onDelete="CASCADE">
+      <reference local="client_id" foreign="id"/>
+    </foreign-key>
+    <foreign-key foreignTable="users" name="projects_ibfk_2">
+      <reference local="created_by" foreign="id"/>
+    </foreign-key>
+    <foreign-key foreignTable="users" name="projects_ibfk_3">
+      <reference local="sponsor" foreign="id"/>
+    </foreign-key>
+    <foreign-key foreignTable="users" name="projects_ibfk_4" onDelete="SET NULL">
+      <reference local="lead" foreign="id"/>
+    </foreign-key>
+    <index name="client_id">
+      <index-column name="client_id"/>
+    </index>
+    <index name="created_by">
+      <index-column name="created_by"/>
+    </index>
+    <index name="sponsor">
+      <index-column name="sponsor"/>
+    </index>
+    <index name="lead">
+      <index-column name="lead"/>
+    </index>
+    <vendor type="mysql">
+      <parameter name="Engine" value="InnoDB"/>
+    </vendor>
+  </table>
+  <table name="Register" idMethod="native" phpName="Register">
+    <column name="first_name" phpName="FirstName" type="VARCHAR" size="55" required="true"/>
+    <column name="last_name" phpName="LastName" type="VARCHAR" size="55" required="true"/>
+    <column name="password" phpName="Password" type="VARCHAR" size="255" required="true"/>
+    <column name="Confirmpass" phpName="Confirmpass" type="VARCHAR" size="255" required="true"/>
+    <vendor type="mysql">
+      <parameter name="Engine" value="MyISAM"/>
+    </vendor>
+  </table>
+  <table name="users" idMethod="native" phpName="Users">
+    <column name="id" phpName="Id" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
+    <column name="client_id" phpName="ClientId" type="INTEGER"/>
+    <column name="status" phpName="Status" type="CHAR" sqlType="enum('active','inactive','pending','')" required="true" defaultValue="pending"/>
+    <column name="access_level_id" phpName="AccessLevelId" type="INTEGER"/>
+    <column name="email_address" phpName="EmailAddress" type="VARCHAR" size="55" required="true"/>
+    <column name="password" phpName="Password" type="VARCHAR" size="255" required="true"/>
+    <column name="first_name" phpName="FirstName" type="VARCHAR" size="55" required="true"/>
+    <column name="last_name" phpName="LastName" type="VARCHAR" size="55" required="true"/>
+    <column name="work_title" phpName="WorkTitle" type="VARCHAR" size="255"/>
+    <column name="reports_to" phpName="ReportsTo" type="INTEGER"/>
+    <column name="profile_image_url" phpName="ProfileImageUrl" type="VARCHAR" size="255"/>
+    <column name="phone" phpName="Phone" type="VARCHAR" size="25"/>
+    <column name="city" phpName="City" type="VARCHAR" size="255"/>
+    <column name="state" phpName="State" type="VARCHAR" size="255"/>
+    <column name="zip" phpName="Zip" type="VARCHAR" size="25"/>
+    <column name="time_zone" phpName="TimeZone" type="VARCHAR" size="10"/>
+    <column name="is_logged_in" phpName="IsLoggedIn" type="INTEGER" size="1" required="true" defaultValue="0"/>
+    <column name="last_login" phpName="LastLogin" type="TIMESTAMP"/>
+    <column name="created_by" phpName="CreatedBy" type="INTEGER"/>
+    <column name="last_updated" phpName="LastUpdated" type="TIMESTAMP" required="true" defaultExpr="CURRENT_TIMESTAMP"/>
+    <column name="date_time_created" phpName="DateTimeCreated" type="TIMESTAMP"/>
+    <column name="wordpress_id" phpName="WordpressId" type="INTEGER"/>
+    <foreign-key foreignTable="clients" name="users_ibfk_1" onDelete="CASCADE">
+      <reference local="client_id" foreign="id"/>
+    </foreign-key>
+    <foreign-key foreignTable="access_levels" name="users_ibfk_2" onDelete="SET NULL">
+      <reference local="access_level_id" foreign="id"/>
+    </foreign-key>
+    <foreign-key foreignTable="users" name="users_ibfk_3" onDelete="SET NULL">
+      <reference local="reports_to" foreign="id"/>
+    </foreign-key>
+    <index name="status">
+      <index-column name="status"/>
+    </index>
+    <index name="access_level_id">
+      <index-column name="access_level_id"/>
+    </index>
+    <index name="email_address">
+      <index-column name="email_address"/>
+    </index>
+    <index name="client_id">
+      <index-column name="client_id"/>
+    </index>
+    <index name="reports_to">
+      <index-column name="reports_to"/>
+    </index>
+    <index name="password">
+      <index-column name="password"/>
+    </index>
+    <vendor type="mysql">
+      <parameter name="Engine" value="InnoDB"/>
+    </vendor>
+  </table>
+  <table name="users_subscriptions" idMethod="native" phpName="UsersSubscriptions">
+    <column name="id" phpName="Id" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
+    <column name="user_id" phpName="UserId" type="INTEGER" required="true"/>
+    <column name="package" phpName="Package" type="VARCHAR" size="255" required="true"/>
+    <column name="is_trial" phpName="IsTrial" type="INTEGER" required="true"/>
+    <column name="date_time_created" phpName="DateTimeCreated" type="TIMESTAMP"/>
+    <column name="date_time_expires" phpName="DateTimeExpires" type="TIMESTAMP"/>
+    <column name="status" phpName="Status" type="VARCHAR" size="255" required="true"/>
+    <column name="wordpress_id" phpName="WordpressId" type="INTEGER"/>
+    <vendor type="mysql">
+      <parameter name="Engine" value="InnoDB"/>
+    </vendor>
+  </table>
+  <table name="value_stream_diagram" idMethod="native" phpName="ValueStreamDiagram">
+    <column name="id" phpName="Id" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
+    <column name="project_id" phpName="ProjectId" type="INTEGER" required="true"/>
+    <column name="phase_id" phpName="PhaseId" type="INTEGER" required="true"/>
+    <column name="phase_component_id" phpName="PhaseComponentId" type="INTEGER" required="true"/>
+    <column name="svg" phpName="Svg" type="CLOB" required="true"/>
+    <column name="date_time_created" phpName="DateTimeCreated" type="TIMESTAMP"/>
+    <column name="last_updated" phpName="LastUpdated" type="TIMESTAMP" required="true" defaultExpr="CURRENT_TIMESTAMP"/>
+    <index name="project_id">
+      <index-column name="project_id"/>
+    </index>
+    <index name="phase_component_id">
+      <index-column name="phase_component_id"/>
+    </index>
+    <index name="phase_id">
+      <index-column name="phase_id"/>
+    </index>
+    <vendor type="mysql">
+      <parameter name="Engine" value="InnoDB"/>
+    </vendor>
+  </table>
+</database>
